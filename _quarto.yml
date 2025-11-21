@@ -1,0 +1,47 @@
+project:
+  type: book
+  output-dir: docs
+book:
+  title: "Formation R"
+  author: 
+    - name: Louise Caron
+      url: https://louisecaron.github.io/
+    - name: Mathieu Ferry
+      url: https://mathieuferry.github.io/
+  date: "13/11/2025"
+  cover-image: images/icon.png
+  favicon: images/icon.png
+  chapters:
+    - index.qmd
+    - part: "**Discovering R**"
+      chapters:
+        - intro.qmd
+    - part: "**Manipulating and analysing data**"
+      chapters:
+        - statunis.qmd
+        - statbis.qmd
+    - part: "**Topics of interest**"
+      chapters:
+        - tutorial.qmd
+        - topics.qmd
+    - part: "**To move further**"
+      chapters:
+        - syntaxe.qmd
+
+  search:
+    type: textbox
+    location: sidebar
+  sidebar: 
+    border: true
+    logo: images/icon.png
+  
+
+format:
+  html:
+    theme: cosmo
+
+editor: visual
+
+execute:
+  eval: false
+
