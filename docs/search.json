@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Formation R",
     "section": "",
-    "text": "Preface\nThis short guide summarizes the learning elements proposed for the SoMix training in December 2025 in Colombo (Sri Lanka).\nThe various tutorials aim to familiarize participants with the RStudio console, the R language (and the tidyverse) through a selection of functions and tools considered most relevant for handling statistical data in the social sciences.\nThis guide is a training support for R; it is not a full course in statistics. It is also not intended to replace the many excellent guides available on the internet, for example:\n\nR for data science",
+    "text": "Preface\nThis short guide summarizes the quantitative training material proposed for the SoMix workshop in December 2025 in Colombo (Sri Lanka).\nThe various tutorials aim to familiarize participants with the RStudio console, the R language (and the tidyverse) through a selection of functions and tools considered most relevant for handling statistical data in the social sciences.\nThis guide is a training support for R; it is not a full course in statistics. It is also not intended to replace the many excellent guides available on the internet, for example:\n\nR for data science",
     "crumbs": [
       "Preface"
     ]
