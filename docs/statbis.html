@@ -207,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./topics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">topics.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Topics under scrutiny</span></span></a>
   </div>
 </li>
       </ul>
@@ -241,17 +241,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#the-association-between-a-categorical-variable-and-a-numerical-variable" id="toc-the-association-between-a-categorical-variable-and-a-numerical-variable" class="nav-link active" data-scroll-target="#the-association-between-a-categorical-variable-and-a-numerical-variable"><span class="header-section-number">3.1</span> The association between a categorical variable and a numerical variable</a>
   <ul class="collapse">
-  <li><a href="#résumer-par-la-moyenne-et-lécart-type" id="toc-résumer-par-la-moyenne-et-lécart-type" class="nav-link" data-scroll-target="#résumer-par-la-moyenne-et-lécart-type"><span class="header-section-number">3.1.1</span> Résumer par la moyenne et l’écart-type</a></li>
+  <li><a href="#summarizing-with-the-mean-and-the-standard-deviation" id="toc-summarizing-with-the-mean-and-the-standard-deviation" class="nav-link" data-scroll-target="#summarizing-with-the-mean-and-the-standard-deviation"><span class="header-section-number">3.1.1</span> Summarizing with the mean and the standard deviation</a></li>
   </ul></li>
   <li><a href="#the-association-between-two-categorical-variables-and-the-cross-tabulation" id="toc-the-association-between-two-categorical-variables-and-the-cross-tabulation" class="nav-link" data-scroll-target="#the-association-between-two-categorical-variables-and-the-cross-tabulation"><span class="header-section-number">3.2</span> The association between two categorical variables and the cross-tabulation</a>
   <ul class="collapse">
   <li><a href="#some-conventions-for-cross-tabulations" id="toc-some-conventions-for-cross-tabulations" class="nav-link" data-scroll-target="#some-conventions-for-cross-tabulations"><span class="header-section-number">3.2.1</span> Some conventions for cross-tabulations</a></li>
   <li><a href="#practical-application-of-the-cross-tabulation" id="toc-practical-application-of-the-cross-tabulation" class="nav-link" data-scroll-target="#practical-application-of-the-cross-tabulation"><span class="header-section-number">3.2.2</span> Practical application of the cross-tabulation</a></li>
-  <li><a href="#le-tableau-et-son-graphique" id="toc-le-tableau-et-son-graphique" class="nav-link" data-scroll-target="#le-tableau-et-son-graphique"><span class="header-section-number">3.2.3</span> Le tableau et son graphique</a></li>
-  <li><a href="#la-force-de-lassociation" id="toc-la-force-de-lassociation" class="nav-link" data-scroll-target="#la-force-de-lassociation"><span class="header-section-number">3.2.4</span> La force de l’association</a></li>
-  <li><a href="#un-mot-sur-le-test-du-khi-deux" id="toc-un-mot-sur-le-test-du-khi-deux" class="nav-link" data-scroll-target="#un-mot-sur-le-test-du-khi-deux"><span class="header-section-number">3.2.5</span> Un mot sur le test du khi-deux</a></li>
+  <li><a href="#from-the-table-to-the-graphic" id="toc-from-the-table-to-the-graphic" class="nav-link" data-scroll-target="#from-the-table-to-the-graphic"><span class="header-section-number">3.2.3</span> From the table to the graphic</a></li>
+  <li><a href="#cross-tabulation-with-three-variables" id="toc-cross-tabulation-with-three-variables" class="nav-link" data-scroll-target="#cross-tabulation-with-three-variables"><span class="header-section-number">3.2.4</span> Cross-tabulation with three variables?</a></li>
   </ul></li>
-  <li><a href="#exercices" id="toc-exercices" class="nav-link" data-scroll-target="#exercices"><span class="header-section-number">3.3</span> Exercices</a></li>
   </ul>
 </nav>
     </div>
@@ -278,13 +276,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Dans ce chapitre, nous abordons maintenant les statistiques bivariées. Nous utilisons toujours la base edu.rds et les mêmes packages que dans le chapitre précédent.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercice">
+<div class="callout callout-style-default callout-note callout-titled" title="Exercise">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exercice
+Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -342,7 +340,7 @@ Exercice
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_na   =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(distance))</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Nothing prevents us from studying variations in the distance to school according to several categorical variables. For example, we can compute the mean and the median with respect to both the province and the place of residence:</p>
+<p>We can readily analyse how the distance to school varies across multiple categorical variables. For example, we can compute the mean and the median with respect to both the province and the place of residence:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(province,sector_rec) <span class="sc">|&gt;</span></span>
@@ -376,8 +374,8 @@ Exercice
 </figure>
 </div>
 <p>We can clearly see from this last analysis that this pattern holds in all provinces (except North Western), but the gap varies: it is higher in the Sabaragamuwa and Southern provinces, where the distance to school for children in estate areas is particularly pronounced.</p>
-<section id="résumer-par-la-moyenne-et-lécart-type" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="résumer-par-la-moyenne-et-lécart-type"><span class="header-section-number">3.1.1</span> Résumer par la moyenne et l’écart-type</h3>
+<section id="summarizing-with-the-mean-and-the-standard-deviation" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="summarizing-with-the-mean-and-the-standard-deviation"><span class="header-section-number">3.1.1</span> Summarizing with the mean and the standard deviation</h3>
 <p>It is quite common in academic articles to describe quantitative variables by reporting the mean (a measure of central tendency) and the standard deviation (a measure of dispersion, equal to the square root of the variance).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span></span>
@@ -409,8 +407,8 @@ Tip
 <p>The first option is very common (especially in English-language journals) but is not necessarily the most appropriate…</p>
 <p>When working with skewed (i.e., non-normal) distributions:</p>
 <ul>
-<li>The mean is sensitive to extreme values in the distribution.</li>
-<li>It may be best to have a look at both and plot the distributions!</li>
+<li><p>The mean is sensitive to extreme values in the distribution.</p></li>
+<li><p>It may be best to have a look at both and plot the distributions!</p></li>
 </ul>
 <p>Note: in fact, the standard deviation is then also not really a reliable indicator of dispersion describing the distribution. One may then prefer to calculate quantiles (e.g.&nbsp;quartiles, following Tukey’s 5 number summary!).</p>
 </div>
@@ -460,7 +458,7 @@ Exercise
 </section>
 <section id="practical-application-of-the-cross-tabulation" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="practical-application-of-the-cross-tabulation"><span class="header-section-number">3.2.2</span> Practical application of the cross-tabulation</h3>
-<p>Nous retrouvons les fonctions du package questionr. Pour créer un tableau croisé des effectifs non pondérés, on pourra écrire :</p>
+<p>We again use the functions from the <code>questionr</code> package. To create a cross-tabulation of unweighted counts, we can write:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>edu<span class="sc">$</span>r2_school_education_rec <span class="ot">&lt;-</span> edu<span class="sc">$</span>r2_school_education  <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.character</span>() <span class="sc">|&gt;</span></span>
@@ -470,436 +468,192 @@ Exercise
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Attended school in the past"</span> <span class="ot">=</span> <span class="st">"3"</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(edu_parents,r2_school_education_rec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(sector_rec,r2_school_education_rec) <span class="sc">|&gt;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">|&gt;</span> <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>La variable en ligne (ici, race) est la variable indépendante, c’est la première à être écrire, tandis que la variable en colonne (ici, salaire_quint) est la variable dépendante.</p>
-<p>Pour obtenir des pourcentages en ligne, il suffit d’écrire :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Capture d’écran 2025-11-22 à 13.47.19.png" class="img-fluid figure-img"></p>
+<figcaption>Frequency cross-tabulation</figcaption>
+</figure>
+</div>
+<p>The row variable (here <code>edu_parents</code>) is the independent variable — it is written first — while the column variable (here <code>r2_school_education_rec</code>) is the dependent variable.</p>
+<p>The table of counts is useful because it shows that some cells contain relatively small numbers of observations, which should make us cautious when interpreting the corresponding rows/columns.</p>
+<p>To obtain total percentages (joint percentages):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Salaires <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(race,salaire_quint) <span class="sc">|&gt;</span> <span class="fu">rprop</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(sector_rec,r2_school_education_rec,<span class="at">weights=</span>finalweight_25per) <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits=</span><span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Dans ce tableau, on peut aussi ajouter les effectifs totaux des lignes et par exemple ne pas mettre de décimales après la virgule :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Capture d’écran 2025-11-22 à 13.47.40.png" class="img-fluid figure-img"></p>
+<figcaption>Joint percentages</figcaption>
+</figure>
+</div>
+<p>From this table, we can say that the most frequent combination of residential location and children’s schooling status is children living in rural areas who are currently enrolled in school (68% of all children).</p>
+<p>We can also compute column percentages:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Salaires <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(race,salaire_quint) <span class="sc">|&gt;</span> <span class="fu">rprop</span>(<span class="at">n=</span>T,<span class="at">digit=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(sector_rec,r2_school_education_rec,<span class="at">weights=</span>finalweight_25per) <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cprop</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits=</span><span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Bien sur, il est possible de réaliser un tableau des pourcentages en colonne :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Capture d’écran 2025-11-22 à 14.02.38.png" class="img-fluid figure-img"></p>
+<figcaption>Column percentages</figcaption>
+</figure>
+</div>
+<p>Here, we see that among children who are currently in school, 79% live in rural areas (and 79% of all children, regardless of schooling status, live in rural areas).</p>
+<p>Among children who have never attended school, 83% live in rural areas. Children from rural areas are therefore slightly over-represented among those who have never attended school.</p>
+<p>Conversely, they are slightly under-represented among children who are not currently enrolled but have been enrolled in the past (78%).</p>
+<p>Finally, row percentages make interpretation easier when assessing whether there is an association between residential location and schooling:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Salaires <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(race,salaire_quint) <span class="sc">|&gt;</span> <span class="fu">cprop</span>(<span class="at">n=</span>T,<span class="at">digit=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(sector_rec,r2_school_education_rec,<span class="at">weights=</span>finalweight_25per) <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lprop</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits=</span><span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Ou des pourcentages totaux (qu’on appelle aussi pourcentages conjoints) :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Capture d’écran 2025-11-22 à 13.53.54.png" class="img-fluid figure-img"></p>
+<figcaption>Row percentages</figcaption>
+</figure>
+</div>
+<p>Here, we clearly see that, regardless of residential location, the most frequent situation for children is to be currently enrolled in school.</p>
+<p>Only 3% of children have never attended school, and this configuration is slightly less common in urban areas and estates. In other words, never having attended school — a very marginal situation overall — is mainly a rural phenomenon.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Salaires <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(race,salaire_quint) <span class="sc">|&gt;</span> <span class="fu">prop</span>(<span class="at">n=</span>T,<span class="at">digit=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercice">
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercise">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exercice
+Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ol type="1">
-<li><p>Étudier le lien entre le sexe et le niveau de salaire.</p></li>
-<li><p>Réaliser un tableau dans le Viewer.</p></li>
-</ol>
+<p>Study the association between age and school attendance with a row percentage cross tabulation.</p>
 </div>
 </div>
 </section>
-<section id="le-tableau-et-son-graphique" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="le-tableau-et-son-graphique"><span class="header-section-number">3.2.3</span> Le tableau et son graphique</h3>
-<p>ON GARDE</p>
-<p>On peut aussi réaliser un diagramme à barres empilées ou adjacentes de l’association entre la catégorie raciale et le niveau de salaire :</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/clipboard-2502740168.png" class="img-fluid figure-img"></p>
-<figcaption>Graphique à barres avec Esquisse</figcaption>
-</figure>
-</div>
-<p>ON ENLEVE</p>
-<p>On pourrait améliorer ce graphique de deux manières :</p>
-<ul>
-<li><p>En inversant l’ordre des étiquettes empilées (Très élevé en haut, très faible en bas)</p></li>
-<li><p>En mettant l’axe des Y en pourcentages (attention, il faut avoir installer le package scales)</p></li>
-</ul>
+<section id="from-the-table-to-the-graphic" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="from-the-table-to-the-graphic"><span class="header-section-number">3.2.3</span> From the table to the graphic</h3>
+<p>Esquisse can again in these cases be used to build represent graphically the association between residence and school attendance. Here, our category of interest is specifically “never attending school”.</p>
+<p>You first need to store the row-percentage tabulation (transformed as a “data.frame” using the <code>as.data.frame()</code> function) in an object (rtab), then open esquisser with this specific command.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Salaires) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> race, <span class="at">fill =</span> <span class="fu">fct_rev</span>(salaire_quint)) <span class="sc">+</span>  <span class="co"># Inverser l'ordre d'empilement</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>()) <span class="sc">+</span> <span class="co"># Axe des Y en % avec package scales</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"PuRd"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span>  <span class="co"># Légende dans le bon ordre</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Catégorie raciale"</span>,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Pourcentage"</span>,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Quintile de salaire"</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L)</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rtab<span class="ot">&lt;-</span>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(sector_rec,r2_school_education_rec,<span class="at">weights=</span>finalweight_25per) <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lprop</span>() <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>() </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">esquisser</span>(rtab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>You can then drop the residence variable on the X-axis tab and Freq in the Y-axis tab. Using the “Data” section at the bottom, remove all the categories of the <code>r2_school_education_rec</code> variable, except “Never attending school”. You can further refine the graphic by increasing the font, changing the axis labels, adding a title…</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/clipboard-2683344242.png" class="img-fluid figure-img"></p>
-<figcaption>Graphique à barres empilées amélioré</figcaption>
+<p><img src="images/Capture d’écran 2025-11-22 à 14.15.48.png" class="img-fluid figure-img"></p>
+<figcaption>Never attending school children</figcaption>
 </figure>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Bonus 1">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Bonus 1
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>On peut vouloir plutôt réaliser un diagramme à barres adjacentes plutôt que empilées. Dans ce cas, il est plus simple de repartir du tableau des pourcentages en ligne :</p>
+</section>
+<section id="cross-tabulation-with-three-variables" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="cross-tabulation-with-three-variables"><span class="header-section-number">3.2.4</span> Cross-tabulation with three variables?</h3>
+<p>Very often, we study social processes that depend on multiple social factors. For instance, school attendance may vary according to age (see above exercise), but age may impact differently school attendance for male and female children.</p>
+<p>One first easy solution to study this is simply to filter the row percentage cross tabulations according to the different categories of a third variable (here, sex).</p>
+<p>For instance:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#On crée le tableau croisé avec % en ligne</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> Salaires <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freqtable</span>(race, salaire_quint) <span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rprop</span>(<span class="at">total=</span>F) <span class="co">#On enlève les % totaux</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Il faut transformer ce tableau en format tidy pour le graphique</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>df_tab <span class="ot">&lt;-</span> <span class="fu">as.data.frame.matrix</span>(tab) <span class="sc">|&gt;</span> <span class="co">#transformation en une matrice de format data.frame</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"race"</span>) <span class="sc">|&gt;</span> <span class="co">#Les lignes étaient des "row.names" auxquelles on assigne un nom de colonne</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>race,</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"salaire_quint"</span>,</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"pct"</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="co">#On transforme le tableau de telle sorte que tous les % soient dans la même colonne et les modalités de salaire également. </span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>df_tab<span class="sc">$</span>salaire_quint <span class="ot">&lt;-</span> df_tab<span class="sc">$</span>salaire_quint <span class="sc">|&gt;</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fct_relevel</span>(</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Très faible"</span>,<span class="st">"Faible"</span>,<span class="st">"Moyen"</span>,<span class="st">"Elevé"</span>,<span class="st">"Très élevé"</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_tab, <span class="fu">aes</span>(<span class="at">x =</span> salaire_quint, <span class="at">y =</span> pct <span class="sc">/</span> <span class="dv">100</span>, <span class="at">fill =</span> race)) <span class="sc">+</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>,<span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">width =</span> <span class="fl">0.9</span>,<span class="at">preserve=</span><span class="st">"single"</span>))<span class="sc">+</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(pct,<span class="dv">0</span>), <span class="st">"%"</span>)),</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">width =</span> <span class="fl">0.9</span>,<span class="at">preserve=</span><span class="st">"single"</span>),</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>             <span class="at">vjust=</span><span class="sc">-</span>.<span class="dv">3</span>,</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">lim=</span><span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">45</span>),<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>                    <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> T)) <span class="sc">+</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Quintile de salaire"</span>,</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Pourcentage"</span>,</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Catégorie raciale"</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L)</span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex<span class="sc">==</span><span class="st">"Male"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freqtable</span>(age,r2_school_education_rec,<span class="at">weights=</span>finalweight_25per) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lprop</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits=</span><span class="dv">0</span>) <span class="sc">|&gt;</span> <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex<span class="sc">==</span><span class="st">"Female"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freqtable</span>(age,r2_school_education_rec,<span class="at">weights=</span>finalweight_25per) <span class="sc">|&gt;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lprop</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits=</span><span class="dv">0</span>) <span class="sc">|&gt;</span> <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/clipboard-1796684723.png" class="img-fluid figure-img"></p>
-<figcaption>Diagramme à barres adjacentes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Bonus 2">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Bonus 2
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>On pourrait aussi vouloir créer un diagramme à barres avec les étiquettes de valeurs de pourcentage sur le graphique. Dans ce cas, il est plus simple de repartir du tableau des pourcentages en ligne :</p>
+<p><img src="images/Capture d’écran 2025-11-22 à 15.46.58.png" class="img-fluid" alt="School attendance by age for male children"> <img src="images/Capture d’écran 2025-11-22 à 15.47.07.png" class="img-fluid" alt="School attendance by age for female children"></p>
+<p>This code prints successively two crosstabs in the Viewer panel, but it is not ideal as we would want to see them on the same page.</p>
+<p>We can actually simply write:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#On crée le tableau croisé avec % en ligne</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> Salaires <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freqtable</span>(race, salaire_quint) <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rprop</span>()</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Il faut transformer ce tableau en format tidy pour le graphique</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>df_tab <span class="ot">&lt;-</span> <span class="fu">as.data.frame.matrix</span>(tab) <span class="sc">|&gt;</span> <span class="co">#transformation en une matrice de format data.frame</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"race"</span>) <span class="sc">|&gt;</span> <span class="co">#Les lignes étaient des "row.names" auxquelles on assigne un nom de colonne</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Total) <span class="sc">|&gt;</span> <span class="co">#On enlève les lignes de total</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>race,</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"salaire_quint"</span>,</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"pct"</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="co">#On transforme le tableau de telle sorte que tous les % soient dans la même colonne et les modalités de salaire également. </span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>df_tab<span class="sc">$</span>salaire_quint <span class="ot">&lt;-</span> df_tab<span class="sc">$</span>salaire_quint <span class="sc">|&gt;</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fct_relevel</span>(</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Très faible"</span>,<span class="st">"Faible"</span>,<span class="st">"Moyen"</span>,<span class="st">"Elevé"</span>,<span class="st">"Très élevé"</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Graphique</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_tab, <span class="fu">aes</span>(<span class="at">x =</span> race, <span class="at">y =</span> pct <span class="sc">/</span> <span class="dv">100</span>, <span class="at">fill =</span> <span class="fu">fct_rev</span>(salaire_quint))) <span class="sc">+</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(pct,<span class="dv">0</span>), <span class="st">"%"</span>)),</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"PuRd"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>                    <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> T)) <span class="sc">+</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Catégorie raciale"</span>,</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Pourcentage"</span>,</span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Quintile de salaire"</span></span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L),</span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>L)</span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tab3<span class="ot">&lt;-</span>edu <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freqtable</span>(age,r2_school_education_rec,sex,<span class="at">weights=</span>finalweight_25per) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lprop</span>() </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>tab3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>tab3</code> contains the three-way cross tabulation. We have simply added the sex variable after the dependent within the <code>freqtable()</code> function.</p>
+<p>Unfortunately, viewing this bigger table in the Viewer panel is not so straightforward with the existing <code>kableExtra</code> functions. One solution is to create our own function that we will be able to use at any time whenever we want to study a 3-way cross tabulation.</p>
+<p>Run the following code which will create the <code>kbl_grouped_3way()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>kbl_grouped_3way <span class="ot">&lt;-</span> <span class="cf">function</span>(tab,<span class="at">digits=</span><span class="dv">1</span>) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert to data frame (Sex / Age / Category / Freq etc.)</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tab)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Identify names of the three dimensions</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  dims <span class="ot">&lt;-</span> <span class="fu">names</span>(df)[<span class="fu">names</span>(df) <span class="sc">!=</span> <span class="st">"Freq"</span>]</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># For readability</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  dim1 <span class="ot">&lt;-</span> dims[<span class="dv">1</span>]   <span class="co"># row dimension (ex: age)</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  dim2 <span class="ot">&lt;-</span> dims[<span class="dv">2</span>]   <span class="co"># column dimension (ex: school status)</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  dim3 <span class="ot">&lt;-</span> dims[<span class="dv">3</span>]   <span class="co"># grouping dimension (ex: sex)</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert to wide</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  df_wide <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_from =</span> <span class="fu">all_of</span>(dim2), </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_from =</span> Freq</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep a copy of grouping variable and row order before dropping</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  grouping_var <span class="ot">&lt;-</span> df_wide[[dim3]]</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Build table</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  tab_out <span class="ot">&lt;-</span> df_wide <span class="sc">|&gt;</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">all_of</span>(dim3)) <span class="sc">|&gt;</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kbl</span>(<span class="at">digits =</span> digits) </span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># How many rows per group?</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  group_levels <span class="ot">&lt;-</span> <span class="fu">unique</span>(grouping_var)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  groups <span class="ot">&lt;-</span> <span class="fu">split</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(df_wide)), grouping_var)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add pack_rows dynamically</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (g <span class="cf">in</span> group_levels) {</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    rows <span class="ot">&lt;-</span> groups[[g]]</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    tab_out <span class="ot">&lt;-</span> tab_out <span class="sc">|&gt;</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pack_rows</span>(<span class="at">group =</span> g,</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>                <span class="at">start_row =</span> <span class="fu">min</span>(rows),</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>                <span class="at">end_row =</span> <span class="fu">max</span>(rows))</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>  tab_out</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, just apply to the tab3 object:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kbl_grouped_3way</span>(m,<span class="at">digits=</span><span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_classic_2</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/clipboard-3779074093.png" class="img-fluid figure-img"></p>
-<figcaption>Diagramme à barres empilées avec étiquettes</figcaption>
+<p><img src="images/Capture d’écran 2025-11-22 à 15.46.24.png" class="img-fluid figure-img"></p>
+<figcaption>School attendance by age and sex</figcaption>
 </figure>
 </div>
+<p>Of course, it is also possible to produce a figure, which could for instance look like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Capture d’écran 2025-11-22 à 15.52.33.png" class="img-fluid figure-img"></p>
+<figcaption>Graphic of the school attendance by age and sex</figcaption>
+</figure>
 </div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercice">
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercise">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exercice
+Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Étudier le lien entre sexe et niveau de salaire à l’aide d’un diagramme à barres empilées ou adjacentes.</p>
-</div>
-</div>
-</section>
-<section id="la-force-de-lassociation" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="la-force-de-lassociation"><span class="header-section-number">3.2.4</span> La force de l’association</h3>
-<p>ON ENLEVE</p>
-<p>Pour étudier l’intensité de l’association entre deux variables qualitatives, l’indice le plus évident est le V de Cramer qui prend une valeur entre 0 (pas d’association) et 1 (association parfaite).</p>
-<p>À partir de 0,2 ou 0,3, on pourra considérer qu’il y a une association notable.</p>
-<p>On le calcule ainsi :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> Salaires <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freqtable</span>(race, salaire_quint)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cramer.v</span>(tab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercice">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Exercice
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>L’intensité de l’association est-elle plus forte pour entre le salaire et le sexe ou le salaire et la catégorie raciale ?</p>
-</div>
-</div>
-</section>
-<section id="un-mot-sur-le-test-du-khi-deux" class="level3" data-number="3.2.5">
-<h3 data-number="3.2.5" class="anchored" data-anchor-id="un-mot-sur-le-test-du-khi-deux"><span class="header-section-number">3.2.5</span> Un mot sur le test du khi-deux</h3>
-<p>ON DEPLACE PLUS LOIN</p>
-<p>Difficile de ne pas évoquer pour finir le test du chi-deux, sans toutefois trop s’y attarder. Précisons que Julien Barnier a écrit un <a href="https://raw.githubusercontent.com/juba/archive_doc_khi2/master/khi2.pdf">récapitalutif très exhaustif</a> sur ce qu’est et n’est pas le test du khi-deux (ou chi-deux ou -deux ou chi-squared…).</p>
-<p>À quoi sert le test du khi-deux :</p>
-<ul>
-<li><p>Déterminer la probabilité que les lignes et les colonnes du tableau croisé sont indépendantes</p></li>
-<li><p>Évaluer si la répartition des effectifs dans une table de contingence est significativement différente de la table calculée sous l’hypothèse d’indépendance des deux variables croisées</p></li>
-</ul>
-<p><em>La distribution du salaire est-elle indépendante de celle de la catégorie raciale des individus ? Y-a-t-il une association entre race et salaire ?</em></p>
-<div class="callout callout-style-default callout-note callout-titled" title="Explications sur le test du khi-deux">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Explications sur le test du khi-deux
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>On va poser un test statistique, avec une hypothèse H0, ou hypothèse nulle qui est que :</p>
-<p><em>La distribution des quintiles de salaire est indépendante de la catégorie raciale.</em></p>
-<p>On cherche à savoir à quoi ressemblerait notre tableau croisé si les deux variables étaient effectivement indépendantes l’une de l’autre et quelle est la probabilité (la p-valeur) pour que les deux variables soient effectivement indépendantes l’une de l’autre, modulo nos fluctuations d’échantillonnage.</p>
-<p>En pratique, les variables sont indépendantes si :</p>
-<ul>
-<li><p>Les pourcentages lignes du tableau croisé sont les mêmes pour toutes les lignes</p></li>
-<li><p>Les pourcentages colonnes du tableau croisé sont les mêmes pour toutes les colonnes</p></li>
-</ul>
-<p>Dans notre exemple, lignes et colonnes ne semblent pas très indépendantes.</p>
-<p>Mais dans un échantillon issu d’une enquête, il est rare que les variables croisées soient parfaitement indépendantes car les données du tableau sont dépendantes de l’échantillon interrogé et tout échantillon est soumis à des biais (qui, si l’échantillon a été construit de manière aléatoire, sont dus <em>au hasard,</em> donc des <em>fluctuations d’échantillonage</em>).</p>
-<p>Le test du khi-deux permet de savoir à partir de quel seuil on peut estimer que les variations observées par rapport à la situation d’indépendante sont dues au hasard et à partir de quand elles sont dues à un lien entre les variables.</p>
-<p>À partir du tableau des effectifs, on peut calculer les effectifs théoriques, <em>si les deux variables étaient indépendantes</em>, grâce aux marges des lignes et des colonnes :</p>
-<p><em>Effectif théorique d’une cellule = (total ligne x total colonne) / total global</em></p>
-<p>Ce qu’on peut calculer manuellement à partir des marges (les totaux) qu’on peut obtenir par exemple en faisant ainsi :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Salaires <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freqtable</span>(race, salaire_quint) <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop</span>(<span class="at">n=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>L’effectif théorique de la cellule Blanc x Très faible est donc 90,6 car :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">110</span><span class="sc">*</span><span class="dv">440</span><span class="sc">/</span><span class="dv">534</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Heureusement R dispose de la fonction chisq.test() qui permet notamment d’afficher les effectifs théoriques :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tab<span class="ot">&lt;-</span>Salaires <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freqtable</span>(race, salaire_quint)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>chi<span class="ot">&lt;-</span><span class="fu">chisq.test</span>(tab)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>chi<span class="sc">$</span>expected</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Pour mémoire les effectifs observés sont :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>chi<span class="sc">$</span>observed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Alors à quel point les effectifs théoriques divergent des effectifs observés ?</p>
-<p>Pour ce faire, on calcule des “khi-deux partiels” définis comme la distance standardisée entre les effectifs théoriques et observés :</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/clipboard-1078637929.png" class="img-fluid figure-img"></p>
-<figcaption>Définition des khi-deux partiels</figcaption>
-</figure>
-</div>
-<p>Ces khi-deux partiels peuvent être calculés comme ceci :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(chi<span class="sc">$</span>expected<span class="sc">-</span>chi<span class="sc">$</span>observed)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>chi<span class="sc">$</span>expected</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/clipboard-2425509646.png" class="img-fluid figure-img"></p>
-<figcaption>Khi-deux partiels</figcaption>
-</figure>
-</div>
-<p>Ici, on voit déjà que les écarts à l’indépendance sont les plus élevés pour la cellule HispaniquexTrès faible, ce que nous avions repéré avec une surreprésentation de cette catégorie raciale parmi ceux qui gagnent de faibles salaires.</p>
-<p>On calcule ensuite la valeur du khi-deux du tableau, qui correspond à la somme des khi-deux partiels :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((chi<span class="sc">$</span>expected<span class="sc">-</span>chi<span class="sc">$</span>observed)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>chi<span class="sc">$</span>expected)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Qu’on obtient aussi ici :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>chi<span class="sc">$</span>statistic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Est-ce que cette valeur est faible ou élevée ?</p>
-<p>On va pouvoir comparer cette statistique à la “loi du khi-deux”, une distribution statistique qui nous donne les valeurs théoriques du khi-deux d’un tableau sous condition d’indépendance.</p>
-<p>Cette loi dépend d’un paramètre : le nombre de degrés de libertés. Quel est le nombre de degrés de libertés ici ?</p>
-<p>Il dépend grosso modo de la taille du tableau :</p>
-<p><em>(Nombre de lignes - 1) x (Nombre de colonnes - 1)</em></p>
-<p>Ici, nous avons 3 lignes et 5 colonnes, donc le degré de liberté (ddl) est égal à 8.</p>
-<p>On le vérifie ici :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>chi<span class="sc">$</span>parameter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/clipboard-4241100990.png" class="img-fluid figure-img"></p>
-<figcaption>Loi du khi-deux suivant le degré de libertés (k)</figcaption>
-</figure>
-</div>
-<p>On va enfin calculer une probabilité (une p-valeur), qui correspond à l’aire sous la courbe théorique à droite de la valeur du khi-deux observée, qui ici vaut 0,397, comme indiqué sur la figure.</p>
-<p>En effet, rappelons-nous, la p-valeur c’est la probabilité que le khi-2 théorique soit supérieur ou égal au khi-2 observé sous condition d’indépendance.</p>
-<p>Ici, on voit que si les deux variables sont indépendantes, il y a une probabilité de presque 40&nbsp;% pour que par hasard on obtienne une valeur du khi-2 au moins aussi élevée que celle qu’on a observé (8,374).</p>
-<p>Autrement dit, notre valeur du khi-deux est assez plausible / compatible avec le fait que les deux variables soient indépendantes !</p>
-<p>Cette p-valeur nous empêche de rejeter l’hypothèse d’indépendance entre catégorie racial et salaire.</p>
-<p><em>En sciences sociales, on retient généralement le seuil d’une p-valeur de 0,05 en dessous de laquelle on estime qu’on peut rejeter l’hypothèse d’indépendance.</em></p>
-<p>Pour ce faire, il aurait fallu ici obtenir un khi-2 observé au moins égal à 15,507 (on en est loin !).</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/clipboard-3821422757.png" class="img-fluid figure-img"></p>
-<figcaption>Distribution du khi-2 et p-valeur</figcaption>
-</figure>
-</div>
-<p>Alors que conclure ? On ne rejette pas H0, l’hypothèse d’indépendance.</p>
-<p>Mais pouvons-nous affirmer que le salaire ne dépend pas de la catégorie raciale ? Eh bien, pas vraiment non plus. En gros, on n’a pas rejeté l’idée que les deux variables sont indépendantes, et les variations observées peuvent être dues à des fluctuations d’échantillonnage… ou pas.</p>
-<p>Et si la p-valeur avait été inférieure à 0,05 ? On aurait pu rejeter H0 l’hypothèse d’indépendance et on aurait considéré qu’un lien existe entre les deux variables.</p>
-<p>On peut vérifier la p-valeur calculée comme ceci :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>chi<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<p>On pose l’hypothèse nulle (H0) que les deux variables sont indépendantes. On fixe un seuil de significativité pour la p-valeur égal à 0,05, en dessous de laquelle on rejette l’hypothèse d’indépendance et à ce moment là on considère qu’un lien existe entre les variables :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>tab<span class="ot">&lt;-</span>Salaires <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freqtable</span>(race, salaire_quint)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>chi<span class="ot">&lt;-</span><span class="fu">chisq.test</span>(tab)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>chi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>La p-valeur est supérieure à 0,05, donc on ne peut pas rejeter H0 et on ne peut pas conclure qu’un lien existe entre les deux variables.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercice">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Exercice
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Tester l’hypothèse d’un lien entre le sexe et les quintiles de salaire.</p>
-</div>
-</div>
-<p>ON MET ICI le RECODAGE DES VARIABLES QUALIS</p>
-</section>
-</section>
-<section id="exercices" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="exercices"><span class="header-section-number">3.3</span> Exercices</h2>
-<p>ON ALLEGE</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercice">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Exercice
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li><p>Créer une variable haut_revenu qui vaut “oui” si un individu appartient aux 10 % les mieux rémunérés (salaire ≥ 9e décile) et “non” sinon. Calculer la proportion d’individus ayant un haut revenu pour le genre et la race, calculer les V de Cramer et réaliser des tests du khi-deux. Réaliser des diagrammes à barres. Qui sont les plus présents en haut de l’échelle salariale ?</p></li>
-<li><p>Recoder la variable âge en quatre groupes :</p></li>
-</ol>
-<ul>
-<li><p>Moins de 30 ans</p></li>
-<li><p>30-44 ans</p></li>
-<li><p>45-59 ans</p></li>
-<li><p>60 ans et plus</p></li>
-</ul>
-<ol start="3" type="1">
-<li><p>Pour chaque groupe d’âge, calculer la médiane et les quartiles du salaire et de l’expérience. Représenter ces distributions avec des boxplots. Observe-t-on un effet d’âge linéaire ?</p></li>
-<li><p>Décrire à l’aide d’un tableau croisé la distribution de l’âge en fonction des hauts revenus. Calculer le V de Cramer et réaliser un test du khi-deux. Réaliser un diagramme à barres. Qui sont les plus présents en haut de l’échelle salariale ?</p></li>
-</ol>
+<p>Study how the association between age and school attendance vary by residence locality (urban, rural and estate).</p>
 </div>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

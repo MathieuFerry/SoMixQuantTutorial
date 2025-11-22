@@ -207,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./topics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">topics.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Topics under scrutiny</span></span></a>
   </div>
 </li>
       </ul>
@@ -397,10 +397,39 @@ Caution
 <section id="loading-data-into-r" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="loading-data-into-r"><span class="header-section-number">1.4</span> Loading data into R</h2>
 <p>To do statistics, we need data. Here, we are going to use excerpts of the <a href="https://www.statistics.gov.lk/IncomeAndExpenditure/StaticalInformation">Household Income and Expenditure Survey 2019</a> collected by the Sri Lankan Department of Census and Statistics. For legality matters, you will need to create an account on the <a href="https://nada.statistics.gov.lk/index.php/home">Lanka data platform</a> and download the microdata files from the online platform. Notice that you are able to download only 25% of the total survey sample.</p>
-<p>For this workshop, we have additionally prepared three files to make your life easier to manipulate the survey, which you can access here <a href="https://forms.gle/tkBxwuPQtSvmfT9o7">Data repository</a>. You will need to provide a password (request password by email!). Download the files from this online folder. The folder contains a PDF of the questionnaire and a zipped folder which you can unzip on your computer. In the zipped folder, you will find three “.rds” files (R statistical files): - <code>edu.rds</code> contains data from Section 2 of the survey, i.e.&nbsp;on school education for household members aged 5 to 19 - <code>health.rds</code> contains data from Section 3A of the survey, i.e.&nbsp;on health treatment and chronic illness - <code>environment.rds</code> contains data from Section 7 &amp; 8, i.e.&nbsp;on access to primary facilities and housing information</p>
+<p>For this workshop, we have additionally prepared three files to make your life easier to manipulate the survey, which you can access here <a href="https://forms.gle/tkBxwuPQtSvmfT9o7">Data repository</a>. You will need to provide a password (request password by email!). Download the files from this online folder. The folder contains a PDF of the questionnaire and a zipped folder which you can unzip on your computer. In the zipped folder, you will find three “.rds” files (R statistical files):</p>
+<ul>
+<li><p><code>edu.rds</code> contains data from Section 2 of the survey, i.e.&nbsp;on school education for household members aged 5 to 19</p></li>
+<li><p><code>health.rds</code> contains data from Section 3A of the survey, i.e.&nbsp;on health treatment and chronic illness</p></li>
+<li><p><code>environment.rds</code> contains data from Section 7 &amp; 8, i.e.&nbsp;on access to primary facilities and housing information</p></li>
+</ul>
 <p>Notice that the unit of analysis differs in the three different files. For <code>edu.rds</code>, the unit of analysis (a “row” in the data file) are all household individuals aged 5 to 19 (N=4,552). For <code>health.rds</code> and <code>environment.rds</code>, the</p>
-<p>In addition the variables (the different “columns” of the files) of these sections, we have already added a number of socio-demographic variables in each of these files to ease statistical manipulations, including: - <code>hhid</code>: a unique household identifier - <code>indid</code>: a unique individual identifier (only in <code>edu.rds</code>) - <code>edu_attained</code>: this is a recoded version of individual educational attainment - <code>edu_father</code>: father’s educational attainment (only in <code>edu.rds</code>) - <code>edu_mother</code>: mother’s educational attainment (only in <code>edu.rds</code>) - <code>edu_parent</code>: combined parents’ educational attainment, i.e.&nbsp;maximum educational attainment between both parents (only in <code>edu.rds</code>) - <code>age</code>: individual’s age (only in <code>edu.rds</code>) - <code>birth_year</code>: individual’s age (only in <code>edu.rds</code>) - <code>sex</code>: individual’s sex (only in <code>edu.rds</code>) - <code>age_father</code>: father’s age (only in <code>edu.rds</code>) - <code>age_mother</code>: mother’s age (only in <code>edu.rds</code>) - <code>province</code>: province of residence - <code>ethnicity</code>: household head’s ethnicity - <code>religion</code>: household head’s religion - <code>hhwealth</code>: a continuous variable to proxy households’ material well-being (an index based on durable goods ownership) - <code>hhwealthcat</code>: a categorical variable to proxy households’ material well-being (an index based on durable goods ownership) - <code>finalweight_25per</code>: a “survey weight” variable to use in all statistical treatments to get correct estimates!</p>
-<p>Let’s load <code>edu.rds</code> into RStudio. Generally, there are three options to import data into R: - In the bottom-right panel, you can browse your folder structure to find the appropriate file, and click on it. - You can click Import Dataset in the top-right panel, then click Browse and navigate through Finder or File Explorer. - You can directly use lines of code written in your script to load your file.</p>
+<p>In addition the variables (the different “columns” of the files) of these sections, we have already added a number of socio-demographic variables in each of these files to ease statistical manipulations, including:</p>
+<ul>
+<li><code>hhid</code>: a unique household identifier</li>
+<li><code>indid</code>: a unique individual identifier (only in <code>edu.rds</code>)</li>
+<li><code>edu_attained</code>: this is a recoded version of individual educational attainment</li>
+<li><code>edu_father</code>: father’s educational attainment (only in <code>edu.rds</code>)</li>
+<li><code>edu_mother</code>: mother’s educational attainment (only in <code>edu.rds</code>)</li>
+<li><code>edu_parent</code>: combined parents’ educational attainment, i.e.&nbsp;maximum educational attainment between both parents (only in <code>edu.rds</code>)</li>
+<li><code>age</code>: individual’s age (only in <code>edu.rds</code>)</li>
+<li><code>birth_year</code>: individual’s age (only in <code>edu.rds</code>)</li>
+<li><code>sex</code>: individual’s sex (only in <code>edu.rds</code>)</li>
+<li><code>age_father</code>: father’s age (only in <code>edu.rds</code>)</li>
+<li><code>age_mother</code>: mother’s age (only in <code>edu.rds</code>)</li>
+<li><code>province</code>: province of residence</li>
+<li><code>ethnicity</code>: household head’s ethnicity</li>
+<li><code>religion</code>: household head’s religion</li>
+<li><code>hhwealth</code>: a continuous variable to proxy households’ material well-being (an index based on durable goods ownership)</li>
+<li><code>hhwealthcat</code>: a categorical variable to proxy households’ material well-being (an index based on durable goods ownership)</li>
+<li><code>finalweight_25per</code>: a “survey weight” variable to use in all statistical treatments to get correct estimates!</li>
+</ul>
+<p>Let’s load <code>edu.rds</code> into RStudio. Generally, there are three options to import data into R:</p>
+<ul>
+<li><p>In the bottom-right panel, you can browse your folder structure to find the appropriate file, and click on it.</p></li>
+<li><p>You can click Import Dataset in the top-right panel, then click Browse and navigate through Finder or File Explorer.</p></li>
+<li><p>You can directly use lines of code written in your script to load your file.</p></li>
+</ul>
 <p>The third solution is preferable, in the interest of making your code reproducible. But the first or the second have the advantage of being easier when you are not familiar with coding, especially since these “point-and-click” solutions also provide the corresponding lines of code, which you can copy into your script for your next working session!</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercise">
 <div class="callout-header d-flex align-content-center">
@@ -572,9 +601,10 @@ Exercise
 </div>
 <div class="callout-body-container callout-body">
 <p>Save as an .rds file a dataset created from edu with the following conditions:</p>
-<pre><code>-   It contains only the columns hhid, edu_attained, age, and sex.
-
--   It contains only individuals who, at the time of the survey, are not in school (r2_school_education %in% c(2, 3)).</code></pre>
+<ul>
+<li><p>It contains only the columns hhid, edu_attained, age, and sex.</p></li>
+<li><p>It contains only individuals who, at the time of the survey, are not in school (r2_school_education %in% c(2, 3)).</p></li>
+</ul>
 </div>
 </div>
 
