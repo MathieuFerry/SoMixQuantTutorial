@@ -1,4 +1,4 @@
-# Organisation du code et manipulations avancées
+# Code organization
 
 A TRADUIRE
 

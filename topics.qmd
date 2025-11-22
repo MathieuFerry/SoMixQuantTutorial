@@ -2,6 +2,8 @@
 
 ## Introduction
 
+TBW
+
 ## General instructions
 
 -   Assemble in groups of 4-5 students. You do not need to choose a group based on the university you come from.
@@ -46,7 +48,7 @@
 
 ## A quick presentation of each suggested topic
 
-| Topic | Brief presentation | Winter workshop database to work with | Section of the HIES questionnaire | Possible mentions in the official report that might be worth looking at |
+| Topic | Brief presentation | Winter workshop database to work with | Section of the HIES questionnaire | Pages of the official report with relevant analyses |
 |----|----|----|----|----|
 | School dropout |  |  |  |  |
 | ... |  |  |  |  |
