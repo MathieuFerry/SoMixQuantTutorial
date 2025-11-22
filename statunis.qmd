@@ -9,11 +9,11 @@ In the code below, we provide a suggested approach to check whether the necessar
 We are using the same dataset as in the previous chapter (`edu`), which you can also load into RStudio.
 
 ::: {.callout-note title="Exercise" icon="false"}
--   Create an empty script. 
+-   Create an empty script.
 
--   Save this script in a folder (for instance, "WinterWorkshop") and name it for instance "2Statunis.R". 
+-   Save this script in a folder (for instance, "WinterWorkshop") and name it for instance "2Statunis.R".
 
--   Load the `edu.rds` database and add the commands below to install / load the required packages to use the functions demonstrated in this chapter. 
+-   Load the `edu.rds` database and add the commands below to install / load the required packages to use the functions demonstrated in this chapter.
 
 ```{r}
 #| eval: false
@@ -33,14 +33,13 @@ edu<-readRDS("edu.rds")
 ```
 :::
 
-
 ## Working with survey data
 
 The *Household Income and Expenditure Survey (HIES)* data correspond to a sample of households in Sri Lanka. This sample, thanks to the household selection procedures included in the survey, is representative of the entire population of Sri Lanka.
 
 Keep in mind that the selection is based on a complete enumeration of households and a *random* selection of households included in the sample (in fact, it’s a little more complex, but that’s the general idea).
 
-Why use a sample instead of surveying the entire population? 
+Why use a sample instead of surveying the entire population?
 
 If the survey were exhaustive, it would be a census, which the DCS conducts separately. Sampling allows the collection of high-quality, representative data at lower cost and in less time, and all public and private statistical institutes use this type of survey method.
 
@@ -50,7 +49,7 @@ These types of data are very common in the social sciences (and the DCS conducts
 
 Thus, all statistical operations performed on HIES files must take this weighting into account. For example, in the previous chapter we calculated the average age of respondents to the education module. Since we did not use a weight variable, we simply calculated the **mean among the respondents**. If we had taken weighting into account, we would have *inferred* the **average age of children between 5 and 19 years old for the entire population**.
 
-In our *HIES* files, the correct weight variable is `finalweight_25per` (this is a specific weight variable to this sample because we are working with a 25% random sample of the survey sample, which is itself a random sample of the entire population). 
+In our *HIES* files, the correct weight variable is `finalweight_25per` (this is a specific weight variable to this sample because we are working with a 25% random sample of the survey sample, which is itself a random sample of the entire population).
 
 ## Describing a numerical variable
 
@@ -88,11 +87,11 @@ edu |>
   )
 ```
 
-Notice that we use `finalweight_25per` to calculate the mean and the median, but not to calculate the minimum and maximum. Here, the minimum and maximum age suggest that some children live very close to their school, but for at least one child, the school is pretty far from home! 
+Notice that we use `finalweight_25per` to calculate the mean and the median, but not to calculate the minimum and maximum. Here, the minimum and maximum age suggest that some children live very close to their school, but for at least one child, the school is pretty far from home!
 
 The mean is higher than the median, indicating that a few unusually high distance values are stretching the upper tail of the distribution, resulting in a right-skewed distribution.
 
-We also added the number of `NA` cases in this variables, i.e. the number of missing variables. In fact, here this corresponds to children who actually do not attend school. 
+We also added the number of `NA` cases in this variables, i.e. the number of missing variables. In fact, here this corresponds to children who actually do not attend school.
 
 We produced such a nice output that we would like to display it as a table, but copying and pasting from the console doesn't look very nice…
 
@@ -120,8 +119,7 @@ The function `kbl` transforms the summary object into a table in LaTeX/HTML form
 
 These tables can be customized endlessly (including adding titles, captions, etc.). The main advantage is that they can be copied and pasted cleanly into your report, article, or thesis.
 
-![Table created with kableExtra and displayed in the Viewer](images/Capture d’écran 2025-11-21 à 18.32.47.png)
-
+![Table created with kableExtra and displayed in the Viewer](images/Capture%20d’écran%202025-11-21%20à%2018.32.47.png)
 
 ### Summarizing a quantitative variable with a graph
 
@@ -136,12 +134,11 @@ esquisser(edu)
 
 This should load an interface with the different variables from the dataset at the top, which you will need to drag into the corresponding boxes.
 
-![Esquisse interface](images/Capture d’écran 2025-11-21 à 18.39.30.png)
+![Esquisse interface](images/Capture%20d’écran%202025-11-21%20à%2018.39.30.png)
 
 By dragging the distance variable into the X box, a histogram is created automatically. You can modify this representation, for example, by choosing a density plot instead. The entire graph is customizable using the options below.
 
 Finally, you can save your plot and also copy the code that generates the same plot without having to reopen Esquisse!
-
 
 ## Describing a categorical variable
 
@@ -149,7 +146,7 @@ Describing a numerical variable is nice, but we often have quite a few categoric
 
 The function `freqtable` from the `questionr` package allows you to get the weighted counts of a categorical variable, and `freq` calculates the corresponding percentages (%val corresponds to the percentages of non-NA categories).
 
-Note that it is always possible to remove the part `weights=finalweight_25per` to get unweighted counts and 
+Note that it is always possible to remove the part `weights=finalweight_25per` to get unweighted counts and
 
 Here, we are interested in the variable r2_school_education, which corresponds to the respondents’ school status.
 
@@ -162,25 +159,17 @@ edu |> freqtable(r2_school_education,weights=finalweight_25per) %>% freq() %>% s
 
 ```
 
-
 ## Recoding a categorical variable
 
-Note that the categories of r2_school_education are here coded as 1, 2, and 3. This is because when getting the from the Lanka datta, we got CSV files without any data labels so we need to recode them ourselves based on the questionnaire of the survey. 
+Note that the categories of r2_school_education are here coded as 1, 2, and 3. This is because when getting the from the Lanka datta, we got CSV files without any data labels so we need to recode them ourselves based on the questionnaire of the survey.
 
-Luckily, this task can be done very easily by using the `irec()` interface (from the `questionr` package created by Julien Barnier). Type it in the console and the following window will open to recode a new variable with explicit levels (in the R lingo, these are factor levels). 
+Luckily, this task can be done very easily by using the `irec()` interface (from the `questionr` package created by Julien Barnier). Type it in the console and the following window will open to recode a new variable with explicit levels (in the R lingo, these are factor levels).
 
-![Esquisse interface](images/Capture d’écran 2025-11-21 à 18.58.30.png)
-![Esquisse interface](images/Capture d’écran 2025-11-21 à 18.58.37.png)
-![Esquisse interface](images/Capture d’écran 2025-11-21 à 18.58.54.png)
-The last panel shows you the R code to recode the variable. When clicking on Done, this code is sent to the Console. **We strongly advise you to copy-paste this code into your script to keep track of all your recoding steps!** 
-
+![Esquisse interface](images/Capture%20d’écran%202025-11-21%20à%2018.58.30.png) ![Esquisse interface](images/Capture%20d’écran%202025-11-21%20à%2018.58.37.png) ![Esquisse interface](images/Capture%20d’écran%202025-11-21%20à%2018.58.54.png) The last panel shows you the R code to recode the variable. When clicking on Done, this code is sent to the Console. **We strongly advise you to copy-paste this code into your script to keep track of all your recoding steps!**
 
 ::: {.callout-note title="Exercise" icon="false"}
-
-With the newly recoded variable of school attendance, recompute the % distribution of this variable. Then, open Esquisse and draw a graph of this variable. 
-
+With the newly recoded variable of school attendance, recompute the % distribution of this variable. Then, open Esquisse and draw a graph of this variable.
 :::
-
 
 ## Recoding a numerical variable to a categorical variable
 
@@ -193,7 +182,7 @@ Recoding a quantitative variable into a qualitative variable is straightforward.
 icut()
 ```
 
-You can then choose the dataset in which you want to recode a variable, select the variable to recode, and specify the name of the recoded variable (by default, the old variable name with "_rec" added). This add-in relies on R’s cut() function.
+You can then choose the dataset in which you want to recode a variable, select the variable to recode, and specify the name of the recoded variable (by default, the old variable name with "\_rec" added). This add-in relies on R’s cut() function.
 
 Different recoding options are offered:
 
@@ -205,13 +194,9 @@ Different recoding options are offered:
 
 -   Using equal-width intervals in the distribution.
 
-
 Here, we choose to recode the variable into quartiles. The newly created variable corresponds to 4 categories, each roughly representing 25% of the unweighted respondents. However, this division is not always exact, especially when many individuals share the same value — in this case, the number of kilometers.
 
-![Interface de icut](images/Capture d’écran 2025-11-21 à 19.31.25.png)
-![Interface de icut](images/Capture d’écran 2025-11-21 à 19.37.34.png)
-![Interface de icut](images/Capture d’écran 2025-11-21 à 19.37.45.png)
-
+![Interface de icut](images/Capture%20d’écran%202025-11-21%20à%2019.31.25.png) ![Interface de icut](images/Capture%20d’écran%202025-11-21%20à%2019.37.34.png) ![Interface de icut](images/Capture%20d’écran%202025-11-21%20à%2019.37.45.png)
 
 You can then click Done. Note that the variable has not yet been created, but in the console, the code to create it is provided. You just need to copy and paste it into your script and run it (you can also modify it directly yourself if you want):
 
@@ -228,10 +213,7 @@ edu$distance_rec <- cut(edu$distance,
 ```
 
 ::: {.callout-note title="Exercise" icon="false"}
+-    Study the distribution of the newly created variable distance_rec.
 
-Study the distribution of the newly created variable distance_rec.
-
-Save your dataset as a rds file with the name "edu_rec.rds". 
-
+-   Save your dataset as a rds file with the name "edu_rec.rds".
 :::
-

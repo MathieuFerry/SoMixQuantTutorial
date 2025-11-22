@@ -1,1 +1,64 @@
-To be written.
+# Topics under scrutiny
+
+## Introduction
+
+## General instructions
+
+-   Assemble in groups of 4-5 students. You do not need to choose a group based on the university you come from.
+
+-   Choose a topic from the table below.
+
+-   Carefully read the information provided in this table regarding your chosen topic.
+
+-   Start laying out an analytical plan for your study. This includes:
+
+    -   What is your dependent variable? (or your dependent variables if you think your topic covers multiple objects of investigation)
+
+    -   What would be the main independent variables under scrutiny? Generally, these are socio-demographic variables. These variables should be of analytical interest, i.e. you should either have a sociological reasoning to include them (you know of some theory, previous literature, etc...), or you make the assumption that the variable is so central in shaping the Sri Lankan social landscape that it just cannot be left out.
+
+    -   Try shaping your thinking in terms of hypotheses.
+
+    -   For this step, write a few sentences to justify your choices (this may include relevant literature).
+
+-   Preparation of the statistical analysis.
+
+    -   Univariate statistics: for all variables that you have listed above, run univariate statistics on your database. Be careful if these are numerical or categorical variables! Do not forget unweighted frequencies, missing observations, ...
+
+    -   Save the tables/graphics in a relevant document.
+
+    -   If some variables require recoding tasks, justify and run them.
+
+-   Statistical analysis.
+
+    -   Conduct bivariate or multivariate statistics. This may include mean/standard deviation by a categorical variable, cross tabulations, graphics...
+
+    -   Save your code and your analysis!
+
+-   After carefully discussing among yourself and with your tutors about the most interesting outputs of these analyses, write analytical sentences describing your analyses.
+
+-   In a further step, you will need to enhance these analyses in different ways in terms of sociological interpretation:
+
+    -   How do these results contradict or support your reasoning before conducting these statistical analysis?
+
+    -   What is new in your results that you did not know before, confirms or contradicts the sociological literature, etc?
+
+    -   What could possibly be done in terms of qualitative study to push further these analyses?
+
+## A quick presentation of each suggested topic
+
+| Topic | Brief presentation | Winter workshop database to work with | Section of the HIES questionnaire | Possible mentions in the official report that might be worth looking at |
+|----|----|----|----|----|
+| School dropout |  |  |  |  |
+| ... |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+
+: Topics to study in the SoMix project
