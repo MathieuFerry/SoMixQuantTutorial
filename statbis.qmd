@@ -1,4 +1,4 @@
-# Statistiques bivariées et graphiques
+# Bivariate statistics and more graphics
 
 Dans ce chapitre, nous abordons maintenant les statistiques bivariées. Nous utilisons toujours la base edu.rds et les mêmes packages que dans le chapitre précédent.
 
