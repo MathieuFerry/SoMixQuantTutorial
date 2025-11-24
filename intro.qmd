@@ -78,7 +78,9 @@ Check that the tidyverse package is correctly installed and loaded in the R sess
 
 To do statistics, we need data. Here, we are going to use excerpts of the [Household Income and Expenditure Survey 2019](https://www.statistics.gov.lk/IncomeAndExpenditure/StaticalInformation) collected by the Sri Lankan Department of Census and Statistics. For legality matters, you will need to create an account on the [Lanka data platform](https://nada.statistics.gov.lk/index.php/home) and download the microdata files from the online platform. Notice that you are able to download only 25% of the total survey sample.
 
-For this workshop, we have additionally prepared three files to make your life easier to manipulate the survey, which you can access here [Data repository](https://forms.gle/tkBxwuPQtSvmfT9o7). You will need to provide a password (request password by email!). Download the files from this online folder. The folder contains a PDF of the questionnaire and a zipped folder which you can unzip on your computer. In the zipped folder, you will find three ".rds" files (R statistical files):
+For this workshop, we have additionally prepared three files to make your life easier to manipulate the survey, which you can access here [Data repository](https://forms.gle/tkBxwuPQtSvmfT9o7). You will need to provide a password (request password by email!). Download the files from this online folder. The folder contains a PDF of the questionnaire and a zipped folder which you can unzip on your computer. In the zipped folder, you will find four ".rds" files (R statistical files):
+
+-   `demo.rds` contains data from Section 1 of the survey, i.e. on demographic characteristics of all household members
 
 -   `edu.rds` contains data from Section 2 of the survey, i.e. on school education for household members aged 5 to 19
 
@@ -86,7 +88,7 @@ For this workshop, we have additionally prepared three files to make your life e
 
 -   `environment.rds` contains data from Section 7 & 8, i.e. on access to primary facilities and housing information
 
-Notice that the unit of analysis differs in the three different files. For `edu.rds`, the unit of analysis (a "row" in the data file) are all household individuals aged 5 to 19 (N=4,552). For `health.rds` and `environment.rds`, the
+Notice that the unit of analysis differs in the three different files. For `demo.rds`, the unit of analysis (a "row" in the data file) are all household members, irrespective of their age (N=19,848). For `edu.rds`, the unit of analysis are all household individuals aged 5 to 19 (N=4,552). For `health.rds` and `environment.rds`, the
 
 In addition the variables (the different "columns" of the files) of these sections, we have already added a number of socio-demographic variables in each of these files to ease statistical manipulations, including:
 

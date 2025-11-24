@@ -2,7 +2,7 @@ project:
   type: book
   output-dir: docs
 book:
-  title: "Formation R"
+  title: "SoMix Quant training"
   author: 
     - name: Louise Caron
       url: https://louisecaron.github.io/

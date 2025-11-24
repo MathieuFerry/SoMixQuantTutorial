@@ -1,0 +1,1 @@
+This repository contains the files of the training material for the quantitative workshop of the SoMix project. 
