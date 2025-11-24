@@ -2,51 +2,59 @@
 
 ## Introduction
 
-TBW
+This chapter presents the main topics studied with the HIES 2019 for the SoMix project.
+
+Our overarching research theme is:
+
+***Who benefits from public goods? Socio-spatial inequalities in the Access and Use of Health and Education Services in Sri Lanka***
+
+For the quantitative part of the project, we have already identified a number of topics that will drive our research project.
 
 ## General instructions
 
 -   Assemble in groups of 4-5 students. You do not need to choose a group based on the university you come from.
 
--   Choose a topic from the table below.
+-   Choose a **topic** from the table below.
 
--   Carefully read the information provided in this table regarding your chosen topic.
+-   Carefully **read the information** provided in this table regarding your chosen topic.
 
--   Start laying out an analytical plan for your study. This includes:
+-   Start laying out an **analytical plan** for your study. This includes:
 
-    -   What is your dependent variable? (or your dependent variables if you think your topic covers multiple objects of investigation)
+    -   What is your **dependent variable**? (or your dependent variables if you think your topic covers multiple objects of investigation). You will need to refer to the HIES questionnaire section(s) covering your topic and select the relevant question, then identify the corresponding variables in the database.
 
-    -   What would be the main independent variables under scrutiny? Generally, these are socio-demographic variables. These variables should be of analytical interest, i.e. you should either have a sociological reasoning to include them (you know of some theory, previous literature, etc...), or you make the assumption that the variable is so central in shaping the Sri Lankan social landscape that it just cannot be left out.
+    -   What would be the main **independent variables** under scrutiny? Generally, these are socio-demographic variables. These variables should be of analytical interest, i.e. you should either have a sociological reasoning to include them (you know of some theory, previous literature, etc...), or you make the assumption that the variable is so central in shaping the Sri Lankan social landscape that it just cannot be left out. You can refer to the Introduction chapter to recall the main constructed socio-spatial variables in the data.
 
-    -   Try shaping your thinking in terms of hypotheses.
+    -   Try shaping your thinking in terms of **hypotheses**.
 
-    -   For this step, write a few sentences to justify your choices (this may include relevant literature).
+    -   For this step, **write** a few sentences to justify your choices (this may include relevant literature).
 
--   Preparation of the statistical analysis.
+-   Preparation of the **statistical analysis**
 
-    -   Univariate statistics: for all variables that you have listed above, run univariate statistics on your database. Be careful if these are numerical or categorical variables! Do not forget unweighted frequencies, missing observations, ...
+    -   **Univariate statistics**: for all variables that you have listed above, run univariate statistics on your database. Be careful if these are numerical or categorical variables! Do not forget unweighted frequencies, missing observations, ...
 
     -   Save the tables/graphics in a relevant document.
 
     -   If some variables require recoding tasks, justify and run them.
 
--   Statistical analysis.
+-   **Statistical analysis**
 
-    -   Conduct bivariate or multivariate statistics. This may include mean/standard deviation by a categorical variable, cross tabulations, graphics...
+    -   Conduct **bivariate** or **multivariate** statistics. This may include mean/standard deviation by a categorical variable, cross tabulations, graphics...
 
     -   Save your code and your analysis!
 
--   After carefully discussing among yourself and with your tutors about the most interesting outputs of these analyses, write analytical sentences describing your analyses.
+-   After carefully discussing among yourself and with your tutors about the most interesting outputs of these analyses, write **analytical sentences** describing your analyses.
 
--   In a further step, you will need to enhance these analyses in different ways in terms of sociological interpretation:
+-   In a further step, you will need to enhance these analyses in different ways in terms of **sociological interpretation**:
 
-    -   How do these results contradict or support your reasoning before conducting these statistical analysis?
+    -   How do these results **contradict** or **support** your reasoning before conducting these statistical analysis?
 
-    -   What is new in your results that you did not know before, confirms or contradicts the sociological literature, etc?
+    -   What is new in your results that you did not know before, **confirms** or **contradicts** the sociological literature, etc?
 
-    -   What could possibly be done in terms of qualitative study to push further these analyses?
+    -   What could possibly be done in terms of **qualitative study** to push further these analyses?
 
 ## A quick presentation of each suggested topic
+
+Below is a suggested list of topics. You may want to add other topics if you wish!
 
 | Topic | Brief presentation | Winter workshop database to work with | Section of the HIES questionnaire | Pages of the official report with relevant analyses |
 |---------------|------------------------------|---------|----------|---------|
