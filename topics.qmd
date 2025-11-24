@@ -49,19 +49,19 @@ TBW
 ## A quick presentation of each suggested topic
 
 | Topic | Brief presentation | Winter workshop database to work with | Section of the HIES questionnaire | Pages of the official report with relevant analyses |
-|------------|---------------|-----------|----------------|---------------|
-| *School attendance and dropout* | *This topic is already explored in the previous chapter as an example. It aims at uncovering the socio-spatial determinants of school non-attendance by age.* | *edu.rds* | *Section 2* | *None* |
-| University attainment | Among adults, who attained university education and how does it vary by age, sex and locality? | demo.rds | Section 2 | None |
-| Government versus private school attendance | Among school-attending children, what are the social determinants that drive family choice for government versus private school? Are they different according to urban/rural locality and province of residence? | edu.rds | Section 2 | None |
-| Distance and mode of travel to school | How is access to school, in terms of spatial distance and mode of travel, constrained by locality characteristics and social determinants? | edu.rds | Section 2 | See p. 121-122-123 |
-| Chronic illness | Who suffers from chronic illness? Age will be an important demographic variable to examine here. | health.rds | Section 3A | See from p. 92 onwards |
-| Use of health facility as an outpatient | How does the use of private versus government health facilities as an outpatient vary by locality and social characteristics? | health.rds | Section 3A | See from p. 92 onwards |
-| Use of health facility as an inpatient | How does the use of private versus government health facilities as an inpatient vary by locality and social characteristics? | health.rds | Section 3A | See from p. 92 onwards |
-| Access to primary facilities | How is the access to basic facilities shaped by locality of residence? | environment.rds | Section 7 | None |
-| Water services | How is the access to drinking water shaped by socio-spatial determinants? | environment.rds | Section 8 | None |
-| Sanitation and toilet availability | Do all households get access to toilets in their premises? | environment.rds | Section 8 | None |
-| Energy & electricity | Do all households get access electricity supply and what king of energy source is used for cooking? | environment.rds | Section 7 & 8 | None |
-| Garbage | What kind of garbage facility is there for households depending on their location? | environment.rds | Section 7 & 8 | None |
+|---------------|------------------------------|---------|----------|---------|
+| ***School attendance and dropout*** | *This topic is already explored in the previous chapter as an example. It aims at uncovering the socio-spatial determinants of school non-attendance by age.* | *edu.rds* | *Section 2* | *None* |
+| **University attainment** | Among adults, who attained university education and how does it vary by age, sex and locality? | demo.rds | Section 2 | None |
+| **Government versus private school attendance** | Among school-attending children, what are the social determinants that drive family choice for government versus private school? Are they different according to urban/rural locality and province of residence? | edu.rds | Section 2 | None |
+| **Distance and mode of travel to school** | How is access to school, in terms of spatial distance and mode of travel, constrained by locality characteristics and social determinants? | edu.rds | Section 2 | See p. 121-122-123 |
+| **Chronic illness** | Who suffers from chronic illness? Age will be an important demographic variable to examine here. | health.rds | Section 3A | See from p. 92 onwards |
+| **Use of health facility as an outpatient** | How does the use of private versus government health facilities as an outpatient vary by locality and social characteristics? | health.rds | Section 3A | See from p. 92 onwards |
+| **Use of health facility as an inpatient** | How does the use of private versus government health facilities as an inpatient vary by locality and social characteristics? | health.rds | Section 3A | See from p. 92 onwards |
+| **Access to primary facilities** | How is the access to basic facilities shaped by locality of residence? | environment.rds | Section 7 | None |
+| **Water services** | How is the access to drinking water shaped by socio-spatial determinants? | environment.rds | Section 8 | None |
+| **Sanitation and toilet availability** | Do all households get access to toilets in their premises? | environment.rds | Section 8 | None |
+| **Energy & electricity** | Do all households get access electricity supply and what king of energy source is used for cooking? | environment.rds | Section 7 & 8 | None |
+| **Garbage** | What kind of garbage facility is there for households depending on their location? | environment.rds | Section 7 & 8 | None |
 | ... Feel free to suggest other topics |  |  |  |  |
 
 : Topics to study in the SoMix project
