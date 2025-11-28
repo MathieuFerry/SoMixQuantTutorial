@@ -201,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tutorial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">tutorial.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A short example of a statistical analysis with HIES 2019</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -242,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#working-with-survey-data" id="toc-working-with-survey-data" class="nav-link active" data-scroll-target="#working-with-survey-data"><span class="header-section-number">2.1</span> Working with survey data</a></li>
   <li><a href="#describing-a-numerical-variable" id="toc-describing-a-numerical-variable" class="nav-link" data-scroll-target="#describing-a-numerical-variable"><span class="header-section-number">2.2</span> Describing a numerical variable</a>
   <ul class="collapse">
-  <li><a href="#summarise-variables-based-on-a-few-statistics" id="toc-summarise-variables-based-on-a-few-statistics" class="nav-link" data-scroll-target="#summarise-variables-based-on-a-few-statistics"><span class="header-section-number">2.2.1</span> Summarise variables based on a few statistics</a></li>
+  <li><a href="#summarizing-variables-based-on-a-few-statistics" id="toc-summarizing-variables-based-on-a-few-statistics" class="nav-link" data-scroll-target="#summarizing-variables-based-on-a-few-statistics"><span class="header-section-number">2.2.1</span> Summarizing variables based on a few statistics</a></li>
   <li><a href="#summarizing-a-quantitative-variable-with-a-graph" id="toc-summarizing-a-quantitative-variable-with-a-graph" class="nav-link" data-scroll-target="#summarizing-a-quantitative-variable-with-a-graph"><span class="header-section-number">2.2.2</span> Summarizing a quantitative variable with a graph</a></li>
   </ul></li>
   <li><a href="#describing-a-categorical-variable" id="toc-describing-a-categorical-variable" class="nav-link" data-scroll-target="#describing-a-categorical-variable"><span class="header-section-number">2.3</span> Describing a categorical variable</a></li>
@@ -273,10 +273,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This chapter introduces the specifics of performing statistics on survey data based on representative population samples. We focus on the univariate description of variables, both numerical (quantitative) and categorical (qualitative).</p>
-<p>We will need four packages that have not yet been loaded (and that you may not have installed yet).</p>
-<p>In the code below, we provide a suggested approach to check whether the necessary packages for this chapter are installed and to load them into the environment.</p>
-<p>We are using the same dataset as in the previous chapter (<code>edu</code>), which you can also load into RStudio.</p>
+<p>In this section, you will learn how to perform <strong>descriptive statistics</strong> on survey data based on representative population samples. We first focus in this section on the <strong>univariate</strong> description of variables, both numerical (quantitative) and categorical (qualitative).</p>
+<p>To do this, we need four packages that have not yet been loaded (and that you may not have installed yet).</p>
+<p>In the code below, we suggest a way to check whether these necessary packages are already installed on your R session, and to load them into the environment if the case they are not.</p>
+<p>We are using the same dataset as in the previous chapter (<code>edu.rds</code>), which you can also load into RStudio.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercise">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -289,7 +289,7 @@ Exercise
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>Create an empty script.</p></li>
-<li><p>Save this script in a folder (for instance, “WinterWorkshop”) and name it for instance “2Statunis.R”.</p></li>
+<li><p>Save this script in a folder (for instance, “WinterWorkshop”) and name it (for instance “2Statunis.R”).</p></li>
 <li><p>Load the <code>edu.rds</code> database and add the commands below to install / load the required packages to use the functions demonstrated in this chapter.</p></li>
 </ul>
 <div class="cell">
@@ -310,20 +310,19 @@ Exercise
 </div>
 <section id="working-with-survey-data" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="working-with-survey-data"><span class="header-section-number">2.1</span> Working with survey data</h2>
-<p>The <em>Household Income and Expenditure Survey (HIES)</em> data correspond to a sample of households in Sri Lanka. This sample, thanks to the household selection procedures included in the survey, is representative of the entire population of Sri Lanka.</p>
+<p>The <em>Household Income and Expenditure Survey (HIES)</em> data have been collected on a sample of households in Sri Lanka. This sample, thanks to the household selection procedures included in the survey, is representative of the entire population of Sri Lanka.</p>
 <p>Keep in mind that the selection is based on a complete enumeration of households and a <em>random</em> selection of households included in the sample (in fact, it’s a little more complex, but that’s the general idea).</p>
-<p>Why use a sample instead of surveying the entire population?</p>
-<p>If the survey were exhaustive, it would be a census, which the DCS conducts separately. Sampling allows the collection of high-quality, representative data at lower cost and in less time, and all public and private statistical institutes use this type of survey method.</p>
-<p>Generally, sample data include a <strong>weight variable</strong>. These weights ensure the representativeness of the sample for the entire population (to put it simply, in the most common case, the weights correct biases in data collection because not all selected respondents were actually surveyed, and the weight corrects for these biases).</p>
+<p>Why use a sample instead of surveying the entire population? Sampling allows the collection of high-quality, representative data at lower cost and in less time, and all public and private statistical institutes use this type of survey method.</p>
+<p>Generally, sample data include a <strong>weight variable</strong>. These weights ensure the representativeness of the sample for the entire population, that is, in our case, of individuals living in Sri Lanka at the time of the survey. To put it simply, in the most common case, the weights correct biases in data collection because not all selected respondents were actually surveyed, and the weight corrects for these biases.</p>
 <p>These types of data are very common in the social sciences (and the DCS conducts several sample-based surveys, such as the Time Use Survey, the Labor Force Survey, etc.), so it is important to know how to handle them.</p>
-<p>Thus, all statistical operations performed on HIES files must take this weighting into account. For example, in the previous chapter we calculated the average age of respondents to the education module. Since we did not use a weight variable, we simply calculated the <strong>mean among the respondents</strong>. If we had taken weighting into account, we would have <em>inferred</em> the <strong>average age of children between 5 and 19 years old for the entire population</strong>.</p>
-<p>In our <em>HIES</em> files, the correct weight variable is <code>finalweight_25per</code> (this is a specific weight variable to this sample because we are working with a 25% random sample of the survey sample, which is itself a random sample of the entire population).</p>
+<p>Thus, all statistical operations performed on HIES files must take this weighting into account. For example, in the previous section we calculated the average age of respondents to the education module. Since we did not use a weight variable, we simply calculated the <strong>mean among the respondents</strong>. If we had taken weighting into account, we would have <em>inferred</em> the <strong>average age of children between 5 and 19 years old for the entire population</strong>.</p>
+<p>In our <em>HIES</em> files, the correct variable weight variable is <code>finalweight_25per</code> (this is a specific weight variable to this sample because we are working with a 25% random sample of the survey sample, which is itself a random sample of the entire population).</p>
 </section>
 <section id="describing-a-numerical-variable" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="describing-a-numerical-variable"><span class="header-section-number">2.2</span> Describing a numerical variable</h2>
-<section id="summarise-variables-based-on-a-few-statistics" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="summarise-variables-based-on-a-few-statistics"><span class="header-section-number">2.2.1</span> Summarise variables based on a few statistics</h3>
-<p>In R, we can easily summarize a numerical variable using a few statistical indicators:</p>
+<section id="summarizing-variables-based-on-a-few-statistics" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="summarizing-variables-based-on-a-few-statistics"><span class="header-section-number">2.2.1</span> Summarizing variables based on a few statistics</h3>
+<p>In R, we can easily summarize a <strong>numerical variable</strong> using a few statistical indicators:</p>
 <ul>
 <li><p>Minimum</p></li>
 <li><p>Mean</p></li>
@@ -332,8 +331,8 @@ Exercise
 </ul>
 <p>The minimum and maximum give an idea of the range of values taken by the variable, while the mean and median are measures of central tendency.</p>
 <p>It is often useful to estimate the median in addition to the mean when studying a numerical variable. Indeed, the mean is sensitive to “extreme” values in a distribution.</p>
-<p>The median is the value that separates the lower half from the upper half of a statistical distribution (50% of the population has a lower value, 50% has a higher value). When the mean and median differ greatly, it indicates that the distribution of the variable’s values is not evenly spread around the mean.</p>
-<p>Typically, when studying income, the mean is often much higher than the median, because a few individuals have very high incomes, which tends to increase the mean, while the median is a more stable measure of central tendency.</p>
+<p>The median is the value that separates the lower half from the upper half of a statistical distribution (50% of the population has a lower value, 50% has a higher value). When the mean and median differ greatly, it indicates that the distribution of the variable is not evenly spread around the mean.</p>
+<p>Typically, when studying income, the mean is often much higher than the median, while the median is a more stable measure of central tendency. This is because only a few individuals have very high incomes, which tends to increase the mean.</p>
 <p>To obtain these statistics for the variable <code>distance</code> which indicates the distance from home to school for children:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span></span>
@@ -345,10 +344,10 @@ Exercise
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_na   =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(distance))</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Notice that we use <code>finalweight_25per</code> to calculate the mean and the median, but not to calculate the minimum and maximum. Here, the minimum and maximum age suggest that some children live very close to their school, but for at least one child, the school is pretty far from home!</p>
+<p>Notice that we use <code>finalweight_25per</code> to calculate the mean and the median, but not to calculate the minimum and maximum. Here, the minimum and maximum suggest that some children live very close to their school, but for at least one child, the school is pretty far from home!</p>
 <p>The mean is higher than the median, indicating that a few unusually high distance values are stretching the upper tail of the distribution, resulting in a right-skewed distribution.</p>
 <p>We also added the number of <code>NA</code> cases in this variables, i.e.&nbsp;the number of missing variables. In fact, here this corresponds to children who actually do not attend school.</p>
-<p>We produced such a nice output that we would like to display it as a table, but copying and pasting from the console doesn’t look very nice…</p>
+<p>We produced such a nice output that we would like to display it as a table, but copying and pasting it from the console doesn’t look very nice…</p>
 <p>No worries — there are plenty of packages in R to create beautiful table outputs. Here, we propose using <a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html">kableExtra</a> :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>summary<span class="ot">&lt;-</span>edu <span class="sc">|&gt;</span></span>
@@ -375,8 +374,8 @@ Exercise
 </section>
 <section id="summarizing-a-quantitative-variable-with-a-graph" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="summarizing-a-quantitative-variable-with-a-graph"><span class="header-section-number">2.2.2</span> Summarizing a quantitative variable with a graph</h3>
-<p>All of this looks nice and seems to suggest that <code>distance</code> is a skewed variable with a distribution stretched to the right. Can we visualize the distribution?</p>
-<p>We can use the esquisse package, which provides a point-and-click solution for creating plots. You need to run the following line (be a little patient while the page loads). This avoids having to write the code yourself to create the plot using the <code>ggplot2</code> package.</p>
+<p>All of this looks nice and seems to suggest that <code>distance</code> is a skewed variable with a distribution stretched to the right. Can we visualize the distribution of this variable?</p>
+<p>We can use the <em>esquisse</em> package, which provides a point-and-click solution for creating plots. You need to run the following line (be a little patient while the page loads). This avoids having to write the code yourself to create the plot using the <code>ggplot2</code> package.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">esquisser</span>(edu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -393,10 +392,10 @@ Exercise
 </section>
 <section id="describing-a-categorical-variable" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="describing-a-categorical-variable"><span class="header-section-number">2.3</span> Describing a categorical variable</h2>
-<p>Describing a numerical variable is nice, but we often have quite a few categorical variables in our datasets. How can we describe them?</p>
+<p>Describing a numerical variable is nice, but we often also have <strong>categorical variables</strong>. How can we describe them?</p>
 <p>The function <code>freqtable</code> from the <code>questionr</code> package allows you to get the weighted counts of a categorical variable, and <code>freq</code> calculates the corresponding percentages (%val corresponds to the percentages of non-NA categories).</p>
-<p>Note that it is always possible to remove the part <code>weights=finalweight_25per</code> to get unweighted counts and</p>
-<p>Here, we are interested in the variable r2_school_education, which corresponds to the respondents’ school status.</p>
+<p>Note that it is always possible to remove the part <code>weights=finalweight_25per</code> to get unweighted counts. This is useful as we always want to have <em>weighted</em> percentages, but the <em>unweighted</em> number of individuals on which this percentage has been calculated: indeed, statistics tends to be less robust when they are calculated on small subsamples, so it is always interesting to keep in mind the number of respondents available in our (sub)sample.</p>
+<p>Here, we are interested in the variable <em>r2_school_education</em>, which corresponds to the respondents’ school status.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|eval: false</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -407,9 +406,14 @@ Exercise
 </section>
 <section id="recoding-a-categorical-variable" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="recoding-a-categorical-variable"><span class="header-section-number">2.4</span> Recoding a categorical variable</h2>
-<p>Note that the categories of r2_school_education are here coded as 1, 2, and 3. This is because when getting the from the Lanka datta, we got CSV files without any data labels so we need to recode them ourselves based on the questionnaire of the survey.</p>
+<p>The categories of r2_school_education are here coded as 1, 2, and 3. This is because when getting the from the Lanka data, we got CSV files without any data labels so we need to recode them ourselves based on the questionnaire of the survey.</p>
 <p>Luckily, this task can be done very easily by using the <code>irec()</code> interface (from the <code>questionr</code> package created by Julien Barnier). Type it in the console and the following window will open to recode a new variable with explicit levels (in the R lingo, these are factor levels).</p>
-<p><img src="images/Capture d’écran 2025-11-21 à 18.58.30.png" class="img-fluid" alt="Esquisse interface"> <img src="images/Capture d’écran 2025-11-21 à 18.58.37.png" class="img-fluid" alt="Esquisse interface"> <img src="images/Capture d’écran 2025-11-21 à 18.58.54.png" class="img-fluid" alt="Esquisse interface"> The last panel shows you the R code to recode the variable. When clicking on Done, this code is sent to the Console. <strong>We strongly advise you to copy-paste this code into your script to keep track of all your recoding steps!</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|eval: false</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">irec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="images/Capture d’écran 2025-11-28 à 15.45.28.png" class="img-fluid" alt="irec interface"> <img src="images/Capture d’écran 2025-11-28 à 15.46.01.png" class="img-fluid" alt="irec interface (2)"> <img src="images/Capture d’écran 2025-11-28 à 15.46.17.png" class="img-fluid" alt="irec interface (3)">The last panel shows you the R code to recode the variable. When clicking on ‘Done’, this code is sent to the Console. <strong>We strongly advise you to copy-paste this code into your script to keep track of all your recoding steps!</strong> This way, you will be able to re-run all your analyses at once whenever you want just by clicking on the ‘Run’ button for your whole code.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercise">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -426,30 +430,30 @@ Exercise
 </section>
 <section id="recoding-a-numerical-variable-to-a-categorical-variable" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="recoding-a-numerical-variable-to-a-categorical-variable"><span class="header-section-number">2.5</span> Recoding a numerical variable to a categorical variable</h2>
-<p>It can be useful to analyze distance to school not as a numerical variable but as a categorical variable (for example, what proportion of students have a school less than 1 km away?).</p>
-<p>Recoding a quantitative variable into a qualitative variable is straightforward. In R, we can use another add-in from the questionr package: icut:</p>
+<p>It can be useful to analyze distance to school not as a numerical variable but as a categorical variable (for example, what proportion of students have a school less than 1 km of their home away?).</p>
+<p>Recoding a quantitative variable into a qualitative variable is straightforward. In R, we can use another add-in from the questionr package: <em>icut</em>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">icut</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">icut</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can then choose the dataset in which you want to recode a variable, select the variable to recode, and specify the name of the recoded variable (by default, the old variable name with “_rec” added). This add-in relies on R’s cut() function.</p>
 <p>Different recoding options are offered:</p>
 <ul>
 <li><p>Manually (if you have identified key values, or know key thresholds for a variable, for example a poverty level),</p></li>
 <li><p>Using a reclassification algorithm (Jenks, which geographers often use, or other algorithms),</p></li>
-<li><p>Using quantiles, or</p></li>
+<li><p>Using quantiles,</p></li>
 <li><p>Using equal-width intervals in the distribution.</p></li>
 </ul>
 <p>Here, we choose to recode the variable into quartiles. The newly created variable corresponds to 4 categories, each roughly representing 25% of the unweighted respondents. However, this division is not always exact, especially when many individuals share the same value — in this case, the number of kilometers.</p>
-<p><img src="images/Capture d’écran 2025-11-21 à 19.31.25.png" class="img-fluid" alt="Interface de icut"> <img src="images/Capture d’écran 2025-11-21 à 19.37.34.png" class="img-fluid" alt="Interface de icut"> <img src="images/Capture d’écran 2025-11-21 à 19.37.45.png" class="img-fluid" alt="Interface de icut"></p>
-<p>You can then click Done. Note that the variable has not yet been created, but in the console, the code to create it is provided. You just need to copy and paste it into your script and run it (you can also modify it directly yourself if you want):</p>
+<p><img src="images/Capture d’écran 2025-11-28 à 15.50.20.png" class="img-fluid" alt="Interface de icut"> <img src="images/Capture d’écran 2025-11-28 à 15.50.34.png" class="img-fluid" alt="Interface de icut (2)"> <img src="images/Capture d’écran 2025-11-28 à 15.50.46.png" class="img-fluid" alt="Interface de icut (3)"></p>
+<p>You can then click ‘Done’. Note that the variable has not yet been created, but in the console, the code to create it is provided. You just need to copy and paste it into your script and run it (you can also modify it directly yourself if you want):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Cutting edu$distance into edu$distance_rec</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>edu<span class="sc">$</span>distance_rec <span class="ot">&lt;-</span> <span class="fu">cut</span>(edu<span class="sc">$</span>distance,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">include.lowest =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">right =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dig.lab =</span> <span class="dv">4</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">84</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Cutting edu$distance into edu$distance_rec</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>edu<span class="sc">$</span>distance_rec <span class="ot">&lt;-</span> <span class="fu">cut</span>(edu<span class="sc">$</span>distance,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">include.lowest =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">right =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dig.lab =</span> <span class="dv">4</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">84</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercise">
 <div class="callout-header d-flex align-content-center">

@@ -2,32 +2,32 @@
 
 ## Install R and RStudio
 
-We will start by installing R according to your computer’s configuration, using the links available on the [Comprenhensive R Archive Network](https://cran.r-project.org/) (CRAN).
+First, you need to **install R** according to your computer’s configuration, using the links available on the [Comprenhensive R Archive Network](https://cran.r-project.org/) (CRAN).
 
-We will then install RStudio by going to this [page](https://posit.co/download/rstudio-desktop/). RStudio is an "Integrated Development Environment (IDE)", meaning software that provides a user-friendly interface for working with the R programming language. Note that it is possible to use other interface software, but RStudio is probably the most widely used today.
+Then, you can **install RStudio** by going to this [page](https://posit.co/download/rstudio-desktop/). RStudio is an "Integrated Development Environment (IDE)", that is a software that provides a user-friendly interface for working with the R programming language. Note that it is possible to use other interface software, but RStudio is probably the most widely used today, and the one we will use during this training.
 
-If, for one reason or another, it is not possible to install R / RStudio on your computer, you can temporarily (because we do not recommend using a private server to store sensitive data) use R / RStudio online by creating an account on the ["Posit cloud"](https://login.posit.cloud/login?redirect=%2Foauth%2Fauthorize%3Fredirect_uri%3Dhttps%253A%252F%252Fposit.cloud%252Flogin%26client_id%3Dposit-cloud%26response_type%3Dcode%26show_auth%3D0&product=cloud).
+If, for one reason or another, it is not possible to install R or/and RStudio on your computer, you can **temporarily** use R / RStudio online by creating an account on the ["Posit cloud"](#0). However, we do not recommend this option for a long-term use as sensitive data should be stored on secured and personal servers.
 
-Once R and RStudio are installed, you can directly open RStudio, which will display a nice console (except that here, I have already created an R script by clicking on the small white arrow on a green background and saved it under the name 1Intro.R, which you should also do).
+Once R and RStudio are installed on your computer, you can directly open RStudio. It displays a nice console. You can **create your first R script** by clicking on the small white arrow on a green background and save it under the name 1Intro.R.
 
 ::: {.callout-note title="Exercise" icon="false"}
 -   Open RStudio and create an empty script.
 
--   Save this script in a folder (for example, “Formation R”), naming it for instance 1Intro.R.
+-   Create and save an R script, for example named *1Intro.R*.
 :::
 
 ## R, RStudio and the tidyverse
 
-You can refer to the following [small presentation](https://michael.hahsler.net/SMU/DS_Workshop_Intro_R/slides/3a_tidyverse.html) of the tidyverse. Let us recall here that R is a programming language developed since the 1990s, derived from the S language, and sharing some similarities with the C language. It is open-source and free of charge.
+R is a programming language developed since the 1990s. It is derived from the S language and also shares some similarities with the C language. It is **open-source** and free of charge.
 
-Among the many strengths of R, one can note in particular its community of users, who can also take on the role of developers. R therefore has numerous extensions in the form of functions, stored in packages (or libraries), which greatly facilitate its use. The list of packages available on CRAN (although it is also possible to use packages that are not on CRAN) is available here: <https://cran.r-project.org/web/packages/>.
+Among the many strengths of R, it has a **large community of users**, who can also take on the role of developers who continuously contribute to improve R language and what it can do. R therefore has numerous extensions in the form of **functions**, stored in **packages** (or **libraries**), which greatly facilitate its use. The list of packages available on CRAN is available here: <https://cran.r-project.org/web/packages/>. Although we will not be using them in this training seminar, please note that it is also possible to use packages that are not on CRAN.
 
-With more than 22,000 packages, it’s easy to get lost. Throughout this guide, we suggest using a few packages considered helpful for making life easier when doing statistics in the social sciences. Again, the goal is not to be exhaustive, nor to impose anything. One particularity of R is that it is often possible to do the same thing using different operations / functions / packages. Everyone eventually finds their own little "tricks"!
+With more than 22,000 packages, it’s easy to get lost. Throughout this guide, we will review a few packages that we considered helpful for making life easier when doing statistics in the social sciences. Again, let's underline here that the goal of this guide is not to be exhaustive, nor to impose anything. One particularity of R is that it is often possible to do the same thing using different operations / functions / packages. Everyone eventually finds their own little "tricks"!
 
-The tidyverse package actually includes a suite of packages designed to work together, making data manipulation, recoding, and the production of graphics easier compared to “base R”. We will rely on it here for our statistical work.
+The **tidyverse package** includes a suite of packages designed to work together, making data manipulation, recoding, and the production of graphics easier compared to the basic R language, often referred to as “base R”. We will rely on functions and tools from the tidyverse package for our statistical work. You can have a look to the following [small presentation](https://michael.hahsler.net/SMU/DS_Workshop_Intro_R/slides/3a_tidyverse.html) of the tidyverse.
 
 ::: {.callout-note title="Exercise" icon="false"}
-Install the tidyverse package, then load it into the R session using the two lines of code below. You can copy-paste them into your script and run them (see the next section if you don’t know how to run lines of code).
+**Install** the **tidyverse package**, then **load** it into the R session using the two lines of code below. You can copy-paste them into your script and run them (see the next section if you don’t know how to run lines of code).
 :::
 
 ```{r}
@@ -38,22 +38,32 @@ library(tidyverse)
 ```
 
 ::: callout-note
-You only need to install packages once; however, you must load the package each time you open a new R session. So, if you close RStudio and then reopen it, there is no need to run `install.packages("tidyverse")` again — but to use the functions from this package, you still need to call tidyverse by running `library(tidyverse)`.
+You only need to **install** packages *once*; however, you must **load** the package *each time* you open a new R session. So, if you close RStudio and then reopen it, there is no need to run `install.packages("tidyverse")` again — but to use the functions from this package, you still need to load the tidyverse package by running the following code: `library(tidyverse)`.
 
 Calling the relevant packages is generally done systematically at the beginning of the script.
 :::
 
 ## RStudio as a working tool
 
-By default, the console is displayed in the form of four panels:
+By default, the console is displayed in the form of **four** panels:
 
--   The first panel in the top left corresponds to the R script file, which for now is empty (or almost empty, if you have already copy-pasted the lines of code to install and load tidyverse). This is where we will write the command lines that we will run, either by clicking Run, or by using the keyboard shortcut Cmd + Enter (or Control + Enter).
+-   The first panel in the top left corresponds to the **R script file**, which for now is empty (or almost empty, if you have already copy-pasted the lines of code to install and load tidyverse). This is where we will write the command lines that we will run, either by clicking the 'Run' button, or by using the keyboard shortcut Cmd + Enter (or Control + Enter).
 
--   The second panel in the bottom left corresponds to the console. For now, it simply tells us that it has loaded R in the most up-to-date version found on my computer (4.4.3). The console will display the commands that we have run and the messages returned by R when executing them.
+-   The second panel in the bottom left corresponds to the **console**. For now, it simply tells us that it has loaded R in the most up-to-date version found on my computer (4.4.3). The console will display the commands that we have run and the messages returned by R when executing them.
 
--   The third panel in the top right contains several tabs. The most important one is the Environment tab, which shows all the objects created in the current session (data frames, lists, vectors, etc.).
+-   The third panel in the top right contains several tabs. The most important one is the **Environment** tab, which shows all the objects created in the current session (data frames, lists, vectors, etc.).
 
--   The fourth panel in the bottom right also contains several tabs, including Files — which allows you to browse your computer’s directory structure — Plots, where our beautiful graphs will be displayed, Packages, which lists the packages (libraries) installed on our computer and indicates which ones are loaded in the current session (they are checked), Help, which displays information about a function when you type `?function_name` in the console, and Viewer, where our nice tables will appear.
+-   The fourth panel in the bottom right also contains several tabs, including:
+
+    -   **Files** (which allows you to browse your computer’s directory structure),
+
+    -   **Plots** (where our beautiful graphs will be displayed),
+
+    -   **Packages**, which lists the packages (libraries) installed on our computer and indicates which ones are loaded in the current session (they are checked),
+
+    -   **Help**, which displays information about a function when you type `?function_name` in the console,
+
+    -   and **Viewer**, where our nice tables will appear.
 
 ::: {.callout-note title="Exercise" icon="false"}
 Check that the tidyverse package is correctly installed and loaded in the R session.
@@ -62,11 +72,11 @@ Check that the tidyverse package is correctly installed and loaded in the R sess
 ![The RStudio console](images/clipboard-343351687.png)
 
 ::: callout-caution
--   When quitting RStudio, a window may appear asking whether you want to “Save the workspace image…”. And in fact, it is not a good idea to click Save!
+-   When quitting RStudio, a window may appear asking whether you want to “Save the workspace image…”. **Warning:** in fact, it is **not** a good idea to click Save!
 
--   Because this saves the entire workspace (the session), which will be automatically reopened when restarting RStudio, and you may end up with objects that are no longer relevant for a later session (and that may even conflict with one another).
+-   Because this saves the entire workspace (the session), which will be automatically reopened when restarting RStudio, and you may end up with objects (for example, old databases that you used for former projects) that are no longer relevant for a later session (and that may even conflict with one another).
 
--   If you did not click Save, reopening RStudio resets the R session. To make sure this is really the case (clear the global environment, unload packages, reset memory, etc.), you can type the following in the console:
+-   If you did not click on 'Save', reopening RStudio resets the R session. To make sure this is really the case (clear the global environment, unload packages, reset memory, etc.), you can type the following code in the console:
 
 ```{r}
 #| eval: false
@@ -76,7 +86,9 @@ Check that the tidyverse package is correctly installed and loaded in the R sess
 
 ## Loading data into R
 
-To do statistics, we need data. Here, we are going to use excerpts of the [Household Income and Expenditure Survey 2019](https://www.statistics.gov.lk/IncomeAndExpenditure/StaticalInformation) collected by the Sri Lankan Department of Census and Statistics. For legality matters, you will need to create an account on the [Lanka data platform](https://nada.statistics.gov.lk/index.php/home) and download the microdata files from the online platform. Notice that you are able to download only 25% of the total survey sample.
+To do statistics, we need data. Here, we are going to use excerpts of the [**Household Income and Expenditure Survey 2019**](https://www.statistics.gov.lk/IncomeAndExpenditure/StaticalInformation) **collected by the Sri Lankan Department of Census and Statistics**.
+
+For legality matters, you will need to **create an account** on the [Lanka data platform](https://nada.statistics.gov.lk/index.php/home) and **download the microdata files** from the online platform. Notice that you are able to download **only 25%** of the total survey sample.
 
 For this workshop, we have additionally prepared three files to make your life easier to manipulate the survey, which you can access here [Data repository](https://forms.gle/tkBxwuPQtSvmfT9o7). You will need to provide a password (request password by email!). Download the files from this online folder. The folder contains a PDF of the questionnaire and a zipped folder which you can unzip on your computer. In the zipped folder, you will find four ".rds" files (R statistical files):
 
@@ -88,26 +100,26 @@ For this workshop, we have additionally prepared three files to make your life e
 
 -   `environment.rds` contains data from Section 7 & 8, i.e. on access to primary facilities and housing information
 
-Notice that the unit of analysis differs in the three different files. For `demo.rds`, the unit of analysis (a "row" in the data file) are all household members, irrespective of their age (N=19,848). For `edu.rds`, the unit of analysis are all household individuals aged 5 to 19 (N=4,552). For `health.rds` and `environment.rds`, the
+**WARNING:** *The unit of analysis* (a "row" in the data file) *differs in the four different files*. For `demo.rds`, a row in the data file refers to one household member, irrespective of their age (N=19,848). Within a household, each member has its own row. For `edu.rds`, one row also refers to one individual from a household, but this time there is an additional age restriction: only household individuals aged 5 to 19 (N=4,552). For `health.rds` , one row refers to one individual; even if there is no age restriction, the sample is smaller than `demo.rds` since some individuals did not answer questions related to health in the questionnaire (section 3A) (N=18,468). Finally, for `environment.rds`, one row refers to one household (and *not* to one individual, as it is the case in the other datasets) (N=4,982).
 
-In addition the variables (the different "columns" of the files) of these sections, we have already added a number of socio-demographic variables in each of these files to ease statistical manipulations, including:
+In addition to the variables (the different "columns" of the files) specific to each file, we have already added a number of socio-demographic variables in the files with data at the individual level (`demo.rds`, `edu.rds` and `health.rds`) to ease statistical manipulations, including:
 
--   `hhid`: a unique household identifier
--   `indid`: a unique individual identifier (only in `edu.rds`)
+-   `hhid`: a unique household identifier (also available in `environment.rds`)
+-   `indid`: a unique individual identifier
 -   `edu_attained`: this is a recoded version of individual educational attainment
 -   `edu_father`: father's educational attainment (only in `edu.rds`)
 -   `edu_mother`: mother's educational attainment (only in `edu.rds`)
 -   `edu_parent`: combined parents' educational attainment, i.e. maximum educational attainment between both parents (only in `edu.rds`)
--   `age`: individual's age (only in `edu.rds`)
--   `birth_year`: individual's age (only in `edu.rds`)
--   `sex`: individual's sex (only in `edu.rds`)
+-   `age`: individual's age
+-   `birth_year`: individual's year of birth
+-   `sex`: individual's sex
 -   `age_father`: father's age (only in `edu.rds`)
 -   `age_mother`: mother's age (only in `edu.rds`)
 -   `province`: province of residence
 -   `ethnicity`: household head's ethnicity
 -   `religion`: household head's religion
--   `hhwealth`: a continuous variable to proxy households' material well-being (an index based on durable goods ownership)
--   `hhwealthcat`: a categorical variable to proxy households' material well-being (an index based on durable goods ownership)
+-   `hhwealth`: a continuous variable to proxy households' material well-being (an index based on durable goods ownership which we constructed ourselves)
+-   `hhwealthcat`: a categorical variable to proxy households' material well-being (an index based on durable goods ownership which we constructed ourselves)
 -   `finalweight_25per`: a "survey weight" variable to use in all statistical treatments to get correct estimates!
 
 Let's load `edu.rds` into RStudio. Generally, there are three options to import data into R:
@@ -132,9 +144,9 @@ edu<-readRDS("edu.rds")
 
 ```
 
-## Describing your dataset
+## Describe your dataset
 
-If everything worked properly, the dataset should now appear in the Environment (top-right tab).
+The dataset should now appear in the Environment (top-right tab).
 
 To see the data file (you can also click on it):
 
@@ -147,7 +159,7 @@ View(edu)
 
 Several ways of better describing your dataset can be useful:
 
--   You can type the name of the dataset `edu` in the console, which will display the dataset (not recommended!).
+-   You can type the name of the dataset `edu` in the console, which will display the dataset: **we do not recommended this option!**
 
 -   You can also type `str(edu)` to understand the structure of the dataset.
 
@@ -166,7 +178,7 @@ edu$age
 
 The `$` sign indicates that we are accessing the variable age contained in the edu dataset. This command returns a vector of the values of the variable.
 
-In the tidyverse, we call objects using pipes, which come in two different (and largely equivalent) operators: `%>%` and `|>`. We will aim to favor the second one (but they are largely interchangeable!).
+In the tidyverse, we call objects using pipes, which come in two different (and largely equivalent) operators: `%>%` and `|>`. We will favor the second one (but they are largely interchangeable!).
 
 For example, to calculate the mean of age, we would write:
 
@@ -185,7 +197,7 @@ edu |> summarise(`Mean age`=mean(age))
 
 ### Transforming a variable
 
-Let's assume the database does not include age but only birth_year. In that case, we could re-create age by creating a variable based on birth_year. Here, we use mutate to create/transform variables.
+Let's assume the database does not include age but only year of birth (birth_year). In that case, we could create a variable returning individuals' age using the information from the variable birth_year. Here, we use the function *mutate* to create/transform variables. Since the data that we use have been collected in 2019, we can then create a new variable that we decide to name 'age_created' to return individual's age using the following code:
 
 ```{r}
 #| eval: false
@@ -194,7 +206,7 @@ edu <- edu |> mutate(age_created=2019-birth_year)
 
 ### Selecting columns
 
-To create a database called `edu2` where we select only certain variables, we write:
+To create a database called `edu2` where we select only certain variables from the initial database `edu`, we write:
 
 ```{r}
 #| eval: false
@@ -202,7 +214,7 @@ edu2<- edu %>% select(hhid,age,sex,edu_attained)
 
 ```
 
-`select` allows to select columns of the dataframe.
+`select` allows to select only some columns (that is, some variables, as one column refers to one variable) of the dataframe.
 
 Similarly, `select` can be used to remove columns:
 
@@ -220,7 +232,7 @@ To create a database from `edu` where we decide to study only male respondents:
 edum <- edu |> filter(sex=="Male")
 ```
 
-`filter` allows you to select the rows of the dataset that satisfy a given condition. The ampersand operator `&` means "and". If you want to use the logical "or" operator, you write: `|`.
+`filter` allows you to select the rows of the dataset that satisfy a given condition (in this example, we keep only the rows for which the variable *sex* equals the modality "Male"; in other words, we keep only male respondents). The ampersand operator `&` means "and". If you want to use the logical "or" operator, you write: `|`.
 
 Let's say we want to study only female respondents with less than primary attainment:
 
@@ -254,7 +266,7 @@ To save databases from R (because you have done some data management and want to
 save(edufl,file="edufl.RData")
 ```
 
-Before using this function, we should not forget to run `setwd("path to the folder where the file will be saved")` to indicate where to save the file (or at least to check that R is indeed pointing to the desired folder using the `getwd()` command).
+Before using this function, we should not forget to run `setwd("path to the folder where we want the file to be saved")` to indicate where to save the file (or at least to check that R is indeed pointing to the desired folder using the `getwd()` command).
 
 Note that the RData format can perfectly well be used to save several R objects in the same file:
 
@@ -288,7 +300,7 @@ edum2 <- readRDS("edum.rds")
 
 ### CSV format
 
--   We sometimes need to export our data in CSV format. In that case, we use functions from the readr package, such as `write_csv` (which uses commas as column separators and periods as decimal markers).
+-   We sometimes need to export our data in CSV format. In that case, we use functions from the *readr* package, such as `write_csv` (which uses commas as column separators and periods as decimal markers).
 
 The CSV format with comma separators is the international standard for CSV files, and it is easily formatted when Excel on one's computer is configured in English:
 
@@ -307,14 +319,14 @@ library(openxlsx)
 write.xlsx(edu, "edu.xlsx")
 ```
 
-If you want to read an Excel file, you can use read.xlsx from the same package. Here, the argument sheet = NULL indicates that we are reading all the sheets of the Excel file if there are several:
+If you want to read an Excel file, you can use read.xlsx from the same package. Here, the argument `sheet=NULL` indicates that we are reading all the sheets of the Excel file if there are several:
 
 ```{r}
 #| eval: false
 read.xlsx("Salaires.xlsx", sheet = NULL)
 ```
 
--   Sometimes we work with colleagues who use other proprietary paid software (what an idea!). In that case, we can use the haven package, which allows us to save data in SAS, SPSS or Stata format:
+-   Sometimes we work with colleagues who use other proprietary paid softwares (what an idea!). In that case, we can use the *haven* package, which allows to save data in SAS, SPSS or Stata format:
 
 ```{r}
 #| eval: false

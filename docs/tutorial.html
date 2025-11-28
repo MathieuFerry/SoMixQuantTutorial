@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>tutorial – SoMix Quant training</title>
+<title>4&nbsp; A short example of a statistical analysis with HIES 2019 – SoMix Quant training</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -72,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -81,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tutorial.html"><strong>Topics of interest</strong></a></li><li class="breadcrumb-item"><a href="./tutorial.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">tutorial.html</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tutorial.html"><strong>Topics of interest</strong></a></li><li class="breadcrumb-item"><a href="./tutorial.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A short example of a statistical analysis with HIES 2019</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tutorial.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">tutorial.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A short example of a statistical analysis with HIES 2019</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -200,19 +234,77 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">4.1</span> Introduction</a></li>
+  <li><a href="#school-non-attendance-by-sex-and-age" id="toc-school-non-attendance-by-sex-and-age" class="nav-link" data-scroll-target="#school-non-attendance-by-sex-and-age"><span class="header-section-number">4.2</span> School non-attendance by sex and age</a></li>
+  <li><a href="#school-non-attendance-and-locality" id="toc-school-non-attendance-and-locality" class="nav-link" data-scroll-target="#school-non-attendance-and-locality"><span class="header-section-number">4.3</span> School non-attendance and locality</a></li>
+  <li><a href="#school-non-attendance-and-family-background" id="toc-school-non-attendance-and-family-background" class="nav-link" data-scroll-target="#school-non-attendance-and-family-background"><span class="header-section-number">4.4</span> School non-attendance and family background</a></li>
+  <li><a href="#preliminary-conclusion" id="toc-preliminary-conclusion" class="nav-link" data-scroll-target="#preliminary-conclusion"><span class="header-section-number">4.5</span> Preliminary conclusion</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tutorial.html"><strong>Topics of interest</strong></a></li><li class="breadcrumb-item"><a href="./tutorial.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A short example of a statistical analysis with HIES 2019</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A short example of a statistical analysis with HIES 2019</span></h1>
+</div>
 
 
 
-<p>#A short example of a statistical analysis with HIES 2019</p>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <p>ON MET LES DIFFERENTS TRAITEMENTS R.</p>
 <p>Les tableaux finaux.</p>
 <p>On met des notes de lecture.</p>
+<section id="introduction" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">4.1</span> Introduction</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List required packages in a vector called load.lib. </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>load.lib <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>,<span class="st">"questionr"</span>,<span class="st">"Hmisc"</span>,<span class="st">"esquisse"</span>,<span class="st">"kableExtra"</span>) </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>install.lib <span class="ot">&lt;-</span> load.lib[<span class="sc">!</span>load.lib <span class="sc">%in%</span> <span class="fu">installed.packages</span>()] <span class="co"># Examine packages which are not yet installed</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (lib <span class="cf">in</span> install.lib) <span class="fu">install.packages</span>(lib,<span class="at">dependencies=</span><span class="cn">TRUE</span>) <span class="co"># Install those if required</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(load.lib,require,<span class="at">character=</span><span class="cn">TRUE</span>) <span class="co"># Load all packages. </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Load data</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/home/groups/3genquanti/SoMix/HIES for workshop"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>edu<span class="ot">&lt;-</span><span class="fu">readRDS</span>(<span class="st">"edu.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="school-non-attendance-by-sex-and-age" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="school-non-attendance-by-sex-and-age"><span class="header-section-number">4.2</span> School non-attendance by sex and age</h2>
+</section>
+<section id="school-non-attendance-and-locality" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="school-non-attendance-and-locality"><span class="header-section-number">4.3</span> School non-attendance and locality</h2>
+<p>Par $age . à partir de 14 ans</p>
+</section>
+<section id="school-non-attendance-and-family-background" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="school-non-attendance-and-family-background"><span class="header-section-number">4.4</span> School non-attendance and family background</h2>
+<p>Par $age . à partir de 14 ans</p>
+</section>
+<section id="preliminary-conclusion" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="preliminary-conclusion"><span class="header-section-number">4.5</span> Preliminary conclusion</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

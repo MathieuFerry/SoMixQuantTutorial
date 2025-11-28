@@ -1,6 +1,6 @@
 # Bivariate statistics and more graphics
 
-Dans ce chapitre, nous abordons maintenant les statistiques bivariées. Nous utilisons toujours la base edu.rds et les mêmes packages que dans le chapitre précédent.
+In this section, we now review a slightly more complex type of descriptive statistics: **bivariate statistics** i.e. statistics with at least two distinct variables. We sill use data from the `educ.rds` dataset. We also use the same packages that we introduced in the previous section (section 2) on univariate statistics.
 
 ::: {.callout-note title="Exercise"}
 -   Create an empty R script.
@@ -27,7 +27,7 @@ edu<-readRDS("edu.rds")
 
 ## The association between a categorical variable and a numerical variable
 
-In the chapter on univariate statistics, we discussed several indicators of the distribution of a numerical variable (minimum, maximum, mean, median). Thanks to the lines of code already set up, it is very easy to calculate these statistics for different categories of another categorical variable.
+In section 2 on univariate statistics, we discussed several indicators of the distribution of a numerical variable (minimum, maximum, mean, median). Thanks to the lines of code already set up, it is easy to calculate these statistics for different categories of another categorical variable.
 
 You simply need to add another function to compute these statistics for each category of a variable, namely `group_by`:
 
@@ -71,7 +71,7 @@ edu |>
 
 ```
 
-We can readily analyse how the distance to school varies across multiple categorical variables. For example, we can compute the mean and the median with respect to both the province and the place of residence:
+We can analyse how the distance to school varies across multiple categorical variables. For example, we can compute the mean and the median with respect to both the province and the place of residence:
 
 ```{r}
 #| eval: false
@@ -109,7 +109,7 @@ We can clearly see from this last analysis that this pattern holds in all provin
 
 ### Summarizing with the mean and the standard deviation
 
-It is quite common in academic articles to describe quantitative variables by reporting the mean (a measure of central tendency) and the standard deviation (a measure of dispersion, equal to the square root of the variance).
+It is quite common in scientific articles to describe quantitative variables by reporting the mean (a measure of central tendency) and the standard deviation (a measure of dispersion, equal to the square root of the variance).
 
 ```{r}
 #| eval: false
@@ -124,7 +124,7 @@ edu |>
 
 ![Mean and standard deviation of distance to school by residence](images/Capture%20d’écran%202025-11-21%20à%2022.06.22.png){fig-align="center"}
 
-Why are these two indicators used? First, we can say from this table that, on average, the distance to school is higher for children in rural areas than in urban areas. There is also greater variability in the distance to school in rural areas (sd stands for standard deviation).
+Why are these two indicators used in particular? First, we can say from this table that, on average, the distance to school is higher for children in rural areas than in urban areas. There is also greater variability in the distance to school in rural areas (sd stands for standard deviation).
 
 ::: callout-tip
 Should we summarize a variable by its mean or its median?
@@ -156,29 +156,29 @@ We now come to cross-tabulations to study the associations between two categoric
 
 First, let's recall a few analysis conventions. It’s easy to get confused when creating cross-tabulations, so keep the following points in mind:
 
--   What is my *response variable* or *dependent variable*, i.e., the variable assumed to depend on another factor?
+-   What is my *response variable* (also called *dependent variable*), i.e., the variable assumed to depend on another factor or, in other words, the variable that we want to explain?
 
 -   What is my *independent variable*, i.e., the variable assumed to have an effect on the dependent variable?
 
-On peut par exemple ici supposer que le fait d'être actuellement scolarisé (variable r2_school_education) dépend du niveau de diplôme des parents, mais aussi de leur niveau économique, du lieu de résidence, etc.
+Here, we can for example make the assumption that attending school (variable r2_school_education) depends on different variables such as the parents' level of education, but also parental economic status, the place of residence, etc.
 
--   To visualize whether a factor affects a dependent variable, we can create a cross-tabulation in which:
+To visualize whether a factor affects a dependent variable, we can create a cross-tabulation in which:
 
--   The dependent variable is placed in the columns.
+-   The **dependent** variable is placed in the *columns*.
 
--   The independent variable is placed in the rows.
+-   The **independent** variable is placed in the *rows*.
 
--   Row percentages are calculated (we need to normalize the row counts to compare them!).
+-   *Row percentages* are calculated (we need to normalize the row counts to compare them!).
 
--   We then compare the rows within the same column.
+-   We then *compare the rows within the same column*.
 
 Of course, this is theory.
 
 There are many cases where we might be more interested in column percentages, or even total percentages, or we may want to swap rows and columns. Nevertheless, keeping these simple conventions in mind helps to stay oriented when navigating statistical analyses.
 
-### Practical application of the cross-tabulation
+### A practical application of the cross-tabulation
 
-We again use the functions from the `questionr` package. To create a cross-tabulation of unweighted counts, we can write:
+Let's try to do some cross-tabulations then. We again use the functions from the `questionr` package. To create a cross-tabulation of unweighted counts, we can write:
 
 ```{r}
 #| eval: false
@@ -241,7 +241,7 @@ edu |> freqtable(sector_rec,r2_school_education_rec,weights=finalweight_25per) |
 
 ![Row percentages](images/Capture%20d’écran%202025-11-22%20à%2013.53.54.png){fig-align="center"}
 
-Here, we clearly see that, regardless of residential location, the most frequent situation for children is to be currently enrolled in school.
+Here, we see that, regardless of residential location, the most frequent situation for children is to be currently enrolled in school.
 
 Only 3% of children have never attended school, and this configuration is slightly less common in urban areas and estates. In other words, never having attended school — a very marginal situation overall — is mainly a rural phenomenon.
 
@@ -256,7 +256,7 @@ Study the association between age and school attendance with a row percentage cr
 
 ### From the table to the graphic
 
-Esquisse can again in these cases be used to build represent graphically the association between residence and school attendance. Here, our category of interest is specifically "never attending school".
+Esquisse can again in these cases be used to represent graphically the association between residence and school attendance. Here, our category of interest is specifically "never attending school".
 
 You first need to store the row-percentage tabulation (transformed as a "data.frame" using the `as.data.frame()` function) in an object (rtab), then open esquisser with this specific command.
 
@@ -275,7 +275,7 @@ You can then drop the residence variable on the X-axis tab and Freq in the Y-axi
 
 Very often, we study social processes that depend on multiple social factors. For instance, school attendance may vary according to age (see above exercise), but age may impact differently school attendance for male and female children.
 
-One first easy solution to study this is simply to filter the row percentage cross tabulations according to the different categories of a third variable (here, sex).
+-   One first easy solution to study this is simply to filter the row percentage cross tabulations according to the different categories of a third variable (here, sex).
 
 For instance:
 
@@ -297,7 +297,22 @@ edu |>
 
 This code prints successively two crosstabs in the Viewer panel, but it is not ideal as we would want to see them on the same page.
 
-We can actually simply write:
+-   A second relatively easy solution is to create a new variable concatenating together the variables sex and age (individuals are simultaneously characterized by both of these dimensions) and to use it as the independent variable, thanks to the `interaction` function:
+
+```{r}
+#| eval: false
+edu <- edu |>
+  mutate(agef=factor(age),#make sure age is well ordered
+         sex_age=interaction(sex,agef,sep=" ")) #concatenate age and sex together
+edu |> 
+  freqtable(sex_age,r2_school_education_rec,weights=finalweight_25per) |>
+  lprop() |>
+  kbl(digits=0) |> kable_classic(full_width = F)
+```
+
+![Cross tabulation with three variables](images/Capture d’écran 2025-11-28 à 18.27.17.png)
+
+-   Third, we can actually also simply write:
 
 ```{r}
 #| eval: false
@@ -315,38 +330,52 @@ Run the following code which will create the `kbl_grouped_3way()` function:
 
 ```{r}
 #| eval: false
-kbl_grouped_3way <- function(tab,digits=1) {
-  # Convert to data frame (Sex / Age / Category / Freq etc.)
-  df <- as.data.frame(tab)
-  # Identify names of the three dimensions
+kbl_grouped_3way <- function(tab, digits = 1) {
+  
+  # Convert to a dataframe without dropping: NA conservés
+  df <- as.data.frame(tab, stringsAsFactors = FALSE, drop = FALSE)
+  
+  # Identify the three dimensions
   dims <- names(df)[names(df) != "Freq"]
-  # For readability
-  dim1 <- dims[1]   # row dimension (ex: age)
-  dim2 <- dims[2]   # column dimension (ex: school status)
-  dim3 <- dims[3]   # grouping dimension (ex: sex)
-  # Convert to wide
+  dim1 <- dims[1]   # ligne
+  dim2 <- dims[2]   # colonne
+  dim3 <- dims[3]   # groupe
+  
+  # To character
+  df[ dims ] <- lapply(df[ dims ], function(x) ifelse(is.na(x), NA, as.character(x)))
+  
+  # Pivot wider
   df_wide <- df |>
     tidyr::pivot_wider(
-      names_from = all_of(dim2), 
-      values_from = Freq
+      names_from = all_of(dim2),
+      values_from = Freq,
+      values_fill = 0
     )
-  # Keep a copy of grouping variable and row order before dropping
+  
+  # Keep order
   grouping_var <- df_wide[[dim3]]
-  # Build table
+  
+  # Construct kable
   tab_out <- df_wide |>
-    select(-all_of(dim3)) |>
-    kbl(digits = digits) 
-  # How many rows per group?
+    dplyr::select(-all_of(dim3)) |>
+    kbl(digits = digits)
+  
+  # Group levels (including NA)
   group_levels <- unique(grouping_var)
-  groups <- split(seq_len(nrow(df_wide)), grouping_var)
-  # Add pack_rows dynamically
-  for (g in group_levels) {
+  
+  # Line index by group
+  groups <- split(seq_len(nrow(df_wide)),
+                  f = ifelse(is.na(grouping_var), "NA", grouping_var))
+  
+  # Pack_rows for each group in kable
+  for (g in names(groups)) {
     rows <- groups[[g]]
     tab_out <- tab_out |>
       pack_rows(group = g,
                 start_row = min(rows),
                 end_row = max(rows))
   }
+  
   tab_out
 }
 ```

@@ -1,17 +1,17 @@
 # Survey data and univariate statistics
 
-This chapter introduces the specifics of performing statistics on survey data based on representative population samples. We focus on the univariate description of variables, both numerical (quantitative) and categorical (qualitative).
+In this section, you will learn how to perform **descriptive statistics** on survey data based on representative population samples. We first focus in this section on the **univariate** description of variables, both numerical (quantitative) and categorical (qualitative).
 
-We will need four packages that have not yet been loaded (and that you may not have installed yet).
+To do this, we need four packages that have not yet been loaded (and that you may not have installed yet).
 
-In the code below, we provide a suggested approach to check whether the necessary packages for this chapter are installed and to load them into the environment.
+In the code below, we suggest a way to check whether these necessary packages are already installed on your R session, and to load them into the environment if the case they are not.
 
-We are using the same dataset as in the previous chapter (`edu`), which you can also load into RStudio.
+We are using the same dataset as in the previous chapter (`edu.rds`), which you can also load into RStudio.
 
 ::: {.callout-note title="Exercise" icon="false"}
 -   Create an empty script.
 
--   Save this script in a folder (for instance, "WinterWorkshop") and name it for instance "2Statunis.R".
+-   Save this script in a folder (for instance, "WinterWorkshop") and name it (for instance "2Statunis.R").
 
 -   Load the `edu.rds` database and add the commands below to install / load the required packages to use the functions demonstrated in this chapter.
 
@@ -35,27 +35,25 @@ edu<-readRDS("edu.rds")
 
 ## Working with survey data
 
-The *Household Income and Expenditure Survey (HIES)* data correspond to a sample of households in Sri Lanka. This sample, thanks to the household selection procedures included in the survey, is representative of the entire population of Sri Lanka.
+The *Household Income and Expenditure Survey (HIES)* data have been collected on a sample of households in Sri Lanka. This sample, thanks to the household selection procedures included in the survey, is representative of the entire population of Sri Lanka.
 
 Keep in mind that the selection is based on a complete enumeration of households and a *random* selection of households included in the sample (in fact, it’s a little more complex, but that’s the general idea).
 
-Why use a sample instead of surveying the entire population?
+Why use a sample instead of surveying the entire population? Sampling allows the collection of high-quality, representative data at lower cost and in less time, and all public and private statistical institutes use this type of survey method.
 
-If the survey were exhaustive, it would be a census, which the DCS conducts separately. Sampling allows the collection of high-quality, representative data at lower cost and in less time, and all public and private statistical institutes use this type of survey method.
-
-Generally, sample data include a **weight variable**. These weights ensure the representativeness of the sample for the entire population (to put it simply, in the most common case, the weights correct biases in data collection because not all selected respondents were actually surveyed, and the weight corrects for these biases).
+Generally, sample data include a **weight variable**. These weights ensure the representativeness of the sample for the entire population, that is, in our case, of individuals living in Sri Lanka at the time of the survey. To put it simply, in the most common case, the weights correct biases in data collection because not all selected respondents were actually surveyed, and the weight corrects for these biases.
 
 These types of data are very common in the social sciences (and the DCS conducts several sample-based surveys, such as the Time Use Survey, the Labor Force Survey, etc.), so it is important to know how to handle them.
 
-Thus, all statistical operations performed on HIES files must take this weighting into account. For example, in the previous chapter we calculated the average age of respondents to the education module. Since we did not use a weight variable, we simply calculated the **mean among the respondents**. If we had taken weighting into account, we would have *inferred* the **average age of children between 5 and 19 years old for the entire population**.
+Thus, all statistical operations performed on HIES files must take this weighting into account. For example, in the previous section we calculated the average age of respondents to the education module. Since we did not use a weight variable, we simply calculated the **mean among the respondents**. If we had taken weighting into account, we would have *inferred* the **average age of children between 5 and 19 years old for the entire population**.
 
-In our *HIES* files, the correct weight variable is `finalweight_25per` (this is a specific weight variable to this sample because we are working with a 25% random sample of the survey sample, which is itself a random sample of the entire population).
+In our *HIES* files, the correct variable weight variable is `finalweight_25per` (this is a specific weight variable to this sample because we are working with a 25% random sample of the survey sample, which is itself a random sample of the entire population).
 
 ## Describing a numerical variable
 
-### Summarise variables based on a few statistics
+### Summarizing variables based on a few statistics
 
-In R, we can easily summarize a numerical variable using a few statistical indicators:
+In R, we can easily summarize a **numerical variable** using a few statistical indicators:
 
 -   Minimum
 
@@ -69,9 +67,9 @@ The minimum and maximum give an idea of the range of values taken by the variabl
 
 It is often useful to estimate the median in addition to the mean when studying a numerical variable. Indeed, the mean is sensitive to “extreme” values in a distribution.
 
-The median is the value that separates the lower half from the upper half of a statistical distribution (50% of the population has a lower value, 50% has a higher value). When the mean and median differ greatly, it indicates that the distribution of the variable’s values is not evenly spread around the mean.
+The median is the value that separates the lower half from the upper half of a statistical distribution (50% of the population has a lower value, 50% has a higher value). When the mean and median differ greatly, it indicates that the distribution of the variable is not evenly spread around the mean.
 
-Typically, when studying income, the mean is often much higher than the median, because a few individuals have very high incomes, which tends to increase the mean, while the median is a more stable measure of central tendency.
+Typically, when studying income, the mean is often much higher than the median, while the median is a more stable measure of central tendency. This is because only a few individuals have very high incomes, which tends to increase the mean.
 
 To obtain these statistics for the variable `distance` which indicates the distance from home to school for children:
 
@@ -87,13 +85,13 @@ edu |>
   )
 ```
 
-Notice that we use `finalweight_25per` to calculate the mean and the median, but not to calculate the minimum and maximum. Here, the minimum and maximum age suggest that some children live very close to their school, but for at least one child, the school is pretty far from home!
+Notice that we use `finalweight_25per` to calculate the mean and the median, but not to calculate the minimum and maximum. Here, the minimum and maximum suggest that some children live very close to their school, but for at least one child, the school is pretty far from home!
 
 The mean is higher than the median, indicating that a few unusually high distance values are stretching the upper tail of the distribution, resulting in a right-skewed distribution.
 
 We also added the number of `NA` cases in this variables, i.e. the number of missing variables. In fact, here this corresponds to children who actually do not attend school.
 
-We produced such a nice output that we would like to display it as a table, but copying and pasting from the console doesn't look very nice…
+We produced such a nice output that we would like to display it as a table, but copying and pasting it from the console doesn't look very nice…
 
 No worries — there are plenty of packages in R to create beautiful table outputs. Here, we propose using [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) :
 
@@ -123,9 +121,9 @@ These tables can be customized endlessly (including adding titles, captions, etc
 
 ### Summarizing a quantitative variable with a graph
 
-All of this looks nice and seems to suggest that `distance` is a skewed variable with a distribution stretched to the right. Can we visualize the distribution?
+All of this looks nice and seems to suggest that `distance` is a skewed variable with a distribution stretched to the right. Can we visualize the distribution of this variable?
 
-We can use the esquisse package, which provides a point-and-click solution for creating plots. You need to run the following line (be a little patient while the page loads). This avoids having to write the code yourself to create the plot using the `ggplot2` package.
+We can use the *esquisse* package, which provides a point-and-click solution for creating plots. You need to run the following line (be a little patient while the page loads). This avoids having to write the code yourself to create the plot using the `ggplot2` package.
 
 ```{r}
 #| eval: false
@@ -142,13 +140,13 @@ Finally, you can save your plot and also copy the code that generates the same p
 
 ## Describing a categorical variable
 
-Describing a numerical variable is nice, but we often have quite a few categorical variables in our datasets. How can we describe them?
+Describing a numerical variable is nice, but we often also have **categorical variables**. How can we describe them?
 
 The function `freqtable` from the `questionr` package allows you to get the weighted counts of a categorical variable, and `freq` calculates the corresponding percentages (%val corresponds to the percentages of non-NA categories).
 
-Note that it is always possible to remove the part `weights=finalweight_25per` to get unweighted counts and
+Note that it is always possible to remove the part `weights=finalweight_25per` to get unweighted counts. This is useful as we always want to have *weighted* percentages, but the *unweighted* number of individuals on which this percentage has been calculated: indeed, statistics tends to be less robust when they are calculated on small subsamples, so it is always interesting to keep in mind the number of respondents available in our (sub)sample.
 
-Here, we are interested in the variable r2_school_education, which corresponds to the respondents’ school status.
+Here, we are interested in the variable *r2_school_education*, which corresponds to the respondents’ school status.
 
 ```{r}
 #|eval: false
@@ -161,11 +159,18 @@ edu |> freqtable(r2_school_education,weights=finalweight_25per) %>% freq() %>% s
 
 ## Recoding a categorical variable
 
-Note that the categories of r2_school_education are here coded as 1, 2, and 3. This is because when getting the from the Lanka datta, we got CSV files without any data labels so we need to recode them ourselves based on the questionnaire of the survey.
+The categories of r2_school_education are here coded as 1, 2, and 3. This is because when getting the from the Lanka data, we got CSV files without any data labels so we need to recode them ourselves based on the questionnaire of the survey.
 
 Luckily, this task can be done very easily by using the `irec()` interface (from the `questionr` package created by Julien Barnier). Type it in the console and the following window will open to recode a new variable with explicit levels (in the R lingo, these are factor levels).
 
-![Esquisse interface](images/Capture%20d’écran%202025-11-21%20à%2018.58.30.png) ![Esquisse interface](images/Capture%20d’écran%202025-11-21%20à%2018.58.37.png) ![Esquisse interface](images/Capture%20d’écran%202025-11-21%20à%2018.58.54.png) The last panel shows you the R code to recode the variable. When clicking on Done, this code is sent to the Console. **We strongly advise you to copy-paste this code into your script to keep track of all your recoding steps!**
+```{r}
+#|eval: false
+
+irec()
+
+```
+
+![irec interface](images/Capture%20d’écran%202025-11-28%20à%2015.45.28.png) ![irec interface (2)](images/Capture%20d’écran%202025-11-28%20à%2015.46.01.png) ![irec interface (3)](images/Capture%20d’écran%202025-11-28%20à%2015.46.17.png)The last panel shows you the R code to recode the variable. When clicking on 'Done', this code is sent to the Console. **We strongly advise you to copy-paste this code into your script to keep track of all your recoding steps!** This way, you will be able to re-run all your analyses at once whenever you want just by clicking on the 'Run' button for your whole code.
 
 ::: {.callout-note title="Exercise" icon="false"}
 With the newly recoded variable of school attendance, recompute the % distribution of this variable. Then, open Esquisse and draw a graph of this variable.
@@ -173,9 +178,9 @@ With the newly recoded variable of school attendance, recompute the % distributi
 
 ## Recoding a numerical variable to a categorical variable
 
-It can be useful to analyze distance to school not as a numerical variable but as a categorical variable (for example, what proportion of students have a school less than 1 km away?).
+It can be useful to analyze distance to school not as a numerical variable but as a categorical variable (for example, what proportion of students have a school less than 1 km of their home away?).
 
-Recoding a quantitative variable into a qualitative variable is straightforward. In R, we can use another add-in from the questionr package: icut:
+Recoding a quantitative variable into a qualitative variable is straightforward. In R, we can use another add-in from the questionr package: *icut*:
 
 ```{r}
 #| eval: false
@@ -190,15 +195,15 @@ Different recoding options are offered:
 
 -   Using a reclassification algorithm (Jenks, which geographers often use, or other algorithms),
 
--   Using quantiles, or
+-   Using quantiles,
 
 -   Using equal-width intervals in the distribution.
 
 Here, we choose to recode the variable into quartiles. The newly created variable corresponds to 4 categories, each roughly representing 25% of the unweighted respondents. However, this division is not always exact, especially when many individuals share the same value — in this case, the number of kilometers.
 
-![Interface de icut](images/Capture%20d’écran%202025-11-21%20à%2019.31.25.png) ![Interface de icut](images/Capture%20d’écran%202025-11-21%20à%2019.37.34.png) ![Interface de icut](images/Capture%20d’écran%202025-11-21%20à%2019.37.45.png)
+![Interface de icut](images/Capture%20d’écran%202025-11-28%20à%2015.50.20.png) ![Interface de icut (2)](images/Capture%20d’écran%202025-11-28%20à%2015.50.34.png) ![Interface de icut (3)](images/Capture%20d’écran%202025-11-28%20à%2015.50.46.png)
 
-You can then click Done. Note that the variable has not yet been created, but in the console, the code to create it is provided. You just need to copy and paste it into your script and run it (you can also modify it directly yourself if you want):
+You can then click 'Done'. Note that the variable has not yet been created, but in the console, the code to create it is provided. You just need to copy and paste it into your script and run it (you can also modify it directly yourself if you want):
 
 ```{r}
 #| eval: false
@@ -213,7 +218,7 @@ edu$distance_rec <- cut(edu$distance,
 ```
 
 ::: {.callout-note title="Exercise" icon="false"}
--    Study the distribution of the newly created variable distance_rec.
+-   Study the distribution of the newly created variable distance_rec.
 
 -   Save your dataset as a rds file with the name "edu_rec.rds".
 :::

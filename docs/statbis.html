@@ -201,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tutorial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">tutorial.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A short example of a statistical analysis with HIES 2019</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -246,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-association-between-two-categorical-variables-and-the-cross-tabulation" id="toc-the-association-between-two-categorical-variables-and-the-cross-tabulation" class="nav-link" data-scroll-target="#the-association-between-two-categorical-variables-and-the-cross-tabulation"><span class="header-section-number">3.2</span> The association between two categorical variables and the cross-tabulation</a>
   <ul class="collapse">
   <li><a href="#some-conventions-for-cross-tabulations" id="toc-some-conventions-for-cross-tabulations" class="nav-link" data-scroll-target="#some-conventions-for-cross-tabulations"><span class="header-section-number">3.2.1</span> Some conventions for cross-tabulations</a></li>
-  <li><a href="#practical-application-of-the-cross-tabulation" id="toc-practical-application-of-the-cross-tabulation" class="nav-link" data-scroll-target="#practical-application-of-the-cross-tabulation"><span class="header-section-number">3.2.2</span> Practical application of the cross-tabulation</a></li>
+  <li><a href="#a-practical-application-of-the-cross-tabulation" id="toc-a-practical-application-of-the-cross-tabulation" class="nav-link" data-scroll-target="#a-practical-application-of-the-cross-tabulation"><span class="header-section-number">3.2.2</span> A practical application of the cross-tabulation</a></li>
   <li><a href="#from-the-table-to-the-graphic" id="toc-from-the-table-to-the-graphic" class="nav-link" data-scroll-target="#from-the-table-to-the-graphic"><span class="header-section-number">3.2.3</span> From the table to the graphic</a></li>
   <li><a href="#cross-tabulation-with-three-variables" id="toc-cross-tabulation-with-three-variables" class="nav-link" data-scroll-target="#cross-tabulation-with-three-variables"><span class="header-section-number">3.2.4</span> Cross-tabulation with three variables?</a></li>
   </ul></li>
@@ -275,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Dans ce chapitre, nous abordons maintenant les statistiques bivariées. Nous utilisons toujours la base edu.rds et les mêmes packages que dans le chapitre précédent.</p>
+<p>In this section, we now review a slightly more complex type of descriptive statistics: <strong>bivariate statistics</strong> i.e.&nbsp;statistics with at least two distinct variables. We sill use data from the <code>educ.rds</code> dataset. We also use the same packages that we introduced in the previous section (section 2) on univariate statistics.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Exercise">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -307,7 +307,7 @@ Exercise
 </div>
 <section id="the-association-between-a-categorical-variable-and-a-numerical-variable" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="the-association-between-a-categorical-variable-and-a-numerical-variable"><span class="header-section-number">3.1</span> The association between a categorical variable and a numerical variable</h2>
-<p>In the chapter on univariate statistics, we discussed several indicators of the distribution of a numerical variable (minimum, maximum, mean, median). Thanks to the lines of code already set up, it is very easy to calculate these statistics for different categories of another categorical variable.</p>
+<p>In section 2 on univariate statistics, we discussed several indicators of the distribution of a numerical variable (minimum, maximum, mean, median). Thanks to the lines of code already set up, it is easy to calculate these statistics for different categories of another categorical variable.</p>
 <p>You simply need to add another function to compute these statistics for each category of a variable, namely <code>group_by</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span></span>
@@ -340,7 +340,7 @@ Exercise
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_na   =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(distance))</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can readily analyse how the distance to school varies across multiple categorical variables. For example, we can compute the mean and the median with respect to both the province and the place of residence:</p>
+<p>We can analyse how the distance to school varies across multiple categorical variables. For example, we can compute the mean and the median with respect to both the province and the place of residence:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(province,sector_rec) <span class="sc">|&gt;</span></span>
@@ -376,7 +376,7 @@ Exercise
 <p>We can clearly see from this last analysis that this pattern holds in all provinces (except North Western), but the gap varies: it is higher in the Sabaragamuwa and Southern provinces, where the distance to school for children in estate areas is particularly pronounced.</p>
 <section id="summarizing-with-the-mean-and-the-standard-deviation" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="summarizing-with-the-mean-and-the-standard-deviation"><span class="header-section-number">3.1.1</span> Summarizing with the mean and the standard deviation</h3>
-<p>It is quite common in academic articles to describe quantitative variables by reporting the mean (a measure of central tendency) and the standard deviation (a measure of dispersion, equal to the square root of the variance).</p>
+<p>It is quite common in scientific articles to describe quantitative variables by reporting the mean (a measure of central tendency) and the standard deviation (a measure of dispersion, equal to the square root of the variance).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sector_rec) <span class="sc">|&gt;</span></span>
@@ -392,7 +392,7 @@ Exercise
 <figcaption>Mean and standard deviation of distance to school by residence</figcaption>
 </figure>
 </div>
-<p>Why are these two indicators used? First, we can say from this table that, on average, the distance to school is higher for children in rural areas than in urban areas. There is also greater variability in the distance to school in rural areas (sd stands for standard deviation).</p>
+<p>Why are these two indicators used in particular? First, we can say from this table that, on average, the distance to school is higher for children in rural areas than in urban areas. There is also greater variability in the distance to school in rural areas (sd stands for standard deviation).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -442,23 +442,23 @@ Exercise
 <p>We now come to cross-tabulations to study the associations between two categorical variables.</p>
 <p>First, let’s recall a few analysis conventions. It’s easy to get confused when creating cross-tabulations, so keep the following points in mind:</p>
 <ul>
-<li><p>What is my <em>response variable</em> or <em>dependent variable</em>, i.e., the variable assumed to depend on another factor?</p></li>
+<li><p>What is my <em>response variable</em> (also called <em>dependent variable</em>), i.e., the variable assumed to depend on another factor or, in other words, the variable that we want to explain?</p></li>
 <li><p>What is my <em>independent variable</em>, i.e., the variable assumed to have an effect on the dependent variable?</p></li>
 </ul>
-<p>On peut par exemple ici supposer que le fait d’être actuellement scolarisé (variable r2_school_education) dépend du niveau de diplôme des parents, mais aussi de leur niveau économique, du lieu de résidence, etc.</p>
+<p>Here, we can for example make the assumption that attending school (variable r2_school_education) depends on different variables such as the parents’ level of education, but also parental economic status, the place of residence, etc.</p>
+<p>To visualize whether a factor affects a dependent variable, we can create a cross-tabulation in which:</p>
 <ul>
-<li><p>To visualize whether a factor affects a dependent variable, we can create a cross-tabulation in which:</p></li>
-<li><p>The dependent variable is placed in the columns.</p></li>
-<li><p>The independent variable is placed in the rows.</p></li>
-<li><p>Row percentages are calculated (we need to normalize the row counts to compare them!).</p></li>
-<li><p>We then compare the rows within the same column.</p></li>
+<li><p>The <strong>dependent</strong> variable is placed in the <em>columns</em>.</p></li>
+<li><p>The <strong>independent</strong> variable is placed in the <em>rows</em>.</p></li>
+<li><p><em>Row percentages</em> are calculated (we need to normalize the row counts to compare them!).</p></li>
+<li><p>We then <em>compare the rows within the same column</em>.</p></li>
 </ul>
 <p>Of course, this is theory.</p>
 <p>There are many cases where we might be more interested in column percentages, or even total percentages, or we may want to swap rows and columns. Nevertheless, keeping these simple conventions in mind helps to stay oriented when navigating statistical analyses.</p>
 </section>
-<section id="practical-application-of-the-cross-tabulation" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="practical-application-of-the-cross-tabulation"><span class="header-section-number">3.2.2</span> Practical application of the cross-tabulation</h3>
-<p>We again use the functions from the <code>questionr</code> package. To create a cross-tabulation of unweighted counts, we can write:</p>
+<section id="a-practical-application-of-the-cross-tabulation" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="a-practical-application-of-the-cross-tabulation"><span class="header-section-number">3.2.2</span> A practical application of the cross-tabulation</h3>
+<p>Let’s try to do some cross-tabulations then. We again use the functions from the <code>questionr</code> package. To create a cross-tabulation of unweighted counts, we can write:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>edu<span class="sc">$</span>r2_school_education_rec <span class="ot">&lt;-</span> edu<span class="sc">$</span>r2_school_education  <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.character</span>() <span class="sc">|&gt;</span></span>
@@ -519,7 +519,7 @@ Exercise
 <figcaption>Row percentages</figcaption>
 </figure>
 </div>
-<p>Here, we clearly see that, regardless of residential location, the most frequent situation for children is to be currently enrolled in school.</p>
+<p>Here, we see that, regardless of residential location, the most frequent situation for children is to be currently enrolled in school.</p>
 <p>Only 3% of children have never attended school, and this configuration is slightly less common in urban areas and estates. In other words, never having attended school — a very marginal situation overall — is mainly a rural phenomenon.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Salaires <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(race,salaire_quint) <span class="sc">|&gt;</span> <span class="fu">prop</span>(<span class="at">n=</span>T,<span class="at">digit=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -540,7 +540,7 @@ Exercise
 </section>
 <section id="from-the-table-to-the-graphic" class="level3" data-number="3.2.3">
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="from-the-table-to-the-graphic"><span class="header-section-number">3.2.3</span> From the table to the graphic</h3>
-<p>Esquisse can again in these cases be used to build represent graphically the association between residence and school attendance. Here, our category of interest is specifically “never attending school”.</p>
+<p>Esquisse can again in these cases be used to represent graphically the association between residence and school attendance. Here, our category of interest is specifically “never attending school”.</p>
 <p>You first need to store the row-percentage tabulation (transformed as a “data.frame” using the <code>as.data.frame()</code> function) in an object (rtab), then open esquisser with this specific command.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rtab<span class="ot">&lt;-</span>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(sector_rec,r2_school_education_rec,<span class="at">weights=</span>finalweight_25per) <span class="sc">|&gt;</span></span>
@@ -558,7 +558,9 @@ Exercise
 <section id="cross-tabulation-with-three-variables" class="level3" data-number="3.2.4">
 <h3 data-number="3.2.4" class="anchored" data-anchor-id="cross-tabulation-with-three-variables"><span class="header-section-number">3.2.4</span> Cross-tabulation with three variables?</h3>
 <p>Very often, we study social processes that depend on multiple social factors. For instance, school attendance may vary according to age (see above exercise), but age may impact differently school attendance for male and female children.</p>
-<p>One first easy solution to study this is simply to filter the row percentage cross tabulations according to the different categories of a third variable (here, sex).</p>
+<ul>
+<li>One first easy solution to study this is simply to filter the row percentage cross tabulations according to the different categories of a third variable (here, sex).</li>
+</ul>
 <p>For instance:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> </span>
@@ -574,56 +576,90 @@ Exercise
 </div>
 <p><img src="images/Capture d’écran 2025-11-22 à 15.46.58.png" class="img-fluid" alt="School attendance by age for male children"> <img src="images/Capture d’écran 2025-11-22 à 15.47.07.png" class="img-fluid" alt="School attendance by age for female children"></p>
 <p>This code prints successively two crosstabs in the Viewer panel, but it is not ideal as we would want to see them on the same page.</p>
-<p>We can actually simply write:</p>
+<ul>
+<li>A second relatively easy solution is to create a new variable concatenating together the variables sex and age (individuals are simultaneously characterized by both of these dimensions) and to use it as the independent variable, thanks to the <code>interaction</code> function:</li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tab3<span class="ot">&lt;-</span>edu <span class="sc">|&gt;</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freqtable</span>(age,r2_school_education_rec,sex,<span class="at">weights=</span>finalweight_25per) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lprop</span>() </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>tab3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>edu <span class="ot">&lt;-</span> edu <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agef=</span><span class="fu">factor</span>(age),<span class="co">#make sure age is well ordered</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">sex_age=</span><span class="fu">interaction</span>(sex,agef,<span class="at">sep=</span><span class="st">" "</span>)) <span class="co">#concatenate age and sex together</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freqtable</span>(sex_age,r2_school_education_rec,<span class="at">weights=</span>finalweight_25per) <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lprop</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits=</span><span class="dv">0</span>) <span class="sc">|&gt;</span> <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Capture d’écran 2025-11-28 à 18.27.17.png" class="img-fluid figure-img"></p>
+<figcaption>Cross tabulation with three variables</figcaption>
+</figure>
+</div>
+<ul>
+<li>Third, we can actually also simply write:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tab3<span class="ot">&lt;-</span>edu <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freqtable</span>(age,r2_school_education_rec,sex,<span class="at">weights=</span>finalweight_25per) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lprop</span>() </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>tab3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>tab3</code> contains the three-way cross tabulation. We have simply added the sex variable after the dependent within the <code>freqtable()</code> function.</p>
 <p>Unfortunately, viewing this bigger table in the Viewer panel is not so straightforward with the existing <code>kableExtra</code> functions. One solution is to create our own function that we will be able to use at any time whenever we want to study a 3-way cross tabulation.</p>
 <p>Run the following code which will create the <code>kbl_grouped_3way()</code> function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>kbl_grouped_3way <span class="ot">&lt;-</span> <span class="cf">function</span>(tab,<span class="at">digits=</span><span class="dv">1</span>) {</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert to data frame (Sex / Age / Category / Freq etc.)</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tab)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Identify names of the three dimensions</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  dims <span class="ot">&lt;-</span> <span class="fu">names</span>(df)[<span class="fu">names</span>(df) <span class="sc">!=</span> <span class="st">"Freq"</span>]</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># For readability</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  dim1 <span class="ot">&lt;-</span> dims[<span class="dv">1</span>]   <span class="co"># row dimension (ex: age)</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  dim2 <span class="ot">&lt;-</span> dims[<span class="dv">2</span>]   <span class="co"># column dimension (ex: school status)</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  dim3 <span class="ot">&lt;-</span> dims[<span class="dv">3</span>]   <span class="co"># grouping dimension (ex: sex)</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert to wide</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  df_wide <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_from =</span> <span class="fu">all_of</span>(dim2), </span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_from =</span> Freq</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep a copy of grouping variable and row order before dropping</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  grouping_var <span class="ot">&lt;-</span> df_wide[[dim3]]</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Build table</span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  tab_out <span class="ot">&lt;-</span> df_wide <span class="sc">|&gt;</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">all_of</span>(dim3)) <span class="sc">|&gt;</span></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kbl</span>(<span class="at">digits =</span> digits) </span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># How many rows per group?</span></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  group_levels <span class="ot">&lt;-</span> <span class="fu">unique</span>(grouping_var)</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  groups <span class="ot">&lt;-</span> <span class="fu">split</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(df_wide)), grouping_var)</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add pack_rows dynamically</span></span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (g <span class="cf">in</span> group_levels) {</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    rows <span class="ot">&lt;-</span> groups[[g]]</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    tab_out <span class="ot">&lt;-</span> tab_out <span class="sc">|&gt;</span></span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pack_rows</span>(<span class="at">group =</span> g,</span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>                <span class="at">start_row =</span> <span class="fu">min</span>(rows),</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>                <span class="at">end_row =</span> <span class="fu">max</span>(rows))</span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>  tab_out</span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>kbl_grouped_3way <span class="ot">&lt;-</span> <span class="cf">function</span>(tab, <span class="at">digits =</span> <span class="dv">1</span>) {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert to a dataframe without dropping: NA conservés</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tab, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>, <span class="at">drop =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Identify the three dimensions</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  dims <span class="ot">&lt;-</span> <span class="fu">names</span>(df)[<span class="fu">names</span>(df) <span class="sc">!=</span> <span class="st">"Freq"</span>]</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  dim1 <span class="ot">&lt;-</span> dims[<span class="dv">1</span>]   <span class="co"># ligne</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  dim2 <span class="ot">&lt;-</span> dims[<span class="dv">2</span>]   <span class="co"># colonne</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  dim3 <span class="ot">&lt;-</span> dims[<span class="dv">3</span>]   <span class="co"># groupe</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># To character</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  df[ dims ] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df[ dims ], <span class="cf">function</span>(x) <span class="fu">ifelse</span>(<span class="fu">is.na</span>(x), <span class="cn">NA</span>, <span class="fu">as.character</span>(x)))</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Pivot wider</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  df_wide <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_from =</span> <span class="fu">all_of</span>(dim2),</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_from =</span> Freq,</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_fill =</span> <span class="dv">0</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep order</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>  grouping_var <span class="ot">&lt;-</span> df_wide[[dim3]]</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Construct kable</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>  tab_out <span class="ot">&lt;-</span> df_wide <span class="sc">|&gt;</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">all_of</span>(dim3)) <span class="sc">|&gt;</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kbl</span>(<span class="at">digits =</span> digits)</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Group levels (including NA)</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  group_levels <span class="ot">&lt;-</span> <span class="fu">unique</span>(grouping_var)</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Line index by group</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>  groups <span class="ot">&lt;-</span> <span class="fu">split</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(df_wide)),</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>                  <span class="at">f =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(grouping_var), <span class="st">"NA"</span>, grouping_var))</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Pack_rows for each group in kable</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (g <span class="cf">in</span> <span class="fu">names</span>(groups)) {</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>    rows <span class="ot">&lt;-</span> groups[[g]]</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>    tab_out <span class="ot">&lt;-</span> tab_out <span class="sc">|&gt;</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pack_rows</span>(<span class="at">group =</span> g,</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>                <span class="at">start_row =</span> <span class="fu">min</span>(rows),</span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>                <span class="at">end_row =</span> <span class="fu">max</span>(rows))</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>  tab_out</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, just apply to the tab3 object:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kbl_grouped_3way</span>(m,<span class="at">digits=</span><span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_classic_2</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kbl_grouped_3way</span>(m,<span class="at">digits=</span><span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_classic_2</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1084,8 +1120,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./tutorial.html" class="pagination-link" aria-label="tutorial.html">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">tutorial.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./tutorial.html" class="pagination-link" aria-label="A short example of a statistical analysis with HIES 2019">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A short example of a statistical analysis with HIES 2019</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,84 +1,85 @@
 # Code organization
 
-A TRADUIRE
+This section intends to summarize a few tips and tricks to make your life easier when using R.
 
-Ce chapitre vise surtout à synthétiser quelques trucs et astuces pour se faciliter la vie dans l'utilisation de R.
+## What is a "project" in RStudio?
 
-## La notion de "projet" dans RStudio
+Throughout this tutorial, we have created various R scripts that have been collected in a folder called “R Training.” When you code in R, a good practice is to create a “project” that points to the folder containing scripts that are related to each other (a research project, for example), the relevant data, etc.
 
-Tout au long de ces chapitres, nous avons créé différents scripts R rassemblés dans un dossier "Formation R". Une bonne pratique est de créer un "projet" pointant vers le dossier des scripts qui ont une cohérence ensemble (un projet de recherche par exemple), les données afférentes, etc.
+This project folder can be created by clicking on “Project: (None)” in the top right corner, then on “New Project”, and finally “Existing Directory” (select the Training R folder).
 
-Ce dossier projet peut être créé en cliquant en haut à droite sur "Project: (None)", puis "New Project" et ici "Existing Directory" (on sélectionnera alors le dossier Formation R.
-
-Ce dossier peut contenir plusieurs sous-dossiers :
+This folder can contain several files:
 
 -   Script
 
 -   Data
 
--   Output (là où éventuellement on rassemble ses graphiques et autres jolis tableaux)
+-   Output (this is where you may want to gather the beautiful graphs and tables you have created throughout your code)
 
-L'intérêt de fonctionner par projet est que RStudio va ensuite automatiquement pointer vers le dossier racine (Formation R) quand le projet est ouvert et on accèdera plus facilement à ses fichiers dans le Files et en écrivant le chemin d'accès dans ses scripts.
+The advantage of working on a "project" in RStudio is that Rstudio will then automatically point to the root folder (R Training) when the project is opened, making it easier to access files in Files and by writing the path in scripts.
 
-## Organiser son code et ses fichiers
+## Organizing your code and files
 
-Il est assez courant de commencer un projet et d'y revenir des mois voire des années plus tard.
+It's quite common to start a project and come back to it months or even years later (welcome to the wonderful world of academia!).
 
-Que faire quand on a tout oublié ?
+What should you do when you've forgotten everything?
 
-Si on a bien structuré son code, ce qu'on peut faire en ajoutant des sections, dans son script, on s'y retrouve plus facilement :
-
-```{r}
-#| eval: false
-
-# Ceci marque une section ------------------------------
-
-```
-
-On peut aussi commenter allégrement ses différentes opérations pour s'y retrouver :
+If you've structured your code well, you can add sections to your script to make it easier to find your way around:
 
 ```{r}
 #| eval: false
 
-#Le dièse permet d'initier un commentaire
-# Quand on doit faire un long commentaire,
-# on peut écrire sans dièse, puis surligner le tout,
-# et taper Cmd (ou Ctrl)+Maj+C et le bloc sera mis en
-# commentaire !
-
+# Here you create a section in the comment ------------------------------
 
 ```
 
-Il est aussi assez courant de créer différents scripts pour différents types d'opérations (mais ça dépend de ses habitudes), par exemple :
-
--   Un script ou des script(s) où je réalise tous les recodages nécessaires à l'analyse et j'enregistre ma base avec les nouvelles variables (en format R, rds plutôt).
-
--   Un ou des script(s) où je réalise toutes les opérations d'analyse.
-
-On pourra si on le souhaite créer différents fichiers suivant l'avancement du projet et indiquer la date dans le titre. Ainsi, le fichier de recodage pourra s'appeler "20250602Recodages.R" (la date est mise dans le format AAAAMMJJ pour être sur que les fichiers soient présentés du plus ancien au plus récent dans le dossier où ils sont stockés.
-
-## Obtenir de l'aide
-
-Listons ici quelques manières d'avoir de l'aide quand le script buggue :
-
--   Le premier réflexe est de chercher comment s'utilise une fonction dans R :
+A good practice is to **extensively comment** your code and the your various operations you are doing in it. It will be very useful to help you find your way around and understand your code when you come back to it after some time - when you have completely forgotten what you were doing!:
 
 ```{r}
 #| eval: false
-?mean #le point d'interrogation ouvre la page de description de la fonction
+
+#The hash symbol allows you to start a comment.
+# When you need to write a long comment,
+# you can write without the hash symbol, then highlight everything,
+# and press Cmd (or Ctrl)+Shift+C, and the block will be turned into
+# a comment!
+
 ```
 
--   On peut aussi taper son problème dans son moteur de recherche, qui renvoie souvent vers le forum Stackoverflow (mais pas que) où le problème auquel on fait face a été discuté (généralement, en anglais)
+It is also quite common to create different scripts for different types of operations (but this depends on your habits), for example:
 
--   On peut consulter les guides de formation à R mentionnés sur la page de présentation de ce guide.
+-   A script (or several scripts) where you perform all the recoding necessary for analysis and save your database with the new variables (in R format, rds rather).
+
+-   A script (or several scripts) where you perform all the analysis operations.
+
+Another **good practice** that we strongly recommend you to do is to keep track of your the progress of your work by saving a new file - with the date indicated in the title - each new day you are working on a script. For example, the recoding file could be named “20250602Recodages.R” (the date is in YYYYMMDD format to ensure that the files are displayed from oldest to newest in the folder where they are stored).
+
+## Get help
+
+Here are a few ways to get help when the script crashes:
+
+-   The first reflex is to look up how to use a function in R:
+
+```{r}
+#| eval: false
+?mean #The question mark opens the function description page.
+```
+
+-   You can also type your problem directly on internet (for example on Google, etc.). This will often get you to the Stackoverflow forum (among others) where the problem you are facing has been discussed (usually in English).
+
+-   You can also look into various R training guides (for example, the one mentioned in the preface section of this tutorial).
 
 -   ...
 
-## La jointure de différents fichiers statistiques
+## How to merge distinct statistical files?
+
+**MATHIEU ==\> DO WE WANT TO GET INTO THIS? MAYBE NOT?**
 
 Nous n'avons pas ici parlé de la jointure de différents fichiers statistiques, opération pourtant courante. Cette page de utilitR est très complète pour mener ces opérations sans trop se prendre la tête : <https://book.utilitr.org/03_Fiches_thematiques/Fiche_joindre_donnees.html>.
 
-## Les étiquettes de variables et de valeurs
+## Variable and value labels
+
+**MATHIEU ==\> DO WE WANT TO GET INTO THIS? MAYBE NOT?**
 
 Enfin, nous avons ici travaillé à partir de variables qui n'ont pas d'étiquettes et dont les modalités des variables catégorielles n'ont pas de labels. C'est pourtant possible (voire courant, si on charge un fichier Stata dans R) et plutôt pratique :
 

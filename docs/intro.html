@@ -201,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tutorial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">tutorial.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A short example of a statistical analysis with HIES 2019</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -243,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#r-rstudio-and-the-tidyverse" id="toc-r-rstudio-and-the-tidyverse" class="nav-link" data-scroll-target="#r-rstudio-and-the-tidyverse"><span class="header-section-number">1.2</span> R, RStudio and the tidyverse</a></li>
   <li><a href="#rstudio-as-a-working-tool" id="toc-rstudio-as-a-working-tool" class="nav-link" data-scroll-target="#rstudio-as-a-working-tool"><span class="header-section-number">1.3</span> RStudio as a working tool</a></li>
   <li><a href="#loading-data-into-r" id="toc-loading-data-into-r" class="nav-link" data-scroll-target="#loading-data-into-r"><span class="header-section-number">1.4</span> Loading data into R</a></li>
-  <li><a href="#describing-your-dataset" id="toc-describing-your-dataset" class="nav-link" data-scroll-target="#describing-your-dataset"><span class="header-section-number">1.5</span> Describing your dataset</a></li>
+  <li><a href="#describe-your-dataset" id="toc-describe-your-dataset" class="nav-link" data-scroll-target="#describe-your-dataset"><span class="header-section-number">1.5</span> Describe your dataset</a></li>
   <li><a href="#a-few-functions-to-manipulate-data" id="toc-a-few-functions-to-manipulate-data" class="nav-link" data-scroll-target="#a-few-functions-to-manipulate-data"><span class="header-section-number">1.6</span> A few functions to manipulate data</a>
   <ul class="collapse">
   <li><a href="#accessing-a-variable" id="toc-accessing-a-variable" class="nav-link" data-scroll-target="#accessing-a-variable"><span class="header-section-number">1.6.1</span> Accessing a variable</a></li>
@@ -286,10 +286,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="install-r-and-rstudio" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="install-r-and-rstudio"><span class="header-section-number">1.1</span> Install R and RStudio</h2>
-<p>We will start by installing R according to your computer’s configuration, using the links available on the <a href="https://cran.r-project.org/">Comprenhensive R Archive Network</a> (CRAN).</p>
-<p>We will then install RStudio by going to this <a href="https://posit.co/download/rstudio-desktop/">page</a>. RStudio is an “Integrated Development Environment (IDE)”, meaning software that provides a user-friendly interface for working with the R programming language. Note that it is possible to use other interface software, but RStudio is probably the most widely used today.</p>
-<p>If, for one reason or another, it is not possible to install R / RStudio on your computer, you can temporarily (because we do not recommend using a private server to store sensitive data) use R / RStudio online by creating an account on the <a href="https://login.posit.cloud/login?redirect=%2Foauth%2Fauthorize%3Fredirect_uri%3Dhttps%253A%252F%252Fposit.cloud%252Flogin%26client_id%3Dposit-cloud%26response_type%3Dcode%26show_auth%3D0&amp;product=cloud">“Posit cloud”</a>.</p>
-<p>Once R and RStudio are installed, you can directly open RStudio, which will display a nice console (except that here, I have already created an R script by clicking on the small white arrow on a green background and saved it under the name 1Intro.R, which you should also do).</p>
+<p>First, you need to <strong>install R</strong> according to your computer’s configuration, using the links available on the <a href="https://cran.r-project.org/">Comprenhensive R Archive Network</a> (CRAN).</p>
+<p>Then, you can <strong>install RStudio</strong> by going to this <a href="https://posit.co/download/rstudio-desktop/">page</a>. RStudio is an “Integrated Development Environment (IDE)”, that is a software that provides a user-friendly interface for working with the R programming language. Note that it is possible to use other interface software, but RStudio is probably the most widely used today, and the one we will use during this training.</p>
+<p>If, for one reason or another, it is not possible to install R or/and RStudio on your computer, you can <strong>temporarily</strong> use R / RStudio online by creating an account on the <a href="#0">“Posit cloud”</a>. However, we do not recommend this option for a long-term use as sensitive data should be stored on secured and personal servers.</p>
+<p>Once R and RStudio are installed on your computer, you can directly open RStudio. It displays a nice console. You can <strong>create your first R script</strong> by clicking on the small white arrow on a green background and save it under the name 1Intro.R.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercise">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -302,17 +302,17 @@ Exercise
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>Open RStudio and create an empty script.</p></li>
-<li><p>Save this script in a folder (for example, “Formation R”), naming it for instance 1Intro.R.</p></li>
+<li><p>Create and save an R script, for example named <em>1Intro.R</em>.</p></li>
 </ul>
 </div>
 </div>
 </section>
 <section id="r-rstudio-and-the-tidyverse" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="r-rstudio-and-the-tidyverse"><span class="header-section-number">1.2</span> R, RStudio and the tidyverse</h2>
-<p>You can refer to the following <a href="https://michael.hahsler.net/SMU/DS_Workshop_Intro_R/slides/3a_tidyverse.html">small presentation</a> of the tidyverse. Let us recall here that R is a programming language developed since the 1990s, derived from the S language, and sharing some similarities with the C language. It is open-source and free of charge.</p>
-<p>Among the many strengths of R, one can note in particular its community of users, who can also take on the role of developers. R therefore has numerous extensions in the form of functions, stored in packages (or libraries), which greatly facilitate its use. The list of packages available on CRAN (although it is also possible to use packages that are not on CRAN) is available here: <a href="https://cran.r-project.org/web/packages/" class="uri">https://cran.r-project.org/web/packages/</a>.</p>
-<p>With more than 22,000 packages, it’s easy to get lost. Throughout this guide, we suggest using a few packages considered helpful for making life easier when doing statistics in the social sciences. Again, the goal is not to be exhaustive, nor to impose anything. One particularity of R is that it is often possible to do the same thing using different operations / functions / packages. Everyone eventually finds their own little “tricks”!</p>
-<p>The tidyverse package actually includes a suite of packages designed to work together, making data manipulation, recoding, and the production of graphics easier compared to “base R”. We will rely on it here for our statistical work.</p>
+<p>R is a programming language developed since the 1990s. It is derived from the S language and also shares some similarities with the C language. It is <strong>open-source</strong> and free of charge.</p>
+<p>Among the many strengths of R, it has a <strong>large community of users</strong>, who can also take on the role of developers who continuously contribute to improve R language and what it can do. R therefore has numerous extensions in the form of <strong>functions</strong>, stored in <strong>packages</strong> (or <strong>libraries</strong>), which greatly facilitate its use. The list of packages available on CRAN is available here: <a href="https://cran.r-project.org/web/packages/" class="uri">https://cran.r-project.org/web/packages/</a>. Although we will not be using them in this training seminar, please note that it is also possible to use packages that are not on CRAN.</p>
+<p>With more than 22,000 packages, it’s easy to get lost. Throughout this guide, we will review a few packages that we considered helpful for making life easier when doing statistics in the social sciences. Again, let’s underline here that the goal of this guide is not to be exhaustive, nor to impose anything. One particularity of R is that it is often possible to do the same thing using different operations / functions / packages. Everyone eventually finds their own little “tricks”!</p>
+<p>The <strong>tidyverse package</strong> includes a suite of packages designed to work together, making data manipulation, recoding, and the production of graphics easier compared to the basic R language, often referred to as “base R”. We will rely on functions and tools from the tidyverse package for our statistical work. You can have a look to the following <a href="https://michael.hahsler.net/SMU/DS_Workshop_Intro_R/slides/3a_tidyverse.html">small presentation</a> of the tidyverse.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercise">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -323,7 +323,7 @@ Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Install the tidyverse package, then load it into the R session using the two lines of code below. You can copy-paste them into your script and run them (see the next section if you don’t know how to run lines of code).</p>
+<p><strong>Install</strong> the <strong>tidyverse package</strong>, then <strong>load</strong> it into the R session using the two lines of code below. You can copy-paste them into your script and run them (see the next section if you don’t know how to run lines of code).</p>
 </div>
 </div>
 <div class="cell">
@@ -340,19 +340,26 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You only need to install packages once; however, you must load the package each time you open a new R session. So, if you close RStudio and then reopen it, there is no need to run <code>install.packages("tidyverse")</code> again — but to use the functions from this package, you still need to call tidyverse by running <code>library(tidyverse)</code>.</p>
+<p>You only need to <strong>install</strong> packages <em>once</em>; however, you must <strong>load</strong> the package <em>each time</em> you open a new R session. So, if you close RStudio and then reopen it, there is no need to run <code>install.packages("tidyverse")</code> again — but to use the functions from this package, you still need to load the tidyverse package by running the following code: <code>library(tidyverse)</code>.</p>
 <p>Calling the relevant packages is generally done systematically at the beginning of the script.</p>
 </div>
 </div>
 </section>
 <section id="rstudio-as-a-working-tool" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="rstudio-as-a-working-tool"><span class="header-section-number">1.3</span> RStudio as a working tool</h2>
-<p>By default, the console is displayed in the form of four panels:</p>
+<p>By default, the console is displayed in the form of <strong>four</strong> panels:</p>
 <ul>
-<li><p>The first panel in the top left corresponds to the R script file, which for now is empty (or almost empty, if you have already copy-pasted the lines of code to install and load tidyverse). This is where we will write the command lines that we will run, either by clicking Run, or by using the keyboard shortcut Cmd + Enter (or Control + Enter).</p></li>
-<li><p>The second panel in the bottom left corresponds to the console. For now, it simply tells us that it has loaded R in the most up-to-date version found on my computer (4.4.3). The console will display the commands that we have run and the messages returned by R when executing them.</p></li>
-<li><p>The third panel in the top right contains several tabs. The most important one is the Environment tab, which shows all the objects created in the current session (data frames, lists, vectors, etc.).</p></li>
-<li><p>The fourth panel in the bottom right also contains several tabs, including Files — which allows you to browse your computer’s directory structure — Plots, where our beautiful graphs will be displayed, Packages, which lists the packages (libraries) installed on our computer and indicates which ones are loaded in the current session (they are checked), Help, which displays information about a function when you type <code>?function_name</code> in the console, and Viewer, where our nice tables will appear.</p></li>
+<li><p>The first panel in the top left corresponds to the <strong>R script file</strong>, which for now is empty (or almost empty, if you have already copy-pasted the lines of code to install and load tidyverse). This is where we will write the command lines that we will run, either by clicking the ‘Run’ button, or by using the keyboard shortcut Cmd + Enter (or Control + Enter).</p></li>
+<li><p>The second panel in the bottom left corresponds to the <strong>console</strong>. For now, it simply tells us that it has loaded R in the most up-to-date version found on my computer (4.4.3). The console will display the commands that we have run and the messages returned by R when executing them.</p></li>
+<li><p>The third panel in the top right contains several tabs. The most important one is the <strong>Environment</strong> tab, which shows all the objects created in the current session (data frames, lists, vectors, etc.).</p></li>
+<li><p>The fourth panel in the bottom right also contains several tabs, including:</p>
+<ul>
+<li><p><strong>Files</strong> (which allows you to browse your computer’s directory structure),</p></li>
+<li><p><strong>Plots</strong> (where our beautiful graphs will be displayed),</p></li>
+<li><p><strong>Packages</strong>, which lists the packages (libraries) installed on our computer and indicates which ones are loaded in the current session (they are checked),</p></li>
+<li><p><strong>Help</strong>, which displays information about a function when you type <code>?function_name</code> in the console,</p></li>
+<li><p>and <strong>Viewer</strong>, where our nice tables will appear.</p></li>
+</ul></li>
 </ul>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercise">
 <div class="callout-header d-flex align-content-center">
@@ -384,9 +391,9 @@ Caution
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p>When quitting RStudio, a window may appear asking whether you want to “Save the workspace image…”. And in fact, it is not a good idea to click Save!</p></li>
-<li><p>Because this saves the entire workspace (the session), which will be automatically reopened when restarting RStudio, and you may end up with objects that are no longer relevant for a later session (and that may even conflict with one another).</p></li>
-<li><p>If you did not click Save, reopening RStudio resets the R session. To make sure this is really the case (clear the global environment, unload packages, reset memory, etc.), you can type the following in the console:</p></li>
+<li><p>When quitting RStudio, a window may appear asking whether you want to “Save the workspace image…”. <strong>Warning:</strong> in fact, it is <strong>not</strong> a good idea to click Save!</p></li>
+<li><p>Because this saves the entire workspace (the session), which will be automatically reopened when restarting RStudio, and you may end up with objects (for example, old databases that you used for former projects) that are no longer relevant for a later session (and that may even conflict with one another).</p></li>
+<li><p>If you did not click on ‘Save’, reopening RStudio resets the R session. To make sure this is really the case (clear the global environment, unload packages, reset memory, etc.), you can type the following code in the console:</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.rs.restartR</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -396,7 +403,8 @@ Caution
 </section>
 <section id="loading-data-into-r" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="loading-data-into-r"><span class="header-section-number">1.4</span> Loading data into R</h2>
-<p>To do statistics, we need data. Here, we are going to use excerpts of the <a href="https://www.statistics.gov.lk/IncomeAndExpenditure/StaticalInformation">Household Income and Expenditure Survey 2019</a> collected by the Sri Lankan Department of Census and Statistics. For legality matters, you will need to create an account on the <a href="https://nada.statistics.gov.lk/index.php/home">Lanka data platform</a> and download the microdata files from the online platform. Notice that you are able to download only 25% of the total survey sample.</p>
+<p>To do statistics, we need data. Here, we are going to use excerpts of the <a href="https://www.statistics.gov.lk/IncomeAndExpenditure/StaticalInformation"><strong>Household Income and Expenditure Survey 2019</strong></a> <strong>collected by the Sri Lankan Department of Census and Statistics</strong>.</p>
+<p>For legality matters, you will need to <strong>create an account</strong> on the <a href="https://nada.statistics.gov.lk/index.php/home">Lanka data platform</a> and <strong>download the microdata files</strong> from the online platform. Notice that you are able to download <strong>only 25%</strong> of the total survey sample.</p>
 <p>For this workshop, we have additionally prepared three files to make your life easier to manipulate the survey, which you can access here <a href="https://forms.gle/tkBxwuPQtSvmfT9o7">Data repository</a>. You will need to provide a password (request password by email!). Download the files from this online folder. The folder contains a PDF of the questionnaire and a zipped folder which you can unzip on your computer. In the zipped folder, you will find four “.rds” files (R statistical files):</p>
 <ul>
 <li><p><code>demo.rds</code> contains data from Section 1 of the survey, i.e.&nbsp;on demographic characteristics of all household members</p></li>
@@ -404,25 +412,25 @@ Caution
 <li><p><code>health.rds</code> contains data from Section 3A of the survey, i.e.&nbsp;on health treatment and chronic illness</p></li>
 <li><p><code>environment.rds</code> contains data from Section 7 &amp; 8, i.e.&nbsp;on access to primary facilities and housing information</p></li>
 </ul>
-<p>Notice that the unit of analysis differs in the three different files. For <code>demo.rds</code>, the unit of analysis (a “row” in the data file) are all household members, irrespective of their age (N=19,848). For <code>edu.rds</code>, the unit of analysis are all household individuals aged 5 to 19 (N=4,552). For <code>health.rds</code> and <code>environment.rds</code>, the</p>
-<p>In addition the variables (the different “columns” of the files) of these sections, we have already added a number of socio-demographic variables in each of these files to ease statistical manipulations, including:</p>
+<p><strong>WARNING:</strong> <em>The unit of analysis</em> (a “row” in the data file) <em>differs in the four different files</em>. For <code>demo.rds</code>, a row in the data file refers to one household member, irrespective of their age (N=19,848). Within a household, each member has its own row. For <code>edu.rds</code>, one row also refers to one individual from a household, but this time there is an additional age restriction: only household individuals aged 5 to 19 (N=4,552). For <code>health.rds</code> , one row refers to one individual; even if there is no age restriction, the sample is smaller than <code>demo.rds</code> since some individuals did not answer questions related to health in the questionnaire (section 3A) (N=18,468). Finally, for <code>environment.rds</code>, one row refers to one household (and <em>not</em> to one individual, as it is the case in the other datasets) (N=4,982).</p>
+<p>In addition to the variables (the different “columns” of the files) specific to each file, we have already added a number of socio-demographic variables in the files with data at the individual level (<code>demo.rds</code>, <code>edu.rds</code> and <code>health.rds</code>) to ease statistical manipulations, including:</p>
 <ul>
-<li><code>hhid</code>: a unique household identifier</li>
-<li><code>indid</code>: a unique individual identifier (only in <code>edu.rds</code>)</li>
+<li><code>hhid</code>: a unique household identifier (also available in <code>environment.rds</code>)</li>
+<li><code>indid</code>: a unique individual identifier</li>
 <li><code>edu_attained</code>: this is a recoded version of individual educational attainment</li>
 <li><code>edu_father</code>: father’s educational attainment (only in <code>edu.rds</code>)</li>
 <li><code>edu_mother</code>: mother’s educational attainment (only in <code>edu.rds</code>)</li>
 <li><code>edu_parent</code>: combined parents’ educational attainment, i.e.&nbsp;maximum educational attainment between both parents (only in <code>edu.rds</code>)</li>
-<li><code>age</code>: individual’s age (only in <code>edu.rds</code>)</li>
-<li><code>birth_year</code>: individual’s age (only in <code>edu.rds</code>)</li>
-<li><code>sex</code>: individual’s sex (only in <code>edu.rds</code>)</li>
+<li><code>age</code>: individual’s age</li>
+<li><code>birth_year</code>: individual’s year of birth</li>
+<li><code>sex</code>: individual’s sex</li>
 <li><code>age_father</code>: father’s age (only in <code>edu.rds</code>)</li>
 <li><code>age_mother</code>: mother’s age (only in <code>edu.rds</code>)</li>
 <li><code>province</code>: province of residence</li>
 <li><code>ethnicity</code>: household head’s ethnicity</li>
 <li><code>religion</code>: household head’s religion</li>
-<li><code>hhwealth</code>: a continuous variable to proxy households’ material well-being (an index based on durable goods ownership)</li>
-<li><code>hhwealthcat</code>: a categorical variable to proxy households’ material well-being (an index based on durable goods ownership)</li>
+<li><code>hhwealth</code>: a continuous variable to proxy households’ material well-being (an index based on durable goods ownership which we constructed ourselves)</li>
+<li><code>hhwealthcat</code>: a categorical variable to proxy households’ material well-being (an index based on durable goods ownership which we constructed ourselves)</li>
 <li><code>finalweight_25per</code>: a “survey weight” variable to use in all statistical treatments to get correct estimates!</li>
 </ul>
 <p>Let’s load <code>edu.rds</code> into RStudio. Generally, there are three options to import data into R:</p>
@@ -450,16 +458,16 @@ Exercise
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>edu<span class="ot">&lt;-</span><span class="fu">readRDS</span>(<span class="st">"edu.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="describing-your-dataset" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="describing-your-dataset"><span class="header-section-number">1.5</span> Describing your dataset</h2>
-<p>If everything worked properly, the dataset should now appear in the Environment (top-right tab).</p>
+<section id="describe-your-dataset" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="describe-your-dataset"><span class="header-section-number">1.5</span> Describe your dataset</h2>
+<p>The dataset should now appear in the Environment (top-right tab).</p>
 <p>To see the data file (you can also click on it):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(edu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Several ways of better describing your dataset can be useful:</p>
 <ul>
-<li><p>You can type the name of the dataset <code>edu</code> in the console, which will display the dataset (not recommended!).</p></li>
+<li><p>You can type the name of the dataset <code>edu</code> in the console, which will display the dataset: <strong>we do not recommended this option!</strong></p></li>
 <li><p>You can also type <code>str(edu)</code> to understand the structure of the dataset.</p></li>
 <li><p>You can also type <code>summary(edu)</code> to obtain a summary of the quantitative variables in the dataset.</p></li>
 </ul>
@@ -473,7 +481,7 @@ Exercise
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>edu<span class="sc">$</span>age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>$</code> sign indicates that we are accessing the variable age contained in the edu dataset. This command returns a vector of the values of the variable.</p>
-<p>In the tidyverse, we call objects using pipes, which come in two different (and largely equivalent) operators: <code>%&gt;%</code> and <code>|&gt;</code>. We will aim to favor the second one (but they are largely interchangeable!).</p>
+<p>In the tidyverse, we call objects using pipes, which come in two different (and largely equivalent) operators: <code>%&gt;%</code> and <code>|&gt;</code>. We will favor the second one (but they are largely interchangeable!).</p>
 <p>For example, to calculate the mean of age, we would write:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="fu">mean</span>(age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -486,18 +494,18 @@ Exercise
 </section>
 <section id="transforming-a-variable" class="level3" data-number="1.6.2">
 <h3 data-number="1.6.2" class="anchored" data-anchor-id="transforming-a-variable"><span class="header-section-number">1.6.2</span> Transforming a variable</h3>
-<p>Let’s assume the database does not include age but only birth_year. In that case, we could re-create age by creating a variable based on birth_year. Here, we use mutate to create/transform variables.</p>
+<p>Let’s assume the database does not include age but only year of birth (birth_year). In that case, we could create a variable returning individuals’ age using the information from the variable birth_year. Here, we use the function <em>mutate</em> to create/transform variables. Since the data that we use have been collected in 2019, we can then create a new variable that we decide to name ‘age_created’ to return individual’s age using the following code:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>edu <span class="ot">&lt;-</span> edu <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">age_created=</span><span class="dv">2019</span><span class="sc">-</span>birth_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="selecting-columns" class="level3" data-number="1.6.3">
 <h3 data-number="1.6.3" class="anchored" data-anchor-id="selecting-columns"><span class="header-section-number">1.6.3</span> Selecting columns</h3>
-<p>To create a database called <code>edu2</code> where we select only certain variables, we write:</p>
+<p>To create a database called <code>edu2</code> where we select only certain variables from the initial database <code>edu</code>, we write:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>edu2<span class="ot">&lt;-</span> edu <span class="sc">%&gt;%</span> <span class="fu">select</span>(hhid,age,sex,edu_attained)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>select</code> allows to select columns of the dataframe.</p>
+<p><code>select</code> allows to select only some columns (that is, some variables, as one column refers to one variable) of the dataframe.</p>
 <p>Similarly, <code>select</code> can be used to remove columns:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>edu3 <span class="ot">&lt;-</span> edu2 <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(edu_attained,sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -509,7 +517,7 @@ Exercise
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>edum <span class="ot">&lt;-</span> edu <span class="sc">|&gt;</span> <span class="fu">filter</span>(sex<span class="sc">==</span><span class="st">"Male"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>filter</code> allows you to select the rows of the dataset that satisfy a given condition. The ampersand operator <code>&amp;</code> means “and”. If you want to use the logical “or” operator, you write: <code>|</code>.</p>
+<p><code>filter</code> allows you to select the rows of the dataset that satisfy a given condition (in this example, we keep only the rows for which the variable <em>sex</em> equals the modality “Male”; in other words, we keep only male respondents). The ampersand operator <code>&amp;</code> means “and”. If you want to use the logical “or” operator, you write: <code>|</code>.</p>
 <p>Let’s say we want to study only female respondents with less than primary attainment:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>edufl<span class="ot">&lt;-</span> edu <span class="sc">|&gt;</span> <span class="fu">filter</span>(sex<span class="sc">==</span><span class="st">"Female"</span> <span class="sc">&amp;</span> edu_attainment<span class="sc">==</span><span class="st">"Less than primary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -535,7 +543,7 @@ Exercise
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(edufl,<span class="at">file=</span><span class="st">"edufl.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Before using this function, we should not forget to run <code>setwd("path to the folder where the file will be saved")</code> to indicate where to save the file (or at least to check that R is indeed pointing to the desired folder using the <code>getwd()</code> command).</p>
+<p>Before using this function, we should not forget to run <code>setwd("path to the folder where we want the file to be saved")</code> to indicate where to save the file (or at least to check that R is indeed pointing to the desired folder using the <code>getwd()</code> command).</p>
 <p>Note that the RData format can perfectly well be used to save several R objects in the same file:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(edufl,edum,<span class="at">file=</span><span class="st">"eduv2.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -557,7 +565,7 @@ Exercise
 <section id="csv-format" class="level3" data-number="1.7.2">
 <h3 data-number="1.7.2" class="anchored" data-anchor-id="csv-format"><span class="header-section-number">1.7.2</span> CSV format</h3>
 <ul>
-<li>We sometimes need to export our data in CSV format. In that case, we use functions from the readr package, such as <code>write_csv</code> (which uses commas as column separators and periods as decimal markers).</li>
+<li>We sometimes need to export our data in CSV format. In that case, we use functions from the <em>readr</em> package, such as <code>write_csv</code> (which uses commas as column separators and periods as decimal markers).</li>
 </ul>
 <p>The CSV format with comma separators is the international standard for CSV files, and it is easily formatted when Excel on one’s computer is configured in English:</p>
 <div class="cell">
@@ -573,12 +581,12 @@ Exercise
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.xlsx</span>(edu, <span class="st">"edu.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If you want to read an Excel file, you can use read.xlsx from the same package. Here, the argument sheet = NULL indicates that we are reading all the sheets of the Excel file if there are several:</p>
+<p>If you want to read an Excel file, you can use read.xlsx from the same package. Here, the argument <code>sheet=NULL</code> indicates that we are reading all the sheets of the Excel file if there are several:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.xlsx</span>(<span class="st">"Salaires.xlsx"</span>, <span class="at">sheet =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Sometimes we work with colleagues who use other proprietary paid software (what an idea!). In that case, we can use the haven package, which allows us to save data in SAS, SPSS or Stata format:</li>
+<li>Sometimes we work with colleagues who use other proprietary paid softwares (what an idea!). In that case, we can use the <em>haven</em> package, which allows to save data in SAS, SPSS or Stata format:</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>

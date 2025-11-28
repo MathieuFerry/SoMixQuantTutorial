@@ -1,9 +1,37 @@
+# A short example of a statistical analysis with HIES 2019
 
-#A short example of a statistical analysis with HIES 2019
+ON MET LES DIFFERENTS TRAITEMENTS R.
 
-ON MET LES DIFFERENTS TRAITEMENTS R. 
+Les tableaux finaux.
 
-Les tableaux finaux. 
+On met des notes de lecture.
 
-On met des notes de lecture. 
+## Introduction
 
+```{r}
+#| eval: false
+# List required packages in a vector called load.lib. 
+load.lib <- c("tidyverse","questionr","Hmisc","esquisse","kableExtra") 
+
+install.lib <- load.lib[!load.lib %in% installed.packages()] # Examine packages which are not yet installed
+
+for (lib in install.lib) install.packages(lib,dependencies=TRUE) # Install those if required
+
+sapply(load.lib,require,character=TRUE) # Load all packages. 
+
+#Load data
+setwd("/home/groups/3genquanti/SoMix/HIES for workshop")
+edu<-readRDS("edu.rds")
+```
+
+## School non-attendance by sex and age
+
+## School non-attendance and locality
+
+Par \$age . à partir de 14 ans
+
+## School non-attendance and family background
+
+Par \$age . à partir de 14 ans
+
+## Preliminary conclusion
