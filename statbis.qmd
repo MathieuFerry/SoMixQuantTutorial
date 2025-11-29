@@ -310,7 +310,7 @@ edu |>
   kbl(digits=0) |> kable_classic(full_width = F)
 ```
 
-![Cross tabulation with three variables](images/Capture d’écran 2025-11-28 à 18.27.17.png)
+![Cross tabulation with three variables](images/Capture%20d’écran%202025-11-28%20à%2018.27.17.png)
 
 -   Third, we can actually also simply write:
 
