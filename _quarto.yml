@@ -43,5 +43,5 @@ format:
 editor: visual
 
 execute:
-  eval: false
+  eval: true
 
