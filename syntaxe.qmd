@@ -71,26 +71,3 @@ Here are a few ways to get help when the script crashes:
 
 -   ...
 
-## How to merge distinct statistical files?
-
-**MATHIEU ==\> DO WE WANT TO GET INTO THIS? MAYBE NOT?**
-
-Nous n'avons pas ici parlé de la jointure de différents fichiers statistiques, opération pourtant courante. Cette page de utilitR est très complète pour mener ces opérations sans trop se prendre la tête : <https://book.utilitr.org/03_Fiches_thematiques/Fiche_joindre_donnees.html>.
-
-## Variable and value labels
-
-**MATHIEU ==\> DO WE WANT TO GET INTO THIS? MAYBE NOT?**
-
-Enfin, nous avons ici travaillé à partir de variables qui n'ont pas d'étiquettes et dont les modalités des variables catégorielles n'ont pas de labels. C'est pourtant possible (voire courant, si on charge un fichier Stata dans R) et plutôt pratique :
-
--   On a ainsi des étiquettes déjà prêtes pour les tableaux / graphiques
-
--   On va bien plus vite dans le recodage et surtout on évite les erreurs (recoder 1 en 3 va plus vite et comprend moins de risque d'erreur que recoder "Cadres et professions scientifiques" en "Classes supérieures").
-
-On se reportera aux Chapitres [11](https://larmarange.github.io/guide-R/manipulation/etiquettes-variables.html) et [12](https://larmarange.github.io/guide-R/manipulation/etiquettes-valeurs.html) de guide-R qui introduisent à ces concepts et leur usage.
-
-## Exercices
-
-::: {.callout-note title="Exercice" icon="false"}
-Créer un Projet pointant sur le dossier de la Formation R. Commenter et créer des sections dans l'un de ses scripts. Pas facile ? D'où l'intérêt de le faire au fur et à mesure :)
-:::

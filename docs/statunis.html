@@ -292,6 +292,8 @@ Exercise
 <li><p>Save this script in a folder (for instance, “WinterWorkshop”) and name it (for instance “2Statunis.R”).</p></li>
 <li><p>Load the <code>edu.rds</code> database and add the commands below to install / load the required packages to use the functions demonstrated in this chapter.</p></li>
 </ul>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List required packages in a vector called load.lib. </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>load.lib <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>,<span class="st">"questionr"</span>,<span class="st">"Hmisc"</span>,<span class="st">"esquisse"</span>,<span class="st">"kableExtra"</span>) </span>
@@ -305,8 +307,6 @@ Exercise
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Load data</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/home/groups/3genquanti/SoMix/HIES for workshop"</span>)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>edu<span class="ot">&lt;-</span><span class="fu">readRDS</span>(<span class="st">"edu.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
 </div>
 <section id="working-with-survey-data" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="working-with-survey-data"><span class="header-section-number">2.1</span> Working with survey data</h2>
@@ -397,11 +397,9 @@ Exercise
 <p>Note that it is always possible to remove the part <code>weights=finalweight_25per</code> to get unweighted counts. This is useful as we always want to have <em>weighted</em> percentages, but the <em>unweighted</em> number of individuals on which this percentage has been calculated: indeed, statistics tends to be less robust when they are calculated on small subsamples, so it is always interesting to keep in mind the number of respondents available in our (sub)sample.</p>
 <p>Here, we are interested in the variable <em>r2_school_education</em>, which corresponds to the respondents’ school status.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|eval: false</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(r2_school_education,<span class="at">weights=</span>finalweight_25per) <span class="sc">%&gt;%</span> <span class="fu">freq</span>()</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(r2_school_education) <span class="sc">%&gt;%</span> <span class="fu">freq</span>()</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(r2_school_education,<span class="at">weights=</span>finalweight_25per) <span class="sc">%&gt;%</span> <span class="fu">freq</span>() <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(r2_school_education,<span class="at">weights=</span>finalweight_25per) <span class="sc">|&gt;</span> <span class="fu">freq</span>()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(r2_school_education) <span class="sc">|&gt;</span> <span class="fu">freq</span>()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(r2_school_education,<span class="at">weights=</span>finalweight_25per) <span class="sc">|&gt;</span> <span class="fu">freq</span>() <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="recoding-a-categorical-variable" class="level2" data-number="2.4">
@@ -409,9 +407,7 @@ Exercise
 <p>The categories of r2_school_education are here coded as 1, 2, and 3. This is because when getting the from the Lanka data, we got CSV files without any data labels so we need to recode them ourselves based on the questionnaire of the survey.</p>
 <p>Luckily, this task can be done very easily by using the <code>irec()</code> interface (from the <code>questionr</code> package created by Julien Barnier). Type it in the console and the following window will open to recode a new variable with explicit levels (in the R lingo, these are factor levels).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|eval: false</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">irec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">irec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="images/Capture d’écran 2025-11-28 à 15.45.28.png" class="img-fluid" alt="irec interface"> <img src="images/Capture d’écran 2025-11-28 à 15.46.01.png" class="img-fluid" alt="irec interface (2)"> <img src="images/Capture d’écran 2025-11-28 à 15.46.17.png" class="img-fluid" alt="irec interface (3)">The last panel shows you the R code to recode the variable. When clicking on ‘Done’, this code is sent to the Console. <strong>We strongly advise you to copy-paste this code into your script to keep track of all your recoding steps!</strong> This way, you will be able to re-run all your analyses at once whenever you want just by clicking on the ‘Run’ button for your whole code.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercise">
@@ -431,7 +427,7 @@ Exercise
 <section id="recoding-a-numerical-variable-to-a-categorical-variable" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="recoding-a-numerical-variable-to-a-categorical-variable"><span class="header-section-number">2.5</span> Recoding a numerical variable to a categorical variable</h2>
 <p>It can be useful to analyze distance to school not as a numerical variable but as a categorical variable (for example, what proportion of students have a school less than 1 km of their home away?).</p>
-<p>Recoding a quantitative variable into a qualitative variable is straightforward. In R, we can use another add-in from the questionr package: <em>icut</em>:</p>
+<p>Recoding a quantitative variable into a qualitative variable is straightforward. In R, we can use another add-in from the questionr package: icut:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">icut</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

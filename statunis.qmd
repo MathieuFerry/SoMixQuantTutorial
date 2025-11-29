@@ -14,8 +14,11 @@ We are using the same dataset as in the previous chapter (`edu.rds`), which you 
 -   Save this script in a folder (for instance, "WinterWorkshop") and name it (for instance "2Statunis.R").
 
 -   Load the `edu.rds` database and add the commands below to install / load the required packages to use the functions demonstrated in this chapter.
+:::
 
 ```{r}
+#| message: false
+#| warning: false
 #| eval: false
 # List required packages in a vector called load.lib. 
 load.lib <- c("tidyverse","questionr","Hmisc","esquisse","kableExtra") 
@@ -31,7 +34,6 @@ setwd("/home/groups/3genquanti/SoMix/HIES for workshop")
 edu<-readRDS("edu.rds")
 
 ```
-:::
 
 ## Working with survey data
 
@@ -149,11 +151,11 @@ Note that it is always possible to remove the part `weights=finalweight_25per` t
 Here, we are interested in the variable *r2_school_education*, which corresponds to the respondents’ school status.
 
 ```{r}
-#|eval: false
+#| eval: false
 
-edu |> freqtable(r2_school_education,weights=finalweight_25per) %>% freq()
-edu |> freqtable(r2_school_education) %>% freq()
-edu |> freqtable(r2_school_education,weights=finalweight_25per) %>% freq() %>% select(-n)
+edu |> freqtable(r2_school_education,weights=finalweight_25per) |> freq()
+edu |> freqtable(r2_school_education) |> freq()
+edu |> freqtable(r2_school_education,weights=finalweight_25per) |> freq() |> select(-n)
 
 ```
 
@@ -164,8 +166,7 @@ The categories of r2_school_education are here coded as 1, 2, and 3. This is bec
 Luckily, this task can be done very easily by using the `irec()` interface (from the `questionr` package created by Julien Barnier). Type it in the console and the following window will open to recode a new variable with explicit levels (in the R lingo, these are factor levels).
 
 ```{r}
-#|eval: false
-
+#| eval: false
 irec()
 
 ```
@@ -180,7 +181,7 @@ With the newly recoded variable of school attendance, recompute the % distributi
 
 It can be useful to analyze distance to school not as a numerical variable but as a categorical variable (for example, what proportion of students have a school less than 1 km of their home away?).
 
-Recoding a quantitative variable into a qualitative variable is straightforward. In R, we can use another add-in from the questionr package: *icut*:
+Recoding a quantitative variable into a qualitative variable is straightforward. In R, we can use another add-in from the questionr package: icut:
 
 ```{r}
 #| eval: false
