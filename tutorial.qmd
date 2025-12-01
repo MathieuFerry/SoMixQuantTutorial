@@ -14,7 +14,7 @@ In this section, you will find:
 
 This is the kind of work you will need to do on the topic you have chosen. Of course, you will have to adapt the **variables used** and the kind of analysis (tables, figures, etc.) to your **specific research question**!
 
-In this tutorial, we focus on the final statistical outputs that we have decided to keep. Hence, we do not show **all the different steps of our statistical reasoning** that we have done to explore the database and our variables (for example, using univariate statistics) nor the (many!) attempts that we have performed to eventually end up with only 3-4 outputs that we think best summarize the information we need for our research question.In particular, we do not present the unweighted-N frequency tables here, but it is always advisable to run them, as cells with very small Ns may require more cautious interpretation.
+In this tutorial, we focus on the final statistical outputs that we have decided to keep. Hence, we do not show **all the different steps of our statistical reasoning** that we have done to explore the database and our variables (for example, using univariate statistics) nor the (many!) attempts that we have performed to eventually end up with only 3-4 outputs that we think best summarize the information we need for our research question. In particular, we do not present the unweighted-N frequency tables here, but it is always advisable to run them, as cells with very small N may require more cautious interpretation.
 
 Keep in mind that this is only **one possible analysis**: other outputs could have been possible focusing on the same research question. The important aspect here is that no matter how you eventually decide to present your results, the key information needs to be **clear** and **accessible** (in this example, who attends school and who drops out, basically).
 
@@ -353,3 +353,5 @@ For a report:
 -   This analysis should be extended with further academic literature on education school drop out, for instance, in Sri Lanka, see [Lindberg, 2010](https://doi.org/10.1111/j.1467-7660.2009.01633.x%20Click%20and%20Read) or [Arunatilake, 2006](https://doi-org.scpo.idm.oclc.org/10.1016/j.ijer.2006.11.001) (they are now a bit old and you should also search for more recent articles).
 
 -   We have not included graphics here, but they are always a useful way to convey information to an audience. You can use esquisse, as introduced in previous chapters, or export the tables you want to visualize into your preferred spreadsheet software to create graphics when finalizing your analysis.
+
+-   In a final report, all the tables and graphs must have a title, as well as some explanations of the data used (HIES 2019 here) and the restrictions applied to the analytical sample (for example for the latter tables, individuals aged between 14 and 19, etc.).
