@@ -1,4 +1,4 @@
-# A short example of a statistical analysis with HIES 2019
+# A short example with HIES 2019
 
 In this section, we provide an example of statistical analysis using data from the HIES 2019. We focus here on a short analysis on **school attendance in Sri Lanka**, and on the socio-demographic charactistics of individuals who attend school and of those who drop out.
 
@@ -12,15 +12,15 @@ In this section, you will find:
 
 -   what we conclude from these statistical analyses.
 
-This is the kind of work you will need to do on the topic you have chosen. Of course, you will have to adapt the variables used and the kind of analysis (tables, figures, etc.) to your specific research question!
+This is the kind of work you will need to do on the topic you have chosen. Of course, you will have to adapt the **variables used** and the kind of analysis (tables, figures, etc.) to your **specific research question**!
 
-In this tutorial, we focus on the final statistical outputs that we have decided to keep. Hence, we do not show all the different steps of our statistical reasoning that we have done to explore the database and our variables (for example, using univariate statistics) nor the (many!) attempts that we have performed to eventually end up with only 3-4 outputs that we think best summarize the information we need for our research question.In particular, we do not present the unweighted-N frequency tables here, but it is always advisable to run them, as cells with very small Ns may require more cautious interpretation.
+In this tutorial, we focus on the final statistical outputs that we have decided to keep. Hence, we do not show **all the different steps of our statistical reasoning** that we have done to explore the database and our variables (for example, using univariate statistics) nor the (many!) attempts that we have performed to eventually end up with only 3-4 outputs that we think best summarize the information we need for our research question.In particular, we do not present the unweighted-N frequency tables here, but it is always advisable to run them, as cells with very small Ns may require more cautious interpretation.
 
-Keep in mind that this is only one possible analysis: other outputs could have been possible focusing on the same research question. The important aspect here is that no matter how you eventually decide to present your results, the key information needs to be clear and accessible (in this example, who attends school and who drops out, basically).
+Keep in mind that this is only **one possible analysis**: other outputs could have been possible focusing on the same research question. The important aspect here is that no matter how you eventually decide to present your results, the key information needs to be **clear** and **accessible** (in this example, who attends school and who drops out, basically).
 
 ## Introduction
 
-As we explained in previous sections, we first install (and load if necessary) the different packages that we will need to perform our statistical analyses. We then load the `edu.rds` database that we are going to use for our research question.
+As we explained in previous sections, we first install (and load if necessary) the different **packages** that we will need to perform our statistical analyses. We then load the `edu.rds` **database** that we are going to use for our research question.
 
 ```{r}
 #| warning: false
@@ -41,9 +41,9 @@ edu<-readRDS("edu.rds")
 
 Our main **dependent variable** is *r2_school_education* which refers to the third column of the table on "School Education (For persons aged from 5 to 19 years)" in the questionnaire Section 2 (p.324 of the report available on the shared Drive).
 
-It is coded as follows: modality 1 stands for "Currently attending school", 2 for "Never attended school" and 3 for "Attended school in the past". Yet, in the `edu.rds` database, we only have these modalities as number (1, 2, or 3) and not what they mean. In order to make our tables and graphs easier to read, we apply the appropriate labels to each value of this variable.
+It is coded as follows: modality 1 stands for "Currently attending school", 2 for "Never attended school" and 3 for "Attended school in the past". Yet, in the `edu.rds` database, we only have these modalities as numbers (1, 2, or 3) and not what they mean. In order to make our tables and graphs **easier to read**, we apply the appropriate labels to each value of this variable.
 
-This is what the following script does. Note that you can well use the function `irec` that we introduced in the second chapter to recode your variables. Besides, it is always good practice to check whether your recoding went well by comparing the initial and recoded variable, here: `edu |> freqtable(r2_school_education,r2_school_education_rec)`.
+This is what the following script does. Note that you can well use the function `irec` that we introduced in the second chapter to **recode your variables**. Besides, it is always good practice to check whether your recoding went well by comparing the initial and recoded variable, here: `edu |> freqtable(r2_school_education,r2_school_education_rec)`.
 
 ```{r}
 #Recode the variable on school attendance
@@ -56,7 +56,7 @@ edu$r2_school_education_rec <- edu$r2_school_education  |>
   )
 ```
 
-Similarly to what we did in the previous section on bivariate and multivariate statistics, we need to create a function that would combine the analysis of different variables:
+Similarly to what we did in the previous section on bivariate and multivariate statistics, we need to create a function that would combine the analysis of **three different variables**:
 
 ```{r}
 
@@ -115,7 +115,7 @@ kbl_grouped_3way <- function(tab, digits = 1) {
 
 ## School non-attendance by sex and age
 
-We first explore how attendance to school vary by sex and age. Indeed, there are reasons to think that drop out will be more likely to happen for older students. In Sri Lanka, school is compulsory until age 14, so we can imagine that attendance will decrease only from this age. Is this was we observe in the data? And are there some differences for male and female students?
+We first explore how attendance to school vary by **sex** and **age**. Indeed, there are reasons to think that drop out will be more likely to happen for older students. In Sri Lanka, school is compulsory until age 14, so we can imagine that **attendance will decrease only from this age**. Is this was we observe in the data? And are there some differences for male and female students?
 
 We use the following code to produce a frequency table (with weighted percentages) to see how the distribution of each category of our dependent variable (school attendance, in column) vary according to the two independent variables we just mentioned: sex and age.
 
@@ -146,7 +146,7 @@ kbl_grouped_3way(m,digits=0)|>
 
 ## School non-attendance and locality
 
-Are there some differences in school attendance by place of residence? We saw in previous sections that distance to school tends to be higher in rural areas. In that context, can we expect school attendance to be larger in urban areas in comparison to rural sectors?
+Are there some differences in school attendance by **place of residence**? We saw in previous sections that distance to school tends to be higher in rural areas. In that context, can we expect school attendance to be larger in urban areas in comparison to rural sectors?
 
 To investigate this question, we want to check whether the rate of school attendance is similar in urban, rural areas and estates. As we observed in the previous table, school attendance greatly varies by age, so we may want to take this variable into account when exploring the differences by locality.
 
@@ -172,19 +172,19 @@ edu14<- edu |>
 # Third, frequency table of school attendance by age and locality--------------------------
 m<-edu14 |> freqtable(age,r2_school_education_rec,sector_rec,weights=finalweight_25per) |>
   lprop() 
-kbl_grouped_3way(m)|>
+kbl_grouped_3way(m,digits=0)|>
   kable_classic_2(full_width = FALSE)
 ```
 
-Interestingly, there do not appear to be strong differences in school attendance status across residential locality types. If anything, urban children seem slightly more likely to be out of school than rural or estate children. This pattern is somewhat surprising, as we might have expected rural children to be more prone to dropping out due to more limited access to schools at higher grade levels.
+Interestingly, there do not appear to be **strong differences** in school attendance status across residential locality types. If anything, urban children seem slightly more likely to be out of school than rural or estate children. This pattern is somewhat surprising, as we might have expected rural children to be more prone to dropping out due to more limited access to schools at higher grade levels.
 
 ## School non-attendance and family background
 
-School attendance is likely to be associated with a family’s social background for at least two reasons.
+School attendance is likely to be associated with **family’s social background** for at least two reasons.
 
--   First, cultural capital may play a role: parents with higher levels of education are often better equipped to support and value continued schooling.
+-   First, **cultural capital** may play a role: parents with higher levels of education are often better equipped to support and value continued schooling.
 
--   Second, economic factors matter: for families with fewer resources, the opportunity cost of keeping a child in school—rather than contributing to household income or domestic work—may be higher.
+-   Second, **economic factors** matter: for families with fewer resources, the **opportunity cost** of keeping a child in school—rather than contributing to household income or domestic work—may be higher.
 
 Do these hypotheses ring a bell with specific sociological theories? Say, maybe Bourdieu's theory of cultural reproduction or Boudon's theory of opportunity (secondary effects)?
 
@@ -255,7 +255,7 @@ edu14notcurrently |> freqtable(reason_leave_school_rec,weights=finalweight_25per
 
 ```
 
-This variable is rather subjective, and its categories may overlap with one another. Ideally, we would also have preferred to rely on more objective indicators of school achievement. Despite the presence of ten distinct response options, the reasons for leaving school can be grouped into a few broader blocks.
+This variable is rather subjective, and its categories may overlap with one another. Ideally, we would also have preferred to rely on more objective indicators of school achievement. Despite the presence of ten distinct response options, the reasons for leaving school can be **grouped into a few broader blocks**.
 
 -   **Opportunity-cost reasons** include financial problems (7%), household or family business responsibilities (4%), and engagement in economic activity (13%).
 
@@ -336,13 +336,13 @@ Our analysis has some limitations (or observations to bear in mind).
 
 Qualitative field material could enrich our understanding of school attendance and dropout. For example, interviews with students, parents, and teachers could provide insights into:
 
--   The reasons why children leave school that are not captured by survey categories (and whether they sometimes overlap);
+-   The reasons why children leave school **that are not captured by survey categories** (and whether they sometimes overlap);
 
--   How parents' expectations shape educational decisions (to drop out);
+-   How **parents' expectations** shape educational decisions (to drop out);
 
--   How parents and children perceive the value of education (and whether it is worth going to school if it is not compulsory);
+-   How parents and children **perceive the value of education** (and whether it is worth going to school if it is not compulsory);
 
--   Localized barriers to school attendance (even if rural does not seem associated to more drop outs, are there some specific areas where school density is less present at higher grades?).
+-   **Localized barriers to school attendance** (even if rural does not seem associated to more drop outs, are there some specific areas where school density is less present at higher grades?).
 
 ## Preliminary conclusion
 
@@ -350,6 +350,6 @@ Overall, school attendance in Sri Lanka is high at younger ages but declines ste
 
 For a report:
 
--   This analysis should be extended with further academic literature on education school drop out, for instance, in Sri Lanka, see [Lindberg, 2010](https://doi.org/10.1111/j.1467-7660.2009.01633.x Click and Read) or [Arunatilake, 2006](https://doi-org.scpo.idm.oclc.org/10.1016/j.ijer.2006.11.001) (they are now a bit old and you should also search for more recent articles).
+-   This analysis should be extended with further academic literature on education school drop out, for instance, in Sri Lanka, see [Lindberg, 2010](https://doi.org/10.1111/j.1467-7660.2009.01633.x%20Click%20and%20Read) or [Arunatilake, 2006](https://doi-org.scpo.idm.oclc.org/10.1016/j.ijer.2006.11.001) (they are now a bit old and you should also search for more recent articles).
 
 -   We have not included graphics here, but they are always a useful way to convey information to an audience. You can use esquisse, as introduced in previous chapters, or export the tables you want to visualize into your preferred spreadsheet software to create graphics when finalizing your analysis.
