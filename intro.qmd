@@ -88,9 +88,19 @@ Check that the tidyverse package is correctly installed and loaded in the R sess
 
 To do statistics, we need data. Here, we are going to use excerpts of the [**Household Income and Expenditure Survey 2019**](https://www.statistics.gov.lk/IncomeAndExpenditure/StaticalInformation) **collected by the Sri Lankan Department of Census and Statistics**.
 
+The full questionnaire of the survey is shown below:
+
+<div>
+
+<iframe width="100%" height="700" src="documents/HIES_2019_questionnaire.pdf">
+
+</iframe>
+
+</div>
+
 For legality matters, you will need to **create an account** on the [Lanka data platform](https://nada.statistics.gov.lk/index.php/home) and **download the microdata files** from the online platform. Notice that you are able to download **only 25%** of the total survey sample.
 
-For this workshop, we have additionally prepared three files to make your life easier to manipulate the survey, which you can access here [Data repository](https://forms.gle/tkBxwuPQtSvmfT9o7). You will need to provide a password (request password by email!). Download the files from this online folder. The folder contains a PDF of the questionnaire and a zipped folder which you can unzip on your computer. In the zipped folder, you will find four ".rds" files (R statistical files):
+For this workshop, we have additionally prepared four files to make your life easier to manipulate the survey, which you can access here [Data repository](https://forms.gle/tkBxwuPQtSvmfT9o7). You will need to provide a password (request password by email!). Download the files from this online folder. The folder contains a PDF of the questionnaire and a zipped folder which you can unzip on your computer. In the zipped folder, you will find four ".rds" files (R statistical files):
 
 -   `demo.rds` contains data from Section 1 of the survey, i.e. on demographic characteristics of all household members
 
