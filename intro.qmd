@@ -88,7 +88,7 @@ Check that the tidyverse package is correctly installed and loaded in the R sess
 
 To do statistics, we need data. Here, we are going to use excerpts of the [**Household Income and Expenditure Survey 2019**](https://www.statistics.gov.lk/IncomeAndExpenditure/StaticalInformation) **collected by the Sri Lankan Department of Census and Statistics**.
 
-The full questionnaire of the survey is shown below:
+The full questionnaire of the survey is shown below. We will mainly use Sections 1, 2, 3A, 3B, 7, and 8 of the questionnaire.
 
 <div>
 

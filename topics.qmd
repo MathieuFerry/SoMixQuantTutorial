@@ -24,9 +24,19 @@ For the quantitative part of the project, we have already identified a number of
 
     -   What are the main **independent variables** you want to study? Generally, these are socio-demographic variables. These variables should be of analytical interest, i.e. you should either have a sociological reasoning to include them (you know of some theory, previous literature, etc... suggesting that this variable may be linked to the dependent variable that you want to study), or you make the assumption that the variable is so central in shaping the Sri Lankan social landscape that it just cannot be left out. You can refer to the Introduction section to recall the main constructed socio-spatial variables in the data.
 
-    -   Try shaping your thinking in terms of **hypotheses**.
+As a reminder, the HIES 2019 questionnaire is shown below:
 
-    -   For this step, **write** a few sentences to justify your choices (this may include relevant literature).
+<div>
+
+<iframe width="100%" height="700" src="documents/HIES_2019_questionnaire.pdf">
+
+</iframe>
+
+</div>
+
+-   Try shaping your thinking in terms of **hypotheses**.
+
+-   For this step, **write** a few sentences to justify your choices (this may include relevant literature).
 
 -   Preparation of the **statistical analysis**
 
@@ -57,7 +67,7 @@ For the quantitative part of the project, we have already identified a number of
 Below is a suggested list of topics. You may want to add other topics if you wish! In that case however, please let us know so we can approve your topic proposal.
 
 | Topic | Brief presentation | Winter workshop database to work with | Section of the HIES questionnaire | Pages of the official report with relevant analyses |
-|----|----|----|----|----|
+|---------------|---------------|---------------|---------------|---------------|
 | **School attendance and dropout** | This topic has already been explored in the previous section as an example. It aims at uncovering the socio-spatial determinants of school non-attendance by age. | edu.rds | Section 2 | None |
 | **University attainment** | Among adult respondents, who attained university education and how does it vary by age, sex and locality? | demo.rds | Section 2 | None |
 | **Government versus private school attendance** | Among school-attending children, what are the social determinants that drive family choice for government versus private school? Are they different according to urban/rural locality and province of residence? | edu.rds | Section 2 | None |
