@@ -88,11 +88,11 @@ For the quantitative part of the project, we have already identified a number of
 
 **=\> Due date: June 30, 2026.**
 
-## A quick presentation of each suggested topic
+## A quick presentation of each topic
 
 Below is a suggested list of available topics.
 
-| Topic | Brief presentation | Winter workshop database to work with | Section of the HIES questionnaire | Pages of the official report with relevant analyses | Group (University, Institution) |
+| Topic | Starting question | Database | Section of the HIES questionnaire | [Official report](https://www.statistics.gov.lk/IncomeAndExpenditure/StaticalInformation/HouseholdIncomeandExpenditureSurvey2019FinalReport) | Group |
 |---------------|---------------|------------|------------|-----------|----------|
 | **School attendance and dropout** | This topic has already been explored in the previous section as an example. It aims at uncovering the socio-spatial determinants of school non-attendance by age. | edu.rds | Section 2 | None | Peradeniya (5) |
 | **University attainment** | Among adult respondents, who attained university education and how does it vary by age, sex and locality? | demo.rds | Section 2 | None | Ruhuna (4) |
