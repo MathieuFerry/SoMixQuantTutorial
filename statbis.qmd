@@ -196,7 +196,7 @@ edu |> freqtable(sector_rec,r2_school_education_rec) |>
 
 ![Frequency cross-tabulation](images/Capture%20d’écran%202025-11-22%20à%2013.47.19.png){fig-align="center"}
 
-The row variable (here `edu_parents`) is the independent variable — it is written first — while the column variable (here `r2_school_education_rec`) is the dependent variable.
+The row variable (here `sector_rec`) is the independent variable — it is written first — while the column variable (here `r2_school_education_rec`) is the dependent variable.
 
 The table of counts is useful because it shows that some cells contain relatively small numbers of observations, which should make us cautious when interpreting the corresponding rows/columns.
 

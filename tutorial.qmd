@@ -25,17 +25,25 @@ As we explained in previous sections, we first install (and load if necessary) t
 ```{r}
 #| warning: false
 
-# List required packages in a vector called load.lib. 
-load.lib <- c("tidyverse","questionr","Hmisc","esquisse","kableExtra") 
+#If not installed already, you need to install them using the following commands:
+#(remove the # in that case)
+#install.packages("tidyverse")
+#install.packages("questionr")
+#install.packages("Hmisc")
+#install.packages("esquisse")
+#install.packages("kableExtra")
 
-install.lib <- load.lib[!load.lib %in% installed.packages()] # Examine packages which are not yet installed
+#When opening a new session you need to load packages:
+library(tidyverse)
+library(questionr)
+library(Hmisc)
+library(esquisse)
+library(kableExtra)
 
-for (lib in install.lib) install.packages(lib,dependencies=TRUE) # Install those if required
-
-sapply(load.lib,require,character=TRUE) # Load all packages. 
-
-#Load data
+#Find the path of the repository on your computer where the data are stored
+#And 
 setwd("/home/groups/3genquanti/SoMix/HIES for workshop")
+#Load data
 edu<-readRDS("edu.rds")
 ```
 

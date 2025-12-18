@@ -404,7 +404,7 @@ Caution
 <section id="loading-data-into-r" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="loading-data-into-r"><span class="header-section-number">1.4</span> Loading data into R</h2>
 <p>To do statistics, we need data. Here, we are going to use excerpts of the <a href="https://www.statistics.gov.lk/IncomeAndExpenditure/StaticalInformation"><strong>Household Income and Expenditure Survey 2019</strong></a> <strong>collected by the Sri Lankan Department of Census and Statistics</strong>.</p>
-<p>The full questionnaire of the survey is shown below:</p>
+<p>The full questionnaire of the survey is shown below. We will mainly use Sections 1, 2, 3A, 3B, 7, and 8 of the questionnaire.</p>
 <div>
 <iframe width="100%" height="700" src="documents/HIES_2019_questionnaire.pdf">
 </iframe>
@@ -508,7 +508,7 @@ Exercise
 <h3 data-number="1.6.3" class="anchored" data-anchor-id="selecting-columns"><span class="header-section-number">1.6.3</span> Selecting columns</h3>
 <p>To create a database called <code>edu2</code> where we select only certain variables from the initial database <code>edu</code>, we write:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>edu2<span class="ot">&lt;-</span> edu <span class="sc">%&gt;%</span> <span class="fu">select</span>(hhid,age,sex,edu_attained)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>edu2<span class="ot">&lt;-</span> edu <span class="sc">|&gt;</span> <span class="fu">select</span>(hhid,age,sex,edu_attained)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>select</code> allows to select only some columns (that is, some variables, as one column refers to one variable) of the dataframe.</p>
 <p>Similarly, <code>select</code> can be used to remove columns:</p>

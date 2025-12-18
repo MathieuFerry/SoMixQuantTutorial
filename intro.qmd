@@ -220,7 +220,7 @@ To create a database called `edu2` where we select only certain variables from t
 
 ```{r}
 #| eval: false
-edu2<- edu %>% select(hhid,age,sex,edu_attained)
+edu2<- edu |> select(hhid,age,sex,edu_attained)
 
 ```
 
