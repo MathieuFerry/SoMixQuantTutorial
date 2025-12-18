@@ -16,7 +16,9 @@ For the quantitative part of the project, we have already identified a number of
 
 -   Choose **one** **topic per group** from the table below. Each group needs to have its own topic.
 
--   Carefully **read the information** provided in the below table regarding your chosen topic (database to use, corresponding section in the questionnaire).
+-   Carefully **read the information** regarding your chosen topic (database to use, corresponding section in the questionnaire).
+
+-   In the Quant workshop, we do not do any data collection since we use the HIES 2019 data. Our aim is to conduct **secondary data analysis**.
 
 ## Deliverables for the Quant workshop
 

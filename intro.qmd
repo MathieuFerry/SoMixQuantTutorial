@@ -148,7 +148,7 @@ Load `edu.rds` using the first solution. Then, use the code below to directly us
 
 ```{r}
 #| eval: false
-
+#Adjust the working directory with the path where your data are stored on your computer
 setwd("/home/groups/3genquanti/SoMix/HIES for workshop")
 edu<-readRDS("edu.rds")
 
