@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; Data Wrangling and Visualization – SoMix Quant training</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./linearreg.html" rel="next">
+<link href="./advanced_intro.html" rel="prev">
+<link href="./images/icon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced_intro.html"><strong>Advanced analyses</strong></a></li><li class="breadcrumb-item"><a href="./datawrangling.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Wrangling and Visualization</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/icon.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">SoMix Quant training</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Discovering R</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Manipulating and analysing data</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statunis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Survey data and univariate statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statbis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bivariate statistics and more graphics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Topics of interest</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A short example with HIES 2019</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Topics under scrutiny</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>To move further</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./syntaxe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Code organization</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Advanced analyses</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./advanced_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Statistics: Five Training Sessions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datawrangling.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Wrangling and Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linearreg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear Regression and Nested Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logitreg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Logistic Regression and result scales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mca.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Geometric Data Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#working-with-large-datasets-the-parquet-format" id="toc-working-with-large-datasets-the-parquet-format" class="nav-link active" data-scroll-target="#working-with-large-datasets-the-parquet-format"><span class="header-section-number">8.1</span> Working with Large Datasets: the Parquet Format</a>
+  <ul class="collapse">
+  <li><a href="#writing-a-parquet-file" id="toc-writing-a-parquet-file" class="nav-link" data-scroll-target="#writing-a-parquet-file"><span class="header-section-number">8.1.1</span> Writing a Parquet file</a></li>
+  <li><a href="#reading-a-parquet-file" id="toc-reading-a-parquet-file" class="nav-link" data-scroll-target="#reading-a-parquet-file"><span class="header-section-number">8.1.2</span> Reading a Parquet file</a></li>
+  </ul></li>
+  <li><a href="#combining-variables" id="toc-combining-variables" class="nav-link" data-scroll-target="#combining-variables"><span class="header-section-number">8.2</span> Combining Variables</a>
+  <ul class="collapse">
+  <li><a href="#example-combining-parental-education" id="toc-example-combining-parental-education" class="nav-link" data-scroll-target="#example-combining-parental-education"><span class="header-section-number">8.2.1</span> Example: Combining parental education</a></li>
+  </ul></li>
+  <li><a href="#merging-datasets-in-r" id="toc-merging-datasets-in-r" class="nav-link" data-scroll-target="#merging-datasets-in-r"><span class="header-section-number">8.3</span> Merging Datasets in R</a>
+  <ul class="collapse">
+  <li><a href="#types-of-joins" id="toc-types-of-joins" class="nav-link" data-scroll-target="#types-of-joins"><span class="header-section-number">8.3.1</span> Types of joins</a></li>
+  <li><a href="#merging-edu-with-environment" id="toc-merging-edu-with-environment" class="nav-link" data-scroll-target="#merging-edu-with-environment"><span class="header-section-number">8.3.2</span> Merging <code>edu</code> with <code>environment</code></a></li>
+  <li><a href="#checking-your-merge" id="toc-checking-your-merge" class="nav-link" data-scroll-target="#checking-your-merge"><span class="header-section-number">8.3.3</span> Checking your merge</a></li>
+  </ul></li>
+  <li><a href="#data-visualization-the-logic-of-ggplot2" id="toc-data-visualization-the-logic-of-ggplot2" class="nav-link" data-scroll-target="#data-visualization-the-logic-of-ggplot2"><span class="header-section-number">8.4</span> Data Visualization: The Logic of ggplot2</a>
+  <ul class="collapse">
+  <li><a href="#the-grammar-of-graphics" id="toc-the-grammar-of-graphics" class="nav-link" data-scroll-target="#the-grammar-of-graphics"><span class="header-section-number">8.4.1</span> The grammar of graphics</a></li>
+  <li><a href="#from-esquisse-to-ggplot2" id="toc-from-esquisse-to-ggplot2" class="nav-link" data-scroll-target="#from-esquisse-to-ggplot2"><span class="header-section-number">8.4.2</span> From esquisse to ggplot2</a></li>
+  <li><a href="#adding-a-weighted-density-plot" id="toc-adding-a-weighted-density-plot" class="nav-link" data-scroll-target="#adding-a-weighted-density-plot"><span class="header-section-number">8.4.3</span> Adding a weighted density plot</a></li>
+  <li><a href="#comparing-groups-with-color" id="toc-comparing-groups-with-color" class="nav-link" data-scroll-target="#comparing-groups-with-color"><span class="header-section-number">8.4.4</span> Comparing groups with color</a></li>
+  <li><a href="#faceting-one-panel-per-group" id="toc-faceting-one-panel-per-group" class="nav-link" data-scroll-target="#faceting-one-panel-per-group"><span class="header-section-number">8.4.5</span> Faceting: one panel per group</a></li>
+  <li><a href="#bar-chart-categorical-variables" id="toc-bar-chart-categorical-variables" class="nav-link" data-scroll-target="#bar-chart-categorical-variables"><span class="header-section-number">8.4.6</span> Bar chart: categorical variables</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced_intro.html"><strong>Advanced analyses</strong></a></li><li class="breadcrumb-item"><a href="./datawrangling.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Wrangling and Visualization</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-session1" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Wrangling and Visualization</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this first session, we go further in data manipulation in R, tackling challenges that arise with <strong>large datasets</strong> and <strong>multi-file survey data</strong>. We also move beyond the point-and-click interface of <em>esquisse</em> to write our own data visualizations using <strong>ggplot2</strong>.</p>
+<p>We continue working with the <strong>HIES 2019</strong> data from Sri Lanka. By the end of this session, you will be able to:</p>
+<ul>
+<li>Read and write data efficiently using the <strong>Parquet</strong> format</li>
+<li><strong>Combine variables</strong> across datasets using <code>mutate</code> and <code>case_when</code></li>
+<li><strong>Merge</strong> datasets together using <code>left_join</code> and related functions</li>
+<li>Understand the <strong>grammar of graphics</strong> underlying ggplot2</li>
+<li>Produce publication-quality graphs from scratch</li>
+</ul>
+<section id="working-with-large-datasets-the-parquet-format" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="working-with-large-datasets-the-parquet-format"><span class="header-section-number">8.1</span> Working with Large Datasets: the Parquet Format</h2>
+<p>When datasets are large — thousands of rows, dozens of variables — the standard <code>.rds</code> or <code>.csv</code> formats can become slow to read and write, and they consume a lot of memory.</p>
+<p>The <strong>Parquet</strong> format is a modern, column-oriented storage format that is much more efficient for large datasets.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Parquet files are widely used in data engineering and are natively supported in R through the <code>arrow</code> package.</p>
+</div>
+</div>
+<p>To use Parquet in R, we first install and load the <code>arrow</code> package:</p>
+<section id="writing-a-parquet-file" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="writing-a-parquet-file"><span class="header-section-number">8.1.1</span> Writing a Parquet file</h3>
+<p>Let’s save our <code>edu</code> dataset in Parquet format. First, load the data as usual:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/home/groups/3genquanti/SoMix/HIES for workshop"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>edu <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"edu.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now write it as a Parquet file:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/home/groups/3genquanti/SoMix/HIES for workshop"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_parquet</span>(edu, <span class="st">"edu.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reading-a-parquet-file" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="reading-a-parquet-file"><span class="header-section-number">8.1.2</span> Reading a Parquet file</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/home/groups/3genquanti/SoMix/HIES for workshop"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>edu <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(<span class="st">"edu.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Parquet files are typically <strong>2–10× smaller</strong> than equivalent <code>.rds</code> files and <strong>much faster</strong> to read, especially when you only need a subset of columns. You can select only the columns you need at read time:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/home/groups/3genquanti/SoMix/HIES for workshop"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>edu_small <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(<span class="st">"edu.parquet"</span>, <span class="at">col_select =</span> <span class="fu">c</span>(<span class="st">"hhid"</span>, <span class="st">"indid"</span>, <span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"distance"</span>, <span class="st">"finalweight_25per"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This is particularly useful with large surveys where you may have hundreds of variables but only need a few.</p>
+<p>But here, we were able to load the required variables thanks to their name because <em>we already know the columns of the edu dataset</em>. <strong>What if we do not?</strong></p>
+<p>We can actually read the “metadata” of the parquet file without actually loading it fully:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/home/groups/3genquanti/SoMix/HIES for workshop"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(edu,edu_small)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>edus <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(<span class="st">"edu.parquet"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(edus)      <span class="co"># noms des variables</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "district"            "sector"              "month"              
+ [4] "psu"                 "snumber"             "hhno"               
+ [7] "nhh"                 "result"              "person_serial_no"   
+[10] "r2_school_education" "type_of_school"      "grade_this_year"    
+[13] "grade_last_year"     "distance"            "transport_medium"   
+[16] "time_to_school"      "noschooling_reason"  "reason_leave_school"
+[19] "when_stop_schooling" "hhid"                "indid"              
+[22] "relationship"        "edu_father"          "edu_mother"         
+[25] "age_father"          "age_mother"          "edu_parent"         
+[28] "sex"                 "edu_attained"        "age"                
+[31] "birth_year"          "province"            "ethnicity"          
+[34] "religion"            "marital_status"      "hhwealth"           
+[37] "hhwealthcat"         "finalweight_25per"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>edus<span class="sc">$</span>schema      <span class="co"># types de chaque variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Schema
+district: int32
+sector: int32
+month: int32
+psu: int32
+snumber: int32
+hhno: int32
+nhh: int32
+result: int32
+person_serial_no: int32
+r2_school_education: int32
+type_of_school: int32
+grade_this_year: int32
+grade_last_year: int32
+distance: int32
+transport_medium: int32
+time_to_school: int32
+noschooling_reason: int32
+reason_leave_school: int32
+when_stop_schooling: int32
+hhid: string
+indid: string
+relationship: int32
+edu_father: dictionary&lt;values=string, indices=int32&gt;
+edu_mother: dictionary&lt;values=string, indices=int32&gt;
+age_father: int32
+age_mother: int32
+edu_parent: dictionary&lt;values=string, indices=int32&gt;
+sex: dictionary&lt;values=string, indices=int32&gt;
+edu_attained: dictionary&lt;values=string, indices=int32&gt;
+age: int32
+birth_year: int32
+province: dictionary&lt;values=string, indices=int32&gt;
+ethnicity: dictionary&lt;values=string, indices=int32&gt;
+religion: dictionary&lt;values=string, indices=int32&gt;
+marital_status: int32
+hhwealth: double
+hhwealthcat: dictionary&lt;values=string, indices=int32&gt;
+finalweight_25per: double
+
+See $metadata for additional Schema metadata</code></pre>
+</div>
+</div>
+<p>From there, we can then select the relevant variable that we want to load directly into R.</p>
+<p>Another <strong>big advantage</strong> of parquet is that we can load into R only the relevant observations for our study. Let’s say, we are interested only in the households from the Western province.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/home/groups/3genquanti/SoMix/HIES for workshop"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>edus <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(<span class="st">"edu.parquet"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#First we check the different modalities of the variable province</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>edus <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(province) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 1
+  province     
+  &lt;fct&gt;        
+1 Western      
+2 Central      
+3 Southern     
+4 Northern     
+5 Eastern      
+6 North Western
+7 North Central
+8 Uva          
+9 Sabaragamuwa </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Then we load the data only for the Western province</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>edu_western <span class="ot">&lt;-</span> edus <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(province <span class="sc">==</span> <span class="st">"Western"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>()</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#We can check that the loaded data indeed corresponds only to the Western province: </span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>edu_western <span class="sc">|&gt;</span> <span class="fu">count</span>(province)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  province     n
+  &lt;fct&gt;    &lt;int&gt;
+1 Western    982</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+When should you use Parquet?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use Parquet when:</p>
+<ul>
+<li>Your dataset has <strong>more than 100,000 rows</strong> or <strong>many columns</strong></li>
+<li>You frequently read only a <strong>subset of columns</strong></li>
+<li>You need to <strong>share data</strong> across different software environments (Python, R, SQL engines, etc.)</li>
+</ul>
+<p>For the HIES dataset used in this workshop, the benefit is modest given the size, but it becomes important in real research contexts with full survey samples, census samples, large administrative datasets…</p>
+<p>Many large datasets from public institutions are now directly shared in the .parquet format.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Load <code>demo.rds</code> into R.</li>
+<li>Save it as a Parquet file named <code>demo.parquet</code>.</li>
+<li>Read it back, selecting only the columns <code>hhid</code>, <code>sex</code>, <code>age</code>, <code>province</code>, and <code>finalweight_25per</code>.</li>
+<li>Compare the file sizes of <code>demo.rds</code> and <code>demo.parquet</code> using <code>file.info("demo.rds")$size/1024^2</code> and <code>file.info("demo.parquet")$size/1024^2</code> (dividing by 1024^2 gives the size of the file in megabytes, Mb).</li>
+<li>Load the demographic information of the individuals belonging the to the richest households only. How many individuals fit this condition?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+R and stata files
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In R, we can easily load stata files (dta format) thanks to the <code>haven</code> package. Interestingly, we can use similar tricks as with parquet to only read the variable names and to read only certain columns of the dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#If not already installed, the haven package needs to be installed:</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("haven")</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/home/groups/3genquanti/SoMix/HIES for workshop"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">read_dta</span>(<span class="st">"edu.dta"</span>, <span class="at">n_max =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "district"            "sector"              "month"              
+ [4] "psu"                 "snumber"             "hhno"               
+ [7] "nhh"                 "result"              "person_serial_no"   
+[10] "r2_school_education" "type_of_school"      "grade_this_year"    
+[13] "grade_last_year"     "distance"            "transport_medium"   
+[16] "time_to_school"      "noschooling_reason"  "reason_leave_school"
+[19] "when_stop_schooling" "hhid"                "indid"              
+[22] "relationship"        "edu_father"          "edu_mother"         
+[25] "age_father"          "age_mother"          "edu_parent"         
+[28] "sex"                 "edu_attained"        "age"                
+[31] "birth_year"          "province"            "ethnicity"          
+[34] "religion"            "marital_status"      "hhwealth"           
+[37] "hhwealthcat"         "finalweight_25per"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>edu_small<span class="ot">&lt;-</span><span class="fu">read_dta</span>(<span class="st">"edu.dta"</span>, <span class="at">col_select =</span> <span class="fu">c</span>(hhid, age, sex, province))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p>Data management tools in these tutorials are based on the “tidyverse” which may not be optimal to handle certain operations on very large datasets.</p>
+<p>The “tricks” shown above should allow to <strong>handle most of the data management issues</strong> you could encounter (it does solve most of my issues when working with concatenated datasets of several millions of observations).</p>
+<p>However, in certain situations, it may not be sufficient. In these rare cases, I would <strong>turn to the <code>data.table</code> R package</strong> which has a different syntax but always to run complex data manipulations on large datasets, see the <a href="https://r-datatable.com/">website</a>’s package.</p>
+<hr>
+</section>
+</section>
+<section id="combining-variables" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="combining-variables"><span class="header-section-number">8.2</span> Combining Variables</h2>
+<p>In practice, we often need to create <strong>new variables</strong> from existing ones, or combine information from several variables into a single, more useful variable.</p>
+<p>In Chapter 2 of this book, we have introduced easy-to-use functions and interfaces from the <code>questionr</code> package to recode categorical variables (<code>irec()</code>) and numeric variables into categorical variables (<code>icut()</code>). We can also mention <code>iorder()</code> which allows to easily change the order of variables.</p>
+<p>These cases however do not cover another typical case that we often need to deal with: the creation of a variable whose <strong>modalities depend on the values of several other variables</strong>.</p>
+<p>To achieve this using the tidyverse lingo, we use <code>mutate()</code> to create or modify variables, and <code>case_when()</code> to define conditional logic for recoding.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>case_when()</code> evaluates conditions in order and assigns the value from the first condition that is TRUE. The <code>.default</code> or a final <code>TRUE ~</code> can be used to handle all remaining cases.</p>
+</div>
+</div>
+<section id="example-combining-parental-education" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="example-combining-parental-education"><span class="header-section-number">8.2.1</span> Example: Combining parental education</h3>
+<p>In the <code>edu</code> dataset, <code>edu_father</code> and <code>edu_mother</code> capture the educational attainment of each parent. We might want to create a variable for <strong>household educational capital</strong>, taking the highest level between the two parents. This variable already exists in our data as <code>edu_parent</code>, but here is how we could have created it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/home/groups/3genquanti/SoMix/HIES for workshop"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>edu <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"edu.rds"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>edu <span class="ot">&lt;-</span> edu <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">edu_parent_manual =</span> <span class="fu">case_when</span>(</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    edu_father <span class="sc">==</span> <span class="st">"Tertiary"</span> <span class="sc">|</span> edu_mother <span class="sc">==</span> <span class="st">"Tertiary"</span>               <span class="sc">~</span> <span class="st">"Tertiary"</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    edu_father <span class="sc">==</span> <span class="st">"Collegiate"</span> <span class="sc">|</span> edu_mother <span class="sc">==</span> <span class="st">"Collegiate"</span> <span class="sc">~</span> <span class="st">"Collegiate"</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    edu_father <span class="sc">==</span> <span class="st">"Senior secondary"</span> <span class="sc">|</span> edu_mother <span class="sc">==</span> <span class="st">"Senior secondary"</span> <span class="sc">~</span> <span class="st">"Senior secondary"</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    edu_father <span class="sc">==</span> <span class="st">"Junior secondary"</span> <span class="sc">|</span> edu_mother <span class="sc">==</span> <span class="st">"Junior secondary"</span> <span class="sc">~</span> <span class="st">"Junior secondary"</span>,</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    edu_father <span class="sc">==</span> <span class="st">"Primary"</span> <span class="sc">|</span> edu_mother <span class="sc">==</span> <span class="st">"Primary"</span> <span class="sc">~</span> <span class="st">"Primary"</span>,</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    edu_father <span class="sc">==</span> <span class="st">"Less than primary"</span> <span class="sc">|</span> edu_mother <span class="sc">==</span> <span class="st">"Less than primary"</span> <span class="sc">~</span> <span class="st">"Less than primary"</span>,</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> <span class="fu">factor</span>(<span class="at">levels=</span><span class="fu">levels</span>(edu<span class="sc">$</span>edu_father))</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this code, the symbol <code>|</code> means “or”. So if we read the first line in plain language, we can state: “If the father has higher education or the mother has a higher education, then (that’s the `~`) code the education of parents as higher”.</p>
+<p>In reality, we actually coded this variable in a much simpler way:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>edu <span class="ot">&lt;-</span> edu <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_parent_manual2=</span><span class="fu">pmax</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">factor</span>(edu_father, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">factor</span>(edu_mother, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In doing this, we used the fact that <code>edu_father</code> and <code>edu_mother</code> are factor variables, i.e.&nbsp;they are defined levels, which we for to be ordered (argument ordered = TRUE). The levels can be checked by running: <code>levels(edu$edu_father).</code></p>
+<p>So finally, we can check that the creation of these two variables gives exactly the same distribution of parental education as before:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(questionr)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(edu_parent) <span class="sc">|&gt;</span> <span class="fu">freq</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     n    % val%
+Less than primary  150  3.3  4.0
+Primary            497 10.9 13.4
+Junior secondary  1508 33.1 40.6
+Senior secondary   805 17.7 21.7
+Collegiate         617 13.6 16.6
+Tertiary           140  3.1  3.8
+NA                 835 18.3   NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(edu_parent_manual) <span class="sc">|&gt;</span> <span class="fu">freq</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     n    % val%
+Less than primary  150  3.3  4.0
+Primary            497 10.9 13.4
+Junior secondary  1508 33.1 40.6
+Senior secondary   805 17.7 21.7
+Collegiate         617 13.6 16.6
+Tertiary           140  3.1  3.8
+NA                 835 18.3   NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> <span class="fu">freqtable</span>(edu_parent_manual2) <span class="sc">|&gt;</span> <span class="fu">freq</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     n    % val%
+Less than primary  150  3.3  4.0
+Primary            497 10.9 13.4
+Junior secondary  1508 33.1 40.6
+Senior secondary   805 17.7 21.7
+Collegiate         617 13.6 16.6
+Tertiary           140  3.1  3.8
+NA                 835 18.3   NA</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the <code>edu</code> dataset:</p>
+<ol type="1">
+<li>Create a variable <code>both_parents_educated</code> which equals <code>TRUE</code> if both the father and mother have at least “Senior secondary” education (i.e.&nbsp;their have completed O/L), and <code>FALSE</code> otherwise. Handle missing values appropriately.</li>
+<li>Run a categorical bivariate analysis to check that the coding has been handled correctly (see <a href="https://mathieuferry.github.io/SoMixQuantTutorial/statbis.html">Chapter 3</a> if needed).</li>
+</ol>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="merging-datasets-in-r" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="merging-datasets-in-r"><span class="header-section-number">8.3</span> Merging Datasets in R</h2>
+<p>A very common operation in data analysis is <strong>merging</strong> (or joining) two datasets that share a common identifier. For example, the HIES survey stores household-level information in <code>environment.rds</code> and individual-level information in <code>edu.rds</code>. To analyze, for instance, the relationship between a child’s school distance and the household’s housing conditions, we need to bring these two datasets together.</p>
+<section id="types-of-joins" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="types-of-joins"><span class="header-section-number">8.3.1</span> Types of joins</h3>
+<p>The <code>dplyr</code> package (part of the tidyverse) provides four main join functions:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 72%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>left_join(x, y)</code></td>
+<td>Keep all rows from <code>x</code>; add matching rows from <code>y</code></td>
+</tr>
+<tr class="even">
+<td><code>right_join(x, y)</code></td>
+<td>Keep all rows from <code>y</code>; add matching rows from <code>x</code></td>
+</tr>
+<tr class="odd">
+<td><code>inner_join(x, y)</code></td>
+<td>Keep only rows with matches in <strong>both</strong></td>
+</tr>
+<tr class="even">
+<td><code>full_join(x, y)</code></td>
+<td>Keep all rows from <strong>both</strong>, fill missing with <code>NA</code></td>
+</tr>
+</tbody>
+</table>
+<p>In most survey analysis contexts, <strong><code>left_join</code></strong> is the most appropriate: we start from our main individual-level dataset and add household-level variables.</p>
+</section>
+<section id="merging-edu-with-environment" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="merging-edu-with-environment"><span class="header-section-number">8.3.2</span> Merging <code>edu</code> with <code>environment</code></h3>
+<p>Let’s add some household-level variables from <code>environment.rds</code> to <code>edu</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/home/groups/3genquanti/SoMix/HIES for workshop"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>environment <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"environment.rds"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the key variables</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(edu)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "district" "sector"   "month"    "psu"      "snumber" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(environment)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "district" "sector"   "month"    "psu"      "snumber" </code></pre>
+</div>
+</div>
+<p>Both datasets share the variable <code>hhid</code> (household identifier). We use this as the <strong>key</strong> to merge:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>edu_env <span class="ot">&lt;-</span> edu <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(environment, <span class="at">by =</span> <span class="st">"hhid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Watch out for variable duplication!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When merging, if both datasets contain a variable with the <strong>same name</strong> (other than the key), R will automatically add suffixes <code>.x</code> and <code>.y</code> to distinguish them.</p>
+<p>You can select specific variables from <code>environment</code> before merging to avoid this:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>environment_subset <span class="ot">&lt;-</span> environment <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(hhid, drinking_water, toilet_facility, cooking_fuel)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>edu_env <span class="ot">&lt;-</span> edu <span class="sc">|&gt;</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(environment_subset, <span class="at">by =</span> <span class="st">"hhid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="checking-your-merge" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="checking-your-merge"><span class="header-section-number">8.3.3</span> Checking your merge</h3>
+<p>After a merge, always verify:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How many rows before and after?</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(edu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4552</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(edu_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4552</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Are there unmatched households?</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(environment, <span class="at">by =</span> <span class="st">"hhid"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>The goal of the exercise if to add the class position of the household head of each household to the <code>edu</code> file, in order to study how class positions matter in children’s educational attainment.</li>
+<li>Load <code>demo.rds</code> and <code>edu.rds</code>.</li>
+<li>Filter <code>demo</code> to keep only the household head (<code>filter</code> using <code>relationship==1</code>) and select the two following variables: <code>hhid</code> and <code>class</code>. The newly-created dataframe can be called <code>demo_head</code>.</li>
+<li>Use <code>left_join</code> to add the variable <code>class</code> from <code>demo_head</code> to <code>edu</code>. Name this newly dataset <code>edu_class</code>.</li>
+<li>Check that the number of rows in the merged dataset is the same as in <code>edu</code>.</li>
+<li>Bonus: among children of 16 years and more, does the proportion of currently school attending children vary by household head’s class?</li>
+</ol>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="data-visualization-the-logic-of-ggplot2" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="data-visualization-the-logic-of-ggplot2"><span class="header-section-number">8.4</span> Data Visualization: The Logic of ggplot2</h2>
+<p>In the previous sessions, we used <strong>esquisse</strong> to create graphs interactively, and esquisse generated ggplot2 code for us. Now, we learn to write ggplot2 code directly.</p>
+<p>This is useful because:</p>
+<ul>
+<li>We have <strong>full control</strong> over all aspects of the graph</li>
+<li>Our visualizations become <strong>reproducible</strong></li>
+<li>We can <strong>automate</strong> graphs (e.g., produce the same graph for each province)</li>
+</ul>
+<section id="the-grammar-of-graphics" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="the-grammar-of-graphics"><span class="header-section-number">8.4.1</span> The grammar of graphics</h3>
+<p>ggplot2 is based on a <strong>grammar of graphics</strong>: every graph is built layer by layer from a set of components:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>What it defines</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Data</strong></td>
+<td>The dataset to visualize</td>
+</tr>
+<tr class="even">
+<td><strong>Aesthetics</strong> (<code>aes</code>)</td>
+<td>Which variables map to x, y, color, size, etc.</td>
+</tr>
+<tr class="odd">
+<td><strong>Geometry</strong> (<code>geom_*</code>)</td>
+<td>The type of graph (points, bars, lines, histograms…)</td>
+</tr>
+<tr class="even">
+<td><strong>Scales</strong></td>
+<td>How data values are translated to visual properties</td>
+</tr>
+<tr class="odd">
+<td><strong>Facets</strong></td>
+<td>Splitting the graph into sub-panels</td>
+</tr>
+<tr class="even">
+<td><strong>Theme</strong></td>
+<td>Non-data elements: fonts, background, grid lines…</td>
+</tr>
+</tbody>
+</table>
+<p>The basic structure of any ggplot2 call is:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>, <span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">&lt;</span>X<span class="sc">&gt;</span>, <span class="at">y =</span> <span class="sc">&lt;</span>Y<span class="sc">&gt;</span>)) <span class="sc">+</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  geom_<span class="sc">&lt;</span>TYPE<span class="sc">&gt;</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="from-esquisse-to-ggplot2" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="from-esquisse-to-ggplot2"><span class="header-section-number">8.4.2</span> From esquisse to ggplot2</h3>
+<p>Let’s say esquisse gave you this code to plot the distribution of <code>distance</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(edu) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> distance) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"#4682B4"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of distance from home to school"</span>,</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Distance (km)"</span>,</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datawrangling_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s break this down:</p>
+<ul>
+<li><code>ggplot(edu)</code> — use the <code>edu</code> dataset</li>
+<li><code>aes(x = distance)</code> — map <code>distance</code> to the x-axis</li>
+<li><code>geom_histogram()</code> — draw a histogram</li>
+<li><code>labs()</code> — add axis labels and a title</li>
+<li><code>theme_minimal()</code> — use a clean, minimal theme</li>
+</ul>
+</section>
+<section id="adding-a-weighted-density-plot" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="adding-a-weighted-density-plot"><span class="header-section-number">8.4.3</span> Adding a weighted density plot</h3>
+<p>Since we are working with survey data, we might want to take the survey weights into account when visualizing distributions. A density plot weighted by <code>finalweight_25per</code> gives a more faithful picture of the population:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(edu <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(distance)), <span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">weight =</span> finalweight_25per)) <span class="sc">+</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"#4682B4"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Weighted distribution of distance from home to school"</span>,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"HIES 2019, Sri Lanka (children aged 5–19 currently attending school)"</span>,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Distance to school (km)"</span>,</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datawrangling_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-groups-with-color" class="level3" data-number="8.4.4">
+<h3 data-number="8.4.4" class="anchored" data-anchor-id="comparing-groups-with-color"><span class="header-section-number">8.4.4</span> Comparing groups with color</h3>
+<p>One of ggplot2’s great strengths is how easily you can compare distributions across groups. Here, we compare distance to school by sector (rural, urban, estate):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, recode the sector (residence) variable</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>edu<span class="sc">$</span>sector_rec <span class="ot">&lt;-</span> edu<span class="sc">$</span>sector  <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.character</span>() <span class="sc">|&gt;</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fct_recode</span>(</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Urban"</span> <span class="ot">=</span> <span class="st">"1"</span>,</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Rural"</span> <span class="ot">=</span> <span class="st">"2"</span>,</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Estate"</span> <span class="ot">=</span> <span class="st">"3"</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(edu <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(distance)), <span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">fill =</span> sector_rec, <span class="at">weight =</span> finalweight_25per)) <span class="sc">+</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distance to school by sex"</span>,</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Distance to school (km)"</span>,</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span>,</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Sector"</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Rural"</span> <span class="ot">=</span> <span class="st">"#2196F3"</span>, <span class="st">"Urban"</span> <span class="ot">=</span> <span class="st">"#E91E63"</span>, <span class="st">"Estate"</span> <span class="ot">=</span> <span class="st">"#FF9800"</span>)) <span class="sc">+</span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datawrangling_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Boxplot: comparing key indicators of the distribution</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(edu <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(distance)), </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> sector_rec, <span class="at">y =</span> distance, <span class="at">fill =</span> sector_rec,<span class="at">weight =</span> finalweight_25per)) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distance to school by sector"</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Distance to school (km)"</span>,</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Sector"</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Rural"</span> <span class="ot">=</span> <span class="st">"#2196F3"</span>, <span class="st">"Urban"</span> <span class="ot">=</span> <span class="st">"#E91E63"</span>, <span class="st">"Estate"</span> <span class="ot">=</span> <span class="st">"#FF9800"</span>)) <span class="sc">+</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)  <span class="co"># legend redundant with x-axis</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datawrangling_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="faceting-one-panel-per-group" class="level3" data-number="8.4.5">
+<h3 data-number="8.4.5" class="anchored" data-anchor-id="faceting-one-panel-per-group"><span class="header-section-number">8.4.5</span> Faceting: one panel per group</h3>
+<p>Instead of overlapping distributions, we can produce separate panels using <code>facet_wrap</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(edu <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(distance)), <span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">weight =</span> finalweight_25per)) <span class="sc">+</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"#4682B4"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> province) <span class="sc">+</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distance to school by province"</span>,</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Distance (km)"</span>,</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datawrangling_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bar-chart-categorical-variables" class="level3" data-number="8.4.6">
+<h3 data-number="8.4.6" class="anchored" data-anchor-id="bar-chart-categorical-variables"><span class="header-section-number">8.4.6</span> Bar chart: categorical variables</h3>
+<p>To visualize the distribution of a categorical variable — for example, parental education — we use <code>geom_bar</code> or <code>geom_col</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>edu <span class="sc">|&gt;</span> </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freqtable</span>(edu_parent, <span class="at">weights =</span> finalweight_25per) <span class="sc">|&gt;</span> </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freq</span>() <span class="sc">|&gt;</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"edu_parent"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(edu_parent <span class="sc">!=</span> <span class="st">"NA"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(edu_parent, <span class="at">levels =</span> <span class="fu">levels</span>(edu<span class="sc">$</span>edu_parent)), <span class="at">y =</span> <span class="st">`</span><span class="at">val%</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#4682B4"</span>) <span class="sc">+</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Parental education"</span>,</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Percentage (%)"</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datawrangling_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s we want to plot the school attendance status of children aged 16 years old and more and how it varies according to parental education:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>edu<span class="sc">$</span>r2_school_education_rec <span class="ot">&lt;-</span> edu<span class="sc">$</span>r2_school_education  <span class="sc">|&gt;</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.character</span>() <span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fct_recode</span>(</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Currently attending"</span> <span class="ot">=</span> <span class="st">"1"</span>,</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Never attended"</span> <span class="ot">=</span> <span class="st">"2"</span>,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Attended school in the past"</span> <span class="ot">=</span> <span class="st">"3"</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>rtab<span class="ot">&lt;-</span>edu <span class="sc">|&gt;</span> </span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age<span class="sc">&gt;=</span><span class="dv">16</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">freqtable</span>(edu_parent,r2_school_education_rec,<span class="at">weights=</span>finalweight_25per) <span class="sc">|&gt;</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lprop</span>() <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>() </span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>rtab <span class="sc">|&gt;</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(edu_parent <span class="sc">!=</span> <span class="st">"Ensemble"</span> <span class="sc">&amp;</span> r2_school_education_rec <span class="sc">!=</span> <span class="st">"Total"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> edu_parent, <span class="at">y =</span> Freq, <span class="at">fill =</span> r2_school_education_rec)) <span class="sc">+</span></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"School attendance by parental education (age 16+)"</span>,</span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Percentage (%)"</span>,</span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="cn">NULL</span></span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Currently attending"</span>        <span class="ot">=</span> <span class="st">"#2196F3"</span>,</span>
+<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Never attended"</span>             <span class="ot">=</span> <span class="st">"#E91E63"</span>,</span>
+<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Attended school in the past"</span> <span class="ot">=</span> <span class="st">"#FF9800"</span></span>
+<span id="cb43-29"><a href="#cb43-29" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb43-30"><a href="#cb43-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datawrangling_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Going further with ggplot2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This introduction is just a starting point. For a deeper dive, consult:</p>
+<ul>
+<li><a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis</a> — the reference book by Hadley Wickham</li>
+<li><a href="https://r4ds.had.co.nz/data-visualisation.html">R for Data Science — Data Visualisation</a> — a practical introduction</li>
+<li><a href="https://juba.github.io/tidyverse/08-ggplot2.html">Introduction à ggplot2 (en français)</a> — Julien Barnier’s French-language tutorial</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Based on your statistical analyses for your quant second deliverable (D3), select important statistical analyses that you would like to plot (univariate statistics, bivariate statistics) and prepare figures for them.</p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./advanced_intro.html" class="pagination-link" aria-label="Advanced Statistics: Five Training Sessions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Statistics: Five Training Sessions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./linearreg.html" class="pagination-link" aria-label="Linear Regression and Nested Models">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear Regression and Nested Models</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

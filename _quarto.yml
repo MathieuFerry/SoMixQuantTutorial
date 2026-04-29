@@ -27,6 +27,14 @@ book:
     - part: "**To move further**"
       chapters:
         - syntaxe.qmd
+    - part: "**Advanced analyses**"
+      chapters:
+        - advanced_intro.qmd
+        - datawrangling.qmd
+        - linearreg.qmd
+        - logitreg.qmd
+        - mca.qmd
+
 
   search:
     type: textbox

@@ -1,0 +1,347 @@
+# Linear Regression and Nested Models {#sec-session2}
+
+In this session, we move from descriptive to **multivariate explanatory statistics** with our first regression analysis tool: **linear regression**. We will also introduce the concept of **nested models** and discuss how to assess the quality of a regression model.
+
+By the end of this session, you will be able to:
+
+-   Specify and estimate a **linear regression model** on weighted survey data
+-   Interpret **coefficients**, **standard errors**, and **p-values**
+-   Compare **nested models** to assess the contribution of groups of variables
+
+::: callout-note
+## Does weighting matter for regression?
+
+Whether to weight regressions remains debated: while traditional practice recommends always using survey weights to obtain population-representative estimates, another view argues that weights are unnecessary — and reduce precision — when the model is correctly specified and includes all variables driving sample selection.
+
+In practice, we follow the conservative approach and systematically use the survey package, as the complexity of the HIES sampling design makes it unlikely that our models fully account for the selection process.
+
+The `survey` package in R correctly handles this, taking into account the weights and, when available, the stratification and clustering of the survey design.
+:::
+
+------------------------------------------------------------------------
+
+## Setting up the Survey Design
+
+In Chapters 2 and 3 we accounted for the survey weights in our descriptive statistics. However, to run survey-weighted regressions, we need to use `survey` and `srvyr` which allow to correctly include survey weights in regression analysis.
+
+The first step is to declare the **survey design** to R using the `survey` and `srvyr` package. This creates a special object that carries the information about weights (and potentially strata and clusters). The first package handles survey weights and the second helps to do data manipulation directly on the survey design if necessary.
+
+```{r}
+#| message: false
+#| warning: false
+
+# Load necessary packages
+load.lib <- c("tidyverse", "survey", "srvyr","gtsummary","performance","ggstats")
+install.lib <- load.lib[!load.lib %in% installed.packages()]
+for (lib in install.lib) install.packages(lib, dependencies = TRUE)
+sapply(load.lib, require, character = TRUE)
+
+# Load data
+setwd("/home/groups/3genquanti/SoMix/HIES for workshop")
+edu <- readRDS("edu.rds")
+```
+
+Now declare the survey design:
+
+```{r}
+#| message: false
+#| warning: false
+
+design_edu <- edu |>
+  srvyr::as_survey_design(
+  weights = finalweight_25per      # The weight variable
+)
+```
+
+::: callout-note
+`as_survey_design` is based on `svydesign` and allows to precisely take into account the parameters of the survey (clusters, strata...). In a more complete analysis, you could use the PSU (primary sampling unit) variable if available — ignoring cluster structure tends to underestimate standard errors. Here, with the 25% sample, this simplified design is sufficient.
+:::
+
+------------------------------------------------------------------------
+
+## Our Research Question: What Predicts Distance to School?
+
+We will use distance to school (`distance`) as our **dependent variable** (the outcome we want to explain). We expect that several factors influence how far a child lives from school (**independent variables**):
+
+-   **Sex** of the child (`sex`)
+-   **Age** of the child (`age`) — older children might attend more distant schools (secondary vs. primary)
+-   **Parental education** (`edu_parent`) — children from more educated families may attend more distant (better-quality) schools
+-   **Household wealth** (`hhwealthcat`)
+-   **Province** of residence (`province`)
+
+Let's first restrict our sample to children who are currently attending school and for whom distance is available:
+
+```{r}
+#| message: false
+#| warning: false
+
+edu_school <- edu |>
+  filter(!is.na(distance))
+
+design_edu <- edu_school |>
+  srvyr::as_survey_design(
+  weights = finalweight_25per      # The weight variable
+)
+```
+
+::: callout-caution
+## Check: Does each group have enough observations?
+
+Before running a regression, always verify that each category of your independent variables has a sufficient number of observations. This is especially important for categorical variables.
+
+``` r
+edu_school |> count(province)
+edu_school |> count(edu_parent)
+edu_school |> count(hhwealthcat)
+edu_school |> count(sex)
+```
+:::
+
+------------------------------------------------------------------------
+
+## Simple Linear Regression
+
+Let's start with a simple model with a two single predictor: the sex of the child and their age.
+
+```{r}
+#| message: false
+#| warning: false
+model1 <- svyglm(distance ~ sex + age, design = design_edu)
+summary(model1)
+```
+
+The output shows:
+
+-   **Coefficients**: the effect of each predictor on distance (in km)
+-   **Standard errors**: the precision of the estimate
+-   **t-value and p-value**: test of whether the coefficient differs from zero
+
+::: callout-note
+`svyglm()` from the `survey` package is the equivalent of `lm()` but for weighted survey data. By default (without specifying a `family` argument), it runs a linear regression.
+:::
+
+To produce a cleaner output table, we can use `tbl_regression()` from the `gtsummary` package:
+
+```{r}
+#| message: false
+#| warning: false
+model1 |>
+  tbl_regression(intercept = TRUE)
+```
+
+**Interpretation**: The coefficient for `sexFemale` tells us the average difference in distance to school (less than 0.3 km) between boys and girls (in km), controlling for age. A positive coefficient means girls live further from school on average. Notice how the coefficient is not statistically significant here (p-value \> 0.05), i.e. the school distance average between boys and girls is not statistically different from 0. However the age coefficient is positive and statistically significant: for each additional age year, the distance to school increases by 0.31 km.
+
+------------------------------------------------------------------------
+
+## Multiple Linear Regression
+
+Now let's add more predictors:
+
+```{r}
+#| message: false
+#| warning: false
+model2 <- svyglm(distance ~ sex + age + edu_parent + hhwealthcat, 
+                 design = design_edu)
+summary(model2)
+```
+
+And a more complete model with province:
+
+```{r}
+#| message: false
+#| warning: false
+model3 <- svyglm(distance ~ sex + age + edu_parent + hhwealthcat + province,
+                 design = design_edu)
+summary(model3)
+```
+
+::: callout-note
+## Interpreting multiple regression coefficients
+
+In a multiple regression, each coefficient represents the effect of that variable **holding all other variables constant**. For example, the coefficient for `edu_parentHigher` tells us how much further from school a child with at least one parent having higher education lives, compared to a child with the reference category (here, "Less than primary"), **for the same sex, age, and household wealth**.
+
+The reference category for each factor variable is the one not shown in the output. R automatically chooses the **first level** as the reference. You can change it using `relevel()`:
+
+``` r
+design_edu <- design_edu |> mutate(edu_parent = relevel(factor(edu_parent), ref = "Less than primary"))
+```
+:::
+
+------------------------------------------------------------------------
+
+## Model diagnostics, Nested Models and Model Comparison
+
+A powerful approach in multivariate analysis is **nested model comparison**: we start with a minimal model and progressively add blocks of variables, testing whether each block significantly improves the fit. This approach helps us answer questions like: *"Does socioeconomic background explain distance to school, above and beyond individual characteristics?"*
+
+The logic is cumulative: each model includes all the variables of the previous one, plus a new block. This allows us to isolate the **specific contribution** of each block of variables:
+
+-   Model 1: sex and age only
+
+-   Model 2: added socioeconomic background
+
+-   Model 3: add geographic context (province)
+
+#### Presenting the models side by side
+
+```{r}
+#| message: false
+#| warning: false
+
+tbl_merge(
+  list(
+    tbl_regression(model1, intercept=T),
+    tbl_regression(model2, intercept=T),
+    tbl_regression(model3, intercept=T)
+  ),
+  tab_spanner = c("Model 1", "Model 2", "Model 3")
+)
+```
+
+A few comments on the results:
+
+-   **Age** has a strong and stable effect across all models: older children live further from school, likely reflecting the transition from primary to secondary schools which are less densely distributed
+
+-   **Parental education** shows a clear gradient only at the top: Collegiate and Tertiary stand out strongly (\~1.7 and \~2.6–2.9 km respectively), while lower levels are indistinguishable from "Less than primary"
+
+-   **Household wealth** follows a similar pattern: only the Richest quintile shows a clearly significant effect (\~2.3 km in Model 2, attenuated to 1.9 km after controlling for province)
+
+-   **Sex** is never significant — boys and girls live at similar distances from school
+
+-   **Province** matters: Northern and Eastern provinces show significantly *shorter* distances (-1.3 and -2.1 km), while Sabaragamuwa and North Central show longer distances, possibly reflecting school density differences
+
+#### Comparing model fit: R² and adjusted R²
+
+For linear regression, the standard measure of fit is **R²** — the proportion of variance in the outcome explained by the model. With `svyglm`, R² is not directly available, but we retrieve it thanks to the `performance` package. The **adjusted R²** penalizes the addition of variables that do not genuinely improve the fit, and is more appropriate when comparing models with different numbers of predictors:
+
+```{r}
+#| message: false
+#| warning: false
+
+compare_performance(model1, model2, model3, metrics = c("R2", "R2_adj"))
+
+```
+
+The jump from Model 1 to Model 2 shows a substantial improvement in R² (from 4% to 10%), indicating that socioeconomic variables (parental education, household wealth) explain a meaningful share of the variance in distance to school, well beyond sex and age alone. Adding province in Model 3 brings a modest additional gain (13%), suggesting that geographic location plays an independent but secondary role.
+
+#### Formal test: is the improvement significant?
+
+R² tells us *how much* fit improves, but not whether this improvement is **statistically significant**. For this, we use `regTermTest()`, which performs a Wald test adapted for survey data (equivalent to the F-test):
+
+A significant result (p \< 0.05) means the added block of variables contributes meaningfully to explaining distance to school, beyond what was already in the model:
+
+```{r}
+#| message: false
+#| warning: false
+
+regTermTest(model2, ~  edu_parent + hhwealthcat)
+regTermTest(model3, ~ province)
+
+```
+
+Both tests are highly significant (p \< 0.001), confirming that:
+
+-   Adding parental education and household wealth in Model 2 significantly improves the fit compared to Model 1 (F = 13.9, df = 9)
+
+-   Adding province in Model 3 further significantly improves the fit compared to Model 2 (F = 25.7, df = 8).
+
+::: callout-important
+### Reporting nested models in the final output?
+
+In a research paper or report, it is not always necessary to present all intermediate models in the final table — sometimes only the most complete model is reported. However, estimating nested models remains an important analytical step: it allows you to assess the **specific contribution of each block of variables**, to check that coefficients are **stable** as new controls are added (a sign of robustness), and to detect potential **confounding** between blocks. The intermediate models are part of the analytical work even when they do not appear in the final output.
+:::
+
+#### Reporting coefficients using a coefficient plots
+
+It is often useful to visualize the results of a regression, we can use `ggcoef_model` and `ggcoef_compare` from the package `ggstats`, here for model 3:
+
+```{r}
+#| message: false
+#| warning: false
+
+ggcoef_model(model3)
+
+```
+
+And to visualize the coefficients of all three nested models:
+
+```{r}
+#| message: false
+#| warning: false
+ggcoef_compare(
+  list("Model 1" = model1, "Model 2" = model2, "Model 3" = model3)
+)
+```
+
+::: callout-note
+### Model diagnostics
+
+After fitting a linear regression, it is good practice to check the main assumptions (linearity, homoscedasticity, normality of residuals). The `performance` package offers tools to do so, which you can check [on this page](https://easystats.github.io/performance/articles/check_model.html) for more information. It matters mostly if we want to draw precise inference estimates out of our models, less so in the present context where we aim to describe controlled correlations.
+:::
+
+::: callout-caution
+### Exercise
+
+1.  Try a **log transformation** of `distance` to handle the right-skewed distribution: `log_distance = log(distance + 1)`. With a log-transformed dependent variable, a coefficient β then means that a one-unit increase in the predictor is associated with a β × 100 percent change in distance, approximately, for small values of β).
+2.  Categorize the age variable into meaningful categories and replace it in the models.
+3.  After providing labels for the `sector` variable, include it in the model as a geographical marker.
+4.  Re-run the three models. How does the interpretation change?
+:::
+
+------------------------------------------------------------------------
+
+## The Linear Probability Model (LPM)
+
+So far we have modelled a **continuous** outcome (distance to school). But what if our outcome were binary — for example, whether a child walks to school or not? The natural tool for this is logistic regression (see **next chapter**), but it is worth knowing a simpler alternative: the **Linear Probability Model (LPM)**.
+
+The LPM is simply a **standard linear regression applied to a binary outcome** (coded 0/1). The coefficients are interpreted directly as **percentage point differences** in the probability of the outcome.
+
+Our outcome here is whether a child **walks to school** — the modal category of the transport variable (29 percent of kids to school by walk as we can verify it below):
+
+```{r}
+#| message: false
+#| warning: false
+
+design_edu <- design_edu |>
+  mutate(walk = if_else(transport_medium == 1, 1L, 0L))
+
+# Check distribution
+svymean(~walk, design_edu, na.rm = TRUE)
+
+```
+
+Walking to school is a substantively interesting outcome: it is associated with living close to school, but also with household poverty (inability to afford transport) and geographic context (rural vs. urban areas).
+
+```{r}
+#| message: false
+#| warning: false
+lpm <- svyglm(walk ~ sex + age + edu_parent + hhwealthcat + province,
+              design = design_edu)
+
+tbl_regression(lpm)
+ggcoef_model(lpm)
+
+```
+
+A coefficient of -0.31 for `hhwealthcatRichest` means that children from the richest households have an **31 percentage point lower probability** of walking to school compared to the poorest, all else equal — consistent with richer families being more likely to use private vehicles or public transport.
+
+::: callout-note
+### When to use LPM?
+
+By construction, with a binary dependent variable, residuals are **heteroscedastic** — their variance is not constant but depends on the predicted values. This does not bias the coefficients but makes classical standard errors incorrect (however, it is worth noting that svyglm computes robust standard errors which solves the problem). This is one reason why logistic regression, which does not suffer from this problem by construction, remains the preferred tool in the next chapter.
+
+The LPM is popular in **economics** for its simplicity and direct interpretability, and performs well when the outcome is not too rare or too common (roughly between 20% and 80%), which is our case here. It is a useful complement to logistic regression — if both give similar results, it builds confidence. When predicted probabilities fall outside \[0, 1\], logistic regression is preferable.
+:::
+
+------------------------------------------------------------------------
+
+::: callout-caution
+## Exercise
+
+1.  What are the main dependent variables of your projects?
+2.  Run a multivariate linear regression or linear probability model on your outcomes.
+3.  How does it confirm or nuances your previous results?
+:::
+
+#### 
+
+#### 

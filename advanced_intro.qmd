@@ -1,0 +1,18 @@
+# Advanced Statistics: Five Training Sessions {#sec-advanced-intro}
+
+This part of the tutorial covers more **advanced quantitative methods** for social science research. It is intended for participants who are **already familiar with the material covered in the introductory sessions** (descriptive statistics, univariate and bivariate analysis in R) and who wish to **move further** into data management, data visualization, and multivariate analysis.
+
+This material has been designed for the Advanced statistics workshop run in Colombo (Sri Lanka) in May 2026.
+
+All chapters use the same **HIES 2019** data from Sri Lanka introduced in the previous chapters, with the same files `demo.rds`, `health.rds`, and `edu.rds` that we have [previously used](https://mathieuferry.github.io/SoMixQuantTutorial/intro.html#loading-data-into-r). If you need to access the data files (we use slightly modified files from the 25 percent excerpt), download them from the [Data Repository](https://docs.google.com/forms/d/e/1FAIpQLSccZNll_AbZTmx6EpIdCA2DVVyw_keruMWdwNxa31BbduOXOA/viewform) (ask your tutor for the password!).
+
+## Overview of chapters
+
+| Chapter        | Topic                                                  |
+|----------------|--------------------------------------------------------|
+| **Chapter 8**  | Data wrangling and visualization                       |
+| **Chapter 9**  | Linear regression and nested models                    |
+| **Chapter 10** | Logistic regression: odds ratios and probability scale |
+| **Chapter 11** | Geometric Data Analysis                                |
+
+Participants will be invited to use the presented tools to run more advanced analyses as part of their [group assignments](https://mathieuferry.github.io/SoMixQuantTutorial/topics.html) for the SoMix project.

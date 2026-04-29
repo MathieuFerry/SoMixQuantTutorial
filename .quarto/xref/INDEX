@@ -19,5 +19,23 @@
   },
   "syntaxe.qmd": {
     "syntaxe.html": "fdaec0a4"
+  },
+  "datawrangling.qmd": {
+    "datawrangling.html": "c5f21318"
+  },
+  "advanced_intro.qmd": {
+    "advanced_intro.html": "a7b226f7"
+  },
+  "linearreg.qmd": {
+    "linearreg.html": "c6b9ee12"
+  },
+  "logitreg.qmd": {
+    "logitreg.html": "b09c548f"
+  },
+  "marginaleffects.qmd": {
+    "marginaleffects.html": "13a27a91"
+  },
+  "mca.qmd": {
+    "mca.html": "cfccefdf"
   }
 }

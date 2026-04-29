@@ -1,0 +1,259 @@
+# Logistic Regression and result scales {#sec-session3}
+
+In Session 2, we used linear regression to model a **continuous** outcome (distance to school) and introduced the Linear Probability Model (LPM) as a simple way to handle binary outcomes. In this session, we go further with the proper tool for binary outcomes: **logistic regression**.
+
+We need to load the packages and data as before, and to create a survey design object:
+
+```{r}
+#| message: false
+#| warning: false
+
+# Load necessary packages
+load.lib <- c("tidyverse", "survey", "srvyr","gtsummary","performance","ggstats","broom.helpers","marginaleffects")
+install.lib <- load.lib[!load.lib %in% installed.packages()]
+for (lib in install.lib) install.packages(lib, dependencies = TRUE)
+sapply(load.lib, require, character = TRUE)
+
+# Load data
+setwd("/home/groups/3genquanti/SoMix/HIES for workshop")
+edu <- readRDS("edu.rds")
+
+edu_school <- edu |>
+  filter(!is.na(distance))
+
+design_edu <- edu_school |>
+  srvyr::as_survey_design(
+  weights = finalweight_25per      # The weight variable
+)
+```
+
+We continue with the same binary outcome introduced at the end of Session 2: whether a child **walks to school** (`walk`), which we constructed as:
+
+```{r}
+#| message: false
+#| warning: false
+design_edu <- design_edu |>
+  mutate(walk = if_else(transport_medium == 1, 1L, 0L))
+```
+
+About 29% of children walk to school (`svymean(~walk, design_edu, na.rm = TRUE)`), making it a well-suited outcome for logistic regression.
+
+By the end of this session, you will be able to:
+
+-   Understand whether logistic regression is preferable to the LPM for binary outcomes
+-   Estimate a logistic regression model on weighted survey data
+-   Interpret **log-odds**, **odds ratios**, and **predicted probabilities**
+-   Present results in publication-ready tables and figures
+-   Compare LPM and logistic regression results
+
+------------------------------------------------------------------------
+
+## Why Logistic Regression?
+
+Recall from Session 2 that the LPM applies linear regression directly to a binary outcome. Its main limitation is that predicted values can fall outside \[0, 1\] — which is theoretically incoherent for a probability.
+
+**Logistic regression** solves this by modelling the **log-odds** of the outcome, using a logistic transformation to keep all predicted probabilities between 0 and 1:
+
+$$\log\left(\frac{P(Y=1)}{1-P(Y=1)}\right) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \ldots$$
+
+The trade-off is that coefficients are on the log-odds scale, which is less directly interpretable than the LPM's percentage point differences — but we will see how to convert them into more intuitive quantities.
+
+------------------------------------------------------------------------
+
+## Estimating the Model
+
+With weighted survey data, we use `svyglm()` with `family = quasibinomial()`:
+
+```{r}
+#| message: false
+#| warning: false
+model_logit <- svyglm(
+  walk ~ sex + age + edu_parent + hhwealthcat + province,
+  design = design_edu,
+  family  = quasibinomial()
+)
+
+summary(model_logit)
+```
+
+::: callout-note
+## Why `quasibinomial` and not `binomial`?
+
+With survey data, observations are not independent. Using `quasibinomial()` avoids the assumption of binomial variance and produces correct standard errors for weighted data. The point estimates (coefficients) are identical to `binomial()`.
+:::
+
+------------------------------------------------------------------------
+
+## Interpreting Coefficients: Odds Ratios
+
+The raw coefficients are on the **log-odds scale**, which is not intuitive. We exponentiate them to obtain **odds ratios (OR)**:
+
+```{r}
+#| message: false
+#| warning: false
+tbl_regression(model_logit, exponentiate = TRUE)
+```
+
+### Interpreting an odds ratio
+
+-   **OR = 1**: no association with the outcome
+-   **OR \> 1**: this category is more likely to walk to school
+-   **OR \< 1**: this category is less likely to walk to school
+
+For example, an OR of 0.17 for `hhwealthcatRichest` means children from the richest households have **6 times lower odds** of walking to school compared to the poorest (1/0.17 ≈ 6) — consistent with wealthier families being more likely to use motorised transport. We can also say that children from the richest households have **83% lower odds** of walking to school compared to the poorest \[(1 - 0.17) × 100 = 83%\].
+
+Or we can also say from the results that children from the Central province have **1.74 times higher odds** of walking to school compared to children from the Western province.
+
+::: callout-note
+## Odds ratios vs. percentage point differences
+
+Odds ratios describe *relative* effects and can be counterintuitive, especially when the outcome is common. An OR of 0.5 does **not** mean the probability is halved — the actual difference in probability depends on the baseline probability. For a more direct interpretation, see the note on marginal effects at the end of this session.
+
+Odds Ratios below 1 are less intuitive to understand and grasp. It may be useful to change the reference category of the variable of interest to get ORs \> 1!
+:::
+
+------------------------------------------------------------------------
+
+## Nested Model Comparison
+
+As in Session 2, we compare nested models to assess the contribution of each block of variables:
+
+```{r}
+#| message: false
+#| warning: false
+
+m1 <- svyglm(walk ~ sex + age, design = design_edu, family = quasibinomial())
+m2 <- svyglm(walk ~ sex + age + edu_parent + hhwealthcat, design = design_edu, family = quasibinomial())
+m3 <- svyglm(walk ~ sex + age + edu_parent + hhwealthcat + province, design = design_edu, family = quasibinomial())
+
+tbl_merge(
+  list(
+    tbl_regression(m1, exponentiate = TRUE),
+    tbl_regression(m2, exponentiate = TRUE),
+    tbl_regression(m3, exponentiate = TRUE)
+  ),
+  tab_spanner = c("Model 1", "Model 2", "Model 3")
+)
+```
+
+### Goodness of fit
+
+The results confirm the pattern observed in Session 2 with linear regression. Model 1, with only sex and age, fits the data very poorly (R² ≈ 0.001) — individual characteristics alone tell us almost nothing about who walks to school. The addition of socioeconomic variables in Model 2 produces a substantial improvement (AIC drops from 4725 to 3546, R² rises to 0.08), confirming that household wealth and parental education are the main drivers of transport mode. Adding province in Model 3 brings a further modest gain (AIC = 3447, R² = 0.11), suggesting that geographic context plays an additional but secondary role — consistent with the linear regression findings in Session 2.
+
+::: callout-note
+Lower AIC indicates better fit, penalising model complexity. The R² reported here is a survey-adapted approximation (correlation between fitted values and observed outcome, squared), comparable to the one used in Session 2. For logistic regression, it should be interpreted cautiously — what matters most for model comparison is the AIC.
+:::
+
+```{r}
+#| message: false
+#| warning: false
+
+library(performance)
+compare_performance(m1, m2, m3, metrics = c("AIC", "R2", "R2_adj"))
+```
+
+------------------------------------------------------------------------
+
+## Visualising Results: A Forest Plot
+
+```{r}
+#| message: false
+#| warning: false
+m3 |> 
+  ggstats::ggcoef_model(exponentiate = TRUE)
+
+```
+
+------------------------------------------------------------------------
+
+## LPM vs. Logistic Regression: A Comparison
+
+It is instructive to compare the LPM and logistic regression on the same outcome. In many cases, the two approaches give **very similar substantive conclusions.**
+
+Here, in both cases, household wealth is the strongest predictor of walking to school, with a **clear gradient from poorest to richest**; **parental education shows a significant negative effect** only from Senior secondary upward; and **province plays an important role**, with Eastern province children being much more likely to walk (OR = 2.64, +22 percentage points) and North Western children much less so.
+
+The **LPM coefficients offer a more direct interpretation** — for instance, children from the richest households walk to school 31 percentage points less often than the poorest — while **logistic regression ensures predicted probabilities remain within \[0, 1\] (as is verified by computing the marginal predictions from the logistic model)**.
+
+```{r}
+#| message: false
+#| warning: false
+
+library(marginaleffects)
+lpm <- svyglm(walk ~ sex + age + edu_parent + hhwealthcat + province,
+              design = design_edu)
+
+tbl_merge(
+  list(
+    tbl_regression(lpm) |> 
+      modify_header(estimate ~ "**Beta**"),
+    tbl_regression(m3, exponentiate = TRUE) |> 
+      modify_header(estimate ~ "**OR**"),
+    tbl_regression(m3,
+      tidy_fun = broom.helpers::tidy_marginal_predictions,
+      type = "response",
+      estimate_fun = scales::label_percent(accuracy = 0.1),
+      wts = weights(m3)
+    ) |>
+      modify_table_body(
+        ~ .x |> filter(!grepl("age", variable))
+      ) |>
+      modify_header(estimate ~ "**Marginal pred**")
+  ),
+  tab_spanner = c("LPM", "Logistic (OR)", "Logistic (AME)")
+)
+#we have removed the calculation of a marginal prediction for age as it is a continuous
+#variable. 
+```
+
+When results are consistent across both models, it strengthens confidence in the findings. The LPM coefficients have the advantage of being directly interpretable as percentage point differences (from the .
+
+------------------------------------------------------------------------
+
+## Going Further: Marginal Effects and Interactions
+
+::: callout-note
+## Marginal predictions
+
+Odds ratios can be difficult to communicate to a non-technical audience. **Average marginal predictions** convert logistic model results back into probability scale, giving directly interpretable percentage point differences — similar to LPM coefficients but computed correctly from the logistic model. The `broom.helpers` package provides a simple implementation:
+
+```{r}
+#| message: false
+#| warning: false
+m3 |> 
+  tbl_regression(
+    tidy_fun = broom.helpers::tidy_marginal_predictions,
+    type = "response",
+    estimate_fun = scales::label_percent(accuracy = 0.1),
+    wts = weights(m3)
+  )
+```
+
+For a full treatment of marginal effects, the `marginaleffects` package provides systematic implementations, see the [marginaleffects documentation](https://marginaleffects.com/).
+:::
+
+::: callout-note
+## Interactions
+
+Interaction terms allow you to test whether the effect of one variable **differs across subgroups** — for example, whether the effect of age on walking to school differs across households of different wealth status. Interactions are easier to interpret on the probability scale, using the LPM or marginal effects/predictions.
+
+Here is a quick example with the logistic model, suggesting that the effect of children's age on the probability to walk to school matters mostly among the poorest households.
+
+```{r}
+#| message: false
+#| warning: false
+
+library(marginaleffects)
+m4 <- svyglm(walk ~ sex + age + edu_parent + hhwealthcat + province + age:hhwealthcat,
+              design = design_edu)
+
+plot_predictions(m4, condition = c("age","hhwealthcat"))+theme_bw()
+```
+:::
+
+------------------------------------------------------------------------
+
+## Exercise
+
+1.  After discretizing age, and adding sector (rural, urban, estate) as a new independent variable among geographical predictors, re-estimate the LPM and logistic models. Compare the results and interpret.
+2.  Children who go to school by bus are coded as 6 in the variable transport_medium. How does the probability of going to school by bus vary according to socioeconomic and geographical markers?
+3.  For your own group project, estimate logistic regressions. How do the results confirm/enhance your previous bivariate analyses?
