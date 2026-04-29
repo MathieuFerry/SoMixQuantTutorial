@@ -375,23 +375,23 @@
   {
     "objectID": "advanced_intro.html",
     "href": "advanced_intro.html",
-    "title": "7  Advanced Statistics: Five Training Sessions",
+    "title": "7  Advanced Statistics with R",
     "section": "",
     "text": "7.1 Overview of chapters\nParticipants will be invited to use the presented tools to run more advanced analyses as part of their group assignments for the SoMix project.",
     "crumbs": [
       "**Advanced analyses**",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Statistics: Five Training Sessions</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Statistics with R</span>"
     ]
   },
   {
     "objectID": "advanced_intro.html#overview-of-chapters",
     "href": "advanced_intro.html#overview-of-chapters",
-    "title": "7  Advanced Statistics: Five Training Sessions",
+    "title": "7  Advanced Statistics with R",
     "section": "",
     "text": "Chapter\nTopic\n\n\n\n\nChapter 8\nData wrangling and visualization\n\n\nChapter 9\nLinear regression and nested models\n\n\nChapter 10\nLogistic regression: odds ratios and probability scale\n\n\nChapter 11\nGeometric Data Analysis",
     "crumbs": [
       "**Advanced analyses**",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Statistics: Five Training Sessions</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Statistics with R</span>"
     ]
   },
   {

@@ -1,4 +1,4 @@
-# Advanced Statistics: Five Training Sessions {#sec-advanced-intro}
+# Advanced Statistics with R {#sec-advanced-intro}
 
 This part of the tutorial covers more **advanced quantitative methods** for social science research. It is intended for participants who are **already familiar with the material covered in the introductory sessions** (descriptive statistics, univariate and bivariate analysis in R) and who wish to **move further** into data management, data visualization, and multivariate analysis.
 
