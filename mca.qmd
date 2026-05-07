@@ -53,7 +53,7 @@ With two variables, a scatterplot works. With 16 variables, you would need to lo
 ## PCA vs. MCA
 
 |   | PCA | MCA |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | **Variable type** | Continuous | Categorical |
 | **Input** | Correlation matrix | Indicator matrix |
 | **Points on map** | Variables (arrows) + individuals | Categories + individuals |
@@ -583,24 +583,19 @@ This is why the supplementary variables (Richest, Urban, Tertiary...) project so
 
 PCA and MCA are **exploratory** tools. Their goal is to reveal structure, more than to test hypotheses. A typical workflow is:
 
-**1. Run MCA to identify the main dimensions of variation**
-The factorial axes summarise the main contrasts in the data. In our case for the MCA, Axis 1 captures a general housing quality gradient; Axis 2 a secondary contrast in housing type.
+**1. Run MCA to identify the main dimensions of variation** The factorial axes summarise the main contrasts in the data. In our case for the MCA, Axis 1 captures a general housing quality gradient; Axis 2 a secondary contrast in housing type.
 
-**2. Interpret the axes substantively**
-This requires reading the contribution plots, examining which categories define each pole, and formulating a sociological interpretation. This step is a craft — there is no algorithm for it.
+**2. Interpret the axes substantively** This requires reading the contribution plots, examining which categories define each pole, and formulating a sociological interpretation. This step is a craft — there is no algorithm for it.
 
-**3. Examine supplementary variables**
-How do social groups (by wealth, education, province, sector) distribute across the factorial space? This reveals which social characteristics are most associated with the dimensions identified — without having constructed those dimensions.
+**3. Examine supplementary variables** How do social groups (by wealth, education, province, sector) distribute across the factorial space? This reveals which social characteristics are most associated with the dimensions identified — without having constructed those dimensions.
 
-**4. Clustering**
-Individual coordinates on the factorial axes can be used as input to a clustering algorithm (typically hierarchical clustering, `HCPC()` in FactoMineR) to build **typologies** — groups of households with similar housing profiles. These typologies can then be used as categorical variables in subsequent analyses.
+**4. Clustering** Individual coordinates on the factorial axes can be used as input to a clustering algorithm (typically hierarchical clustering, `HCPC()` in FactoMineR) to build **typologies** — groups of households with similar housing profiles. These typologies can then be used as categorical variables in subsequent analyses.
 
-**5. Use scores in regression**
-Individual coordinates on Axis 1 (the housing quality score) can be extracted and used as a dependent or independent variable in a regression model — for example to study which household characteristics predict position on the housing quality gradient, or to use housing quality as a control variable in a model of health outcomes.
+**5. Use scores in regression** Individual coordinates on Axis 1 (the housing quality score) can be extracted and used as a dependent or independent variable in a regression model — for example to study which household characteristics predict position on the housing quality gradient, or to use housing quality as a control variable in a model of health outcomes.
 
 *Steps 4 and 5 are optional and depend on the research question — sometimes the factor map itself is the main result.*
 
-### Want to go further? 
+### Want to go further?
 
 Practical online tutorials in R:
 

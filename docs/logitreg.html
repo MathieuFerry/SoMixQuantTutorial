@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Logistic Regression and result scales – SoMix Quant training</title>
+<title>11&nbsp; Logistic Regression and result scales – SoMix Quant training</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./mca.html" rel="next">
-<link href="./linearreg.html" rel="prev">
+<link href="./chisquare.html" rel="prev">
 <link href="./images/icon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -144,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced_intro.html"><strong>Advanced analyses</strong></a></li><li class="breadcrumb-item"><a href="./logitreg.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Logistic Regression and result scales</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced_intro.html"><strong>Advanced analyses</strong></a></li><li class="breadcrumb-item"><a href="./logitreg.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logistic Regression and result scales</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -287,14 +287,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./chisquare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">The Chi-Square Test</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./logitreg.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Logistic Regression and result scales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logistic Regression and result scales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mca.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Geometric Data Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Geometric Data Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -309,29 +315,29 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-logistic-regression" id="toc-why-logistic-regression" class="nav-link active" data-scroll-target="#why-logistic-regression"><span class="header-section-number">10.1</span> Why Logistic Regression?</a></li>
-  <li><a href="#estimating-the-model" id="toc-estimating-the-model" class="nav-link" data-scroll-target="#estimating-the-model"><span class="header-section-number">10.2</span> Estimating the Model</a></li>
-  <li><a href="#interpreting-coefficients-odds-ratios" id="toc-interpreting-coefficients-odds-ratios" class="nav-link" data-scroll-target="#interpreting-coefficients-odds-ratios"><span class="header-section-number">10.3</span> Interpreting Coefficients: Odds Ratios</a>
+  <li><a href="#why-logistic-regression" id="toc-why-logistic-regression" class="nav-link active" data-scroll-target="#why-logistic-regression"><span class="header-section-number">11.1</span> Why Logistic Regression?</a></li>
+  <li><a href="#estimating-the-model" id="toc-estimating-the-model" class="nav-link" data-scroll-target="#estimating-the-model"><span class="header-section-number">11.2</span> Estimating the Model</a></li>
+  <li><a href="#interpreting-coefficients-odds-ratios" id="toc-interpreting-coefficients-odds-ratios" class="nav-link" data-scroll-target="#interpreting-coefficients-odds-ratios"><span class="header-section-number">11.3</span> Interpreting Coefficients: Odds Ratios</a>
   <ul class="collapse">
-  <li><a href="#interpreting-an-odds-ratio" id="toc-interpreting-an-odds-ratio" class="nav-link" data-scroll-target="#interpreting-an-odds-ratio"><span class="header-section-number">10.3.1</span> Interpreting an odds ratio</a></li>
+  <li><a href="#interpreting-an-odds-ratio" id="toc-interpreting-an-odds-ratio" class="nav-link" data-scroll-target="#interpreting-an-odds-ratio"><span class="header-section-number">11.3.1</span> Interpreting an odds ratio</a></li>
   </ul></li>
-  <li><a href="#nested-model-comparison" id="toc-nested-model-comparison" class="nav-link" data-scroll-target="#nested-model-comparison"><span class="header-section-number">10.4</span> Nested Model Comparison</a>
+  <li><a href="#nested-model-comparison" id="toc-nested-model-comparison" class="nav-link" data-scroll-target="#nested-model-comparison"><span class="header-section-number">11.4</span> Nested Model Comparison</a>
   <ul class="collapse">
-  <li><a href="#goodness-of-fit" id="toc-goodness-of-fit" class="nav-link" data-scroll-target="#goodness-of-fit"><span class="header-section-number">10.4.1</span> Goodness of fit</a></li>
+  <li><a href="#goodness-of-fit" id="toc-goodness-of-fit" class="nav-link" data-scroll-target="#goodness-of-fit"><span class="header-section-number">11.4.1</span> Goodness of fit</a></li>
   </ul></li>
-  <li><a href="#visualising-results-a-forest-plot" id="toc-visualising-results-a-forest-plot" class="nav-link" data-scroll-target="#visualising-results-a-forest-plot"><span class="header-section-number">10.5</span> Visualising Results: A Forest Plot</a></li>
-  <li><a href="#lpm-vs.-logistic-regression-a-comparison" id="toc-lpm-vs.-logistic-regression-a-comparison" class="nav-link" data-scroll-target="#lpm-vs.-logistic-regression-a-comparison"><span class="header-section-number">10.6</span> LPM vs.&nbsp;Logistic Regression: A Comparison</a></li>
-  <li><a href="#going-further-marginal-effects-and-interactions" id="toc-going-further-marginal-effects-and-interactions" class="nav-link" data-scroll-target="#going-further-marginal-effects-and-interactions"><span class="header-section-number">10.7</span> Going Further: Marginal Effects and Interactions</a></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">10.8</span> Exercise</a></li>
+  <li><a href="#visualising-results-a-forest-plot" id="toc-visualising-results-a-forest-plot" class="nav-link" data-scroll-target="#visualising-results-a-forest-plot"><span class="header-section-number">11.5</span> Visualising Results: A Forest Plot</a></li>
+  <li><a href="#lpm-vs.-logistic-regression-a-comparison" id="toc-lpm-vs.-logistic-regression-a-comparison" class="nav-link" data-scroll-target="#lpm-vs.-logistic-regression-a-comparison"><span class="header-section-number">11.6</span> LPM vs.&nbsp;Logistic Regression: A Comparison</a></li>
+  <li><a href="#going-further-marginal-effects-and-interactions" id="toc-going-further-marginal-effects-and-interactions" class="nav-link" data-scroll-target="#going-further-marginal-effects-and-interactions"><span class="header-section-number">11.7</span> Going Further: Marginal Effects and Interactions</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">11.8</span> Exercise</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced_intro.html"><strong>Advanced analyses</strong></a></li><li class="breadcrumb-item"><a href="./logitreg.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Logistic Regression and result scales</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced_intro.html"><strong>Advanced analyses</strong></a></li><li class="breadcrumb-item"><a href="./logitreg.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logistic Regression and result scales</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-session3" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Logistic Regression and result scales</span></span></h1>
+<h1 class="title"><span id="sec-session3" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logistic Regression and result scales</span></span></h1>
 </div>
 
 
@@ -389,16 +395,16 @@ window.Quarto = {
 <li>Compare LPM and logistic regression results</li>
 </ul>
 <hr>
-<section id="why-logistic-regression" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="why-logistic-regression"><span class="header-section-number">10.1</span> Why Logistic Regression?</h2>
+<section id="why-logistic-regression" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="why-logistic-regression"><span class="header-section-number">11.1</span> Why Logistic Regression?</h2>
 <p>Recall from Session 2 that the LPM applies linear regression directly to a binary outcome. Its main limitation is that predicted values can fall outside [0, 1] — which is theoretically incoherent for a probability.</p>
 <p><strong>Logistic regression</strong> solves this by modelling the <strong>log-odds</strong> of the outcome, using a logistic transformation to keep all predicted probabilities between 0 and 1:</p>
 <p><span class="math display">\[\log\left(\frac{P(Y=1)}{1-P(Y=1)}\right) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \ldots\]</span></p>
 <p>The trade-off is that coefficients are on the log-odds scale, which is less directly interpretable than the LPM’s percentage point differences — but we will see how to convert them into more intuitive quantities.</p>
 <hr>
 </section>
-<section id="estimating-the-model" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="estimating-the-model"><span class="header-section-number">10.2</span> Estimating the Model</h2>
+<section id="estimating-the-model" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="estimating-the-model"><span class="header-section-number">11.2</span> Estimating the Model</h2>
 <p>With weighted survey data, we use <code>svyglm()</code> with <code>family = quasibinomial()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>model_logit <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(</span>
@@ -462,29 +468,29 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
 </div>
 <hr>
 </section>
-<section id="interpreting-coefficients-odds-ratios" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="interpreting-coefficients-odds-ratios"><span class="header-section-number">10.3</span> Interpreting Coefficients: Odds Ratios</h2>
+<section id="interpreting-coefficients-odds-ratios" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="interpreting-coefficients-odds-ratios"><span class="header-section-number">11.3</span> Interpreting Coefficients: Odds Ratios</h2>
 <p>The raw coefficients are on the <strong>log-odds scale</strong>, which is not intuitive. We exponentiate them to obtain <strong>odds ratios (OR)</strong>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(model_logit, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="gkltbyoobb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gkltbyoobb table {
+<div id="innqecsete" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#innqecsete table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gkltbyoobb thead, #gkltbyoobb tbody, #gkltbyoobb tfoot, #gkltbyoobb tr, #gkltbyoobb td, #gkltbyoobb th {
+#innqecsete thead, #innqecsete tbody, #innqecsete tfoot, #innqecsete tr, #innqecsete td, #innqecsete th {
   border-style: none;
 }
 
-#gkltbyoobb p {
+#innqecsete p {
   margin: 0;
   padding: 0;
 }
 
-#gkltbyoobb .gt_table {
+#innqecsete .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -510,12 +516,12 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   border-left-color: #D3D3D3;
 }
 
-#gkltbyoobb .gt_caption {
+#innqecsete .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gkltbyoobb .gt_title {
+#innqecsete .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -527,7 +533,7 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   border-bottom-width: 0;
 }
 
-#gkltbyoobb .gt_subtitle {
+#innqecsete .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -539,7 +545,7 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   border-top-width: 0;
 }
 
-#gkltbyoobb .gt_heading {
+#innqecsete .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -551,13 +557,13 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   border-right-color: #D3D3D3;
 }
 
-#gkltbyoobb .gt_bottom_border {
+#innqecsete .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gkltbyoobb .gt_col_headings {
+#innqecsete .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -572,7 +578,7 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   border-right-color: #D3D3D3;
 }
 
-#gkltbyoobb .gt_col_heading {
+#innqecsete .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -592,7 +598,7 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   overflow-x: hidden;
 }
 
-#gkltbyoobb .gt_column_spanner_outer {
+#innqecsete .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -604,15 +610,15 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   padding-right: 4px;
 }
 
-#gkltbyoobb .gt_column_spanner_outer:first-child {
+#innqecsete .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gkltbyoobb .gt_column_spanner_outer:last-child {
+#innqecsete .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gkltbyoobb .gt_column_spanner {
+#innqecsete .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -624,11 +630,11 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   width: 100%;
 }
 
-#gkltbyoobb .gt_spanner_row {
+#innqecsete .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gkltbyoobb .gt_group_heading {
+#innqecsete .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -654,7 +660,7 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   text-align: left;
 }
 
-#gkltbyoobb .gt_empty_group_heading {
+#innqecsete .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -669,15 +675,15 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   vertical-align: middle;
 }
 
-#gkltbyoobb .gt_from_md > :first-child {
+#innqecsete .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gkltbyoobb .gt_from_md > :last-child {
+#innqecsete .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gkltbyoobb .gt_row {
+#innqecsete .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -696,7 +702,7 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   overflow-x: hidden;
 }
 
-#gkltbyoobb .gt_stub {
+#innqecsete .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -709,7 +715,7 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   padding-right: 5px;
 }
 
-#gkltbyoobb .gt_stub_row_group {
+#innqecsete .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -723,15 +729,15 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   vertical-align: top;
 }
 
-#gkltbyoobb .gt_row_group_first td {
+#innqecsete .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gkltbyoobb .gt_row_group_first th {
+#innqecsete .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gkltbyoobb .gt_summary_row {
+#innqecsete .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -741,16 +747,16 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   padding-right: 5px;
 }
 
-#gkltbyoobb .gt_first_summary_row {
+#innqecsete .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gkltbyoobb .gt_first_summary_row.thick {
+#innqecsete .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gkltbyoobb .gt_last_summary_row {
+#innqecsete .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -760,7 +766,7 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   border-bottom-color: #D3D3D3;
 }
 
-#gkltbyoobb .gt_grand_summary_row {
+#innqecsete .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -770,7 +776,7 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   padding-right: 5px;
 }
 
-#gkltbyoobb .gt_first_grand_summary_row {
+#innqecsete .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -780,7 +786,7 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   border-top-color: #D3D3D3;
 }
 
-#gkltbyoobb .gt_last_grand_summary_row_top {
+#innqecsete .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -790,11 +796,11 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   border-bottom-color: #D3D3D3;
 }
 
-#gkltbyoobb .gt_striped {
+#innqecsete .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gkltbyoobb .gt_table_body {
+#innqecsete .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -803,7 +809,7 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   border-bottom-color: #D3D3D3;
 }
 
-#gkltbyoobb .gt_footnotes {
+#innqecsete .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -817,7 +823,7 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   border-right-color: #D3D3D3;
 }
 
-#gkltbyoobb .gt_footnote {
+#innqecsete .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -826,7 +832,7 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   padding-right: 5px;
 }
 
-#gkltbyoobb .gt_sourcenotes {
+#innqecsete .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -840,7 +846,7 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   border-right-color: #D3D3D3;
 }
 
-#gkltbyoobb .gt_sourcenote {
+#innqecsete .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -848,72 +854,72 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
   padding-right: 5px;
 }
 
-#gkltbyoobb .gt_left {
+#innqecsete .gt_left {
   text-align: left;
 }
 
-#gkltbyoobb .gt_center {
+#innqecsete .gt_center {
   text-align: center;
 }
 
-#gkltbyoobb .gt_right {
+#innqecsete .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gkltbyoobb .gt_font_normal {
+#innqecsete .gt_font_normal {
   font-weight: normal;
 }
 
-#gkltbyoobb .gt_font_bold {
+#innqecsete .gt_font_bold {
   font-weight: bold;
 }
 
-#gkltbyoobb .gt_font_italic {
+#innqecsete .gt_font_italic {
   font-style: italic;
 }
 
-#gkltbyoobb .gt_super {
+#innqecsete .gt_super {
   font-size: 65%;
 }
 
-#gkltbyoobb .gt_footnote_marks {
+#innqecsete .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gkltbyoobb .gt_asterisk {
+#innqecsete .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gkltbyoobb .gt_indent_1 {
+#innqecsete .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gkltbyoobb .gt_indent_2 {
+#innqecsete .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gkltbyoobb .gt_indent_3 {
+#innqecsete .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gkltbyoobb .gt_indent_4 {
+#innqecsete .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gkltbyoobb .gt_indent_5 {
+#innqecsete .gt_indent_5 {
   text-indent: 25px;
 }
 
-#gkltbyoobb .katex-display {
+#innqecsete .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#gkltbyoobb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#innqecsete div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1123,8 +1129,8 @@ Why <code>quasibinomial</code> and not <code>binomial</code>?
 </div>
 </div>
 </div>
-<section id="interpreting-an-odds-ratio" class="level3" data-number="10.3.1">
-<h3 data-number="10.3.1" class="anchored" data-anchor-id="interpreting-an-odds-ratio"><span class="header-section-number">10.3.1</span> Interpreting an odds ratio</h3>
+<section id="interpreting-an-odds-ratio" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="interpreting-an-odds-ratio"><span class="header-section-number">11.3.1</span> Interpreting an odds ratio</h3>
 <ul>
 <li><strong>OR = 1</strong>: no association with the outcome</li>
 <li><strong>OR &gt; 1</strong>: this category is more likely to walk to school</li>
@@ -1149,8 +1155,8 @@ Odds ratios vs.&nbsp;percentage point differences
 <hr>
 </section>
 </section>
-<section id="nested-model-comparison" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="nested-model-comparison"><span class="header-section-number">10.4</span> Nested Model Comparison</h2>
+<section id="nested-model-comparison" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="nested-model-comparison"><span class="header-section-number">11.4</span> Nested Model Comparison</h2>
 <p>As in Session 2, we compare nested models to assess the contribution of each block of variables:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(walk <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">design =</span> design_edu, <span class="at">family =</span> <span class="fu">quasibinomial</span>())</span>
@@ -1166,23 +1172,23 @@ Odds ratios vs.&nbsp;percentage point differences
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Model 1"</span>, <span class="st">"Model 2"</span>, <span class="st">"Model 3"</span>)</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="lgatqrkits" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lgatqrkits table {
+<div id="vxllcydiyb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vxllcydiyb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lgatqrkits thead, #lgatqrkits tbody, #lgatqrkits tfoot, #lgatqrkits tr, #lgatqrkits td, #lgatqrkits th {
+#vxllcydiyb thead, #vxllcydiyb tbody, #vxllcydiyb tfoot, #vxllcydiyb tr, #vxllcydiyb td, #vxllcydiyb th {
   border-style: none;
 }
 
-#lgatqrkits p {
+#vxllcydiyb p {
   margin: 0;
   padding: 0;
 }
 
-#lgatqrkits .gt_table {
+#vxllcydiyb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1208,12 +1214,12 @@ Odds ratios vs.&nbsp;percentage point differences
   border-left-color: #D3D3D3;
 }
 
-#lgatqrkits .gt_caption {
+#vxllcydiyb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lgatqrkits .gt_title {
+#vxllcydiyb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1225,7 +1231,7 @@ Odds ratios vs.&nbsp;percentage point differences
   border-bottom-width: 0;
 }
 
-#lgatqrkits .gt_subtitle {
+#vxllcydiyb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1237,7 +1243,7 @@ Odds ratios vs.&nbsp;percentage point differences
   border-top-width: 0;
 }
 
-#lgatqrkits .gt_heading {
+#vxllcydiyb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1249,13 +1255,13 @@ Odds ratios vs.&nbsp;percentage point differences
   border-right-color: #D3D3D3;
 }
 
-#lgatqrkits .gt_bottom_border {
+#vxllcydiyb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lgatqrkits .gt_col_headings {
+#vxllcydiyb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1270,7 +1276,7 @@ Odds ratios vs.&nbsp;percentage point differences
   border-right-color: #D3D3D3;
 }
 
-#lgatqrkits .gt_col_heading {
+#vxllcydiyb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1290,7 +1296,7 @@ Odds ratios vs.&nbsp;percentage point differences
   overflow-x: hidden;
 }
 
-#lgatqrkits .gt_column_spanner_outer {
+#vxllcydiyb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1302,15 +1308,15 @@ Odds ratios vs.&nbsp;percentage point differences
   padding-right: 4px;
 }
 
-#lgatqrkits .gt_column_spanner_outer:first-child {
+#vxllcydiyb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lgatqrkits .gt_column_spanner_outer:last-child {
+#vxllcydiyb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lgatqrkits .gt_column_spanner {
+#vxllcydiyb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1322,11 +1328,11 @@ Odds ratios vs.&nbsp;percentage point differences
   width: 100%;
 }
 
-#lgatqrkits .gt_spanner_row {
+#vxllcydiyb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lgatqrkits .gt_group_heading {
+#vxllcydiyb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1352,7 +1358,7 @@ Odds ratios vs.&nbsp;percentage point differences
   text-align: left;
 }
 
-#lgatqrkits .gt_empty_group_heading {
+#vxllcydiyb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1367,15 +1373,15 @@ Odds ratios vs.&nbsp;percentage point differences
   vertical-align: middle;
 }
 
-#lgatqrkits .gt_from_md > :first-child {
+#vxllcydiyb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lgatqrkits .gt_from_md > :last-child {
+#vxllcydiyb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lgatqrkits .gt_row {
+#vxllcydiyb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1394,7 +1400,7 @@ Odds ratios vs.&nbsp;percentage point differences
   overflow-x: hidden;
 }
 
-#lgatqrkits .gt_stub {
+#vxllcydiyb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1407,7 +1413,7 @@ Odds ratios vs.&nbsp;percentage point differences
   padding-right: 5px;
 }
 
-#lgatqrkits .gt_stub_row_group {
+#vxllcydiyb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1421,15 +1427,15 @@ Odds ratios vs.&nbsp;percentage point differences
   vertical-align: top;
 }
 
-#lgatqrkits .gt_row_group_first td {
+#vxllcydiyb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lgatqrkits .gt_row_group_first th {
+#vxllcydiyb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lgatqrkits .gt_summary_row {
+#vxllcydiyb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1439,16 +1445,16 @@ Odds ratios vs.&nbsp;percentage point differences
   padding-right: 5px;
 }
 
-#lgatqrkits .gt_first_summary_row {
+#vxllcydiyb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lgatqrkits .gt_first_summary_row.thick {
+#vxllcydiyb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lgatqrkits .gt_last_summary_row {
+#vxllcydiyb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1458,7 +1464,7 @@ Odds ratios vs.&nbsp;percentage point differences
   border-bottom-color: #D3D3D3;
 }
 
-#lgatqrkits .gt_grand_summary_row {
+#vxllcydiyb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1468,7 +1474,7 @@ Odds ratios vs.&nbsp;percentage point differences
   padding-right: 5px;
 }
 
-#lgatqrkits .gt_first_grand_summary_row {
+#vxllcydiyb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1478,7 +1484,7 @@ Odds ratios vs.&nbsp;percentage point differences
   border-top-color: #D3D3D3;
 }
 
-#lgatqrkits .gt_last_grand_summary_row_top {
+#vxllcydiyb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1488,11 +1494,11 @@ Odds ratios vs.&nbsp;percentage point differences
   border-bottom-color: #D3D3D3;
 }
 
-#lgatqrkits .gt_striped {
+#vxllcydiyb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lgatqrkits .gt_table_body {
+#vxllcydiyb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1501,7 +1507,7 @@ Odds ratios vs.&nbsp;percentage point differences
   border-bottom-color: #D3D3D3;
 }
 
-#lgatqrkits .gt_footnotes {
+#vxllcydiyb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1515,7 +1521,7 @@ Odds ratios vs.&nbsp;percentage point differences
   border-right-color: #D3D3D3;
 }
 
-#lgatqrkits .gt_footnote {
+#vxllcydiyb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1524,7 +1530,7 @@ Odds ratios vs.&nbsp;percentage point differences
   padding-right: 5px;
 }
 
-#lgatqrkits .gt_sourcenotes {
+#vxllcydiyb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1538,7 +1544,7 @@ Odds ratios vs.&nbsp;percentage point differences
   border-right-color: #D3D3D3;
 }
 
-#lgatqrkits .gt_sourcenote {
+#vxllcydiyb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1546,72 +1552,72 @@ Odds ratios vs.&nbsp;percentage point differences
   padding-right: 5px;
 }
 
-#lgatqrkits .gt_left {
+#vxllcydiyb .gt_left {
   text-align: left;
 }
 
-#lgatqrkits .gt_center {
+#vxllcydiyb .gt_center {
   text-align: center;
 }
 
-#lgatqrkits .gt_right {
+#vxllcydiyb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lgatqrkits .gt_font_normal {
+#vxllcydiyb .gt_font_normal {
   font-weight: normal;
 }
 
-#lgatqrkits .gt_font_bold {
+#vxllcydiyb .gt_font_bold {
   font-weight: bold;
 }
 
-#lgatqrkits .gt_font_italic {
+#vxllcydiyb .gt_font_italic {
   font-style: italic;
 }
 
-#lgatqrkits .gt_super {
+#vxllcydiyb .gt_super {
   font-size: 65%;
 }
 
-#lgatqrkits .gt_footnote_marks {
+#vxllcydiyb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lgatqrkits .gt_asterisk {
+#vxllcydiyb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lgatqrkits .gt_indent_1 {
+#vxllcydiyb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lgatqrkits .gt_indent_2 {
+#vxllcydiyb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lgatqrkits .gt_indent_3 {
+#vxllcydiyb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lgatqrkits .gt_indent_4 {
+#vxllcydiyb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lgatqrkits .gt_indent_5 {
+#vxllcydiyb .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lgatqrkits .katex-display {
+#vxllcydiyb .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lgatqrkits div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vxllcydiyb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2121,8 +2127,8 @@ Model 3
 </div>
 </div>
 </div>
-<section id="goodness-of-fit" class="level3" data-number="10.4.1">
-<h3 data-number="10.4.1" class="anchored" data-anchor-id="goodness-of-fit"><span class="header-section-number">10.4.1</span> Goodness of fit</h3>
+<section id="goodness-of-fit" class="level3" data-number="11.4.1">
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="goodness-of-fit"><span class="header-section-number">11.4.1</span> Goodness of fit</h3>
 <p>The results confirm the pattern observed in Session 2 with linear regression. Model 1, with only sex and age, fits the data very poorly (R² ≈ 0.001) — individual characteristics alone tell us almost nothing about who walks to school. The addition of socioeconomic variables in Model 2 produces a substantial improvement (AIC drops from 4725 to 3546, R² rises to 0.08), confirming that household wealth and parental education are the main drivers of transport mode. Adding province in Model 3 brings a further modest gain (AIC = 3447, R² = 0.11), suggesting that geographic context plays an additional but secondary role — consistent with the linear regression findings in Session 2.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2153,8 +2159,8 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
 <hr>
 </section>
 </section>
-<section id="visualising-results-a-forest-plot" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="visualising-results-a-forest-plot"><span class="header-section-number">10.5</span> Visualising Results: A Forest Plot</h2>
+<section id="visualising-results-a-forest-plot" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="visualising-results-a-forest-plot"><span class="header-section-number">11.5</span> Visualising Results: A Forest Plot</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="sc">|&gt;</span> </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  ggstats<span class="sc">::</span><span class="fu">ggcoef_model</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2168,8 +2174,8 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
 </div>
 <hr>
 </section>
-<section id="lpm-vs.-logistic-regression-a-comparison" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="lpm-vs.-logistic-regression-a-comparison"><span class="header-section-number">10.6</span> LPM vs.&nbsp;Logistic Regression: A Comparison</h2>
+<section id="lpm-vs.-logistic-regression-a-comparison" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="lpm-vs.-logistic-regression-a-comparison"><span class="header-section-number">11.6</span> LPM vs.&nbsp;Logistic Regression: A Comparison</h2>
 <p>It is instructive to compare the LPM and logistic regression on the same outcome. In many cases, the two approaches give <strong>very similar substantive conclusions.</strong></p>
 <p>Here, in both cases, household wealth is the strongest predictor of walking to school, with a <strong>clear gradient from poorest to richest</strong>; <strong>parental education shows a significant negative effect</strong> only from Senior secondary upward; and <strong>province plays an important role</strong>, with Eastern province children being much more likely to walk (OR = 2.64, +22 percentage points) and North Western children much less so.</p>
 <p>The <strong>LPM coefficients offer a more direct interpretation</strong> — for instance, children from the richest households walk to school 31 percentage points less often than the poorest — while <strong>logistic regression ensures predicted probabilities remain within [0, 1] (as is verified by computing the marginal predictions from the logistic model)</strong>.</p>
@@ -2195,26 +2201,26 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">|&gt;</span></span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">modify_header</span>(estimate <span class="sc">~</span> <span class="st">"**Marginal pred**"</span>)</span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"LPM"</span>, <span class="st">"Logistic (OR)"</span>, <span class="st">"Logistic (AME)"</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"LPM"</span>, <span class="st">"Logistic (OR)"</span>, <span class="st">"Logistic (AMP)"</span>)</span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="dkkukqvpjk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dkkukqvpjk table {
+<div id="blsmcwxihh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#blsmcwxihh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#dkkukqvpjk thead, #dkkukqvpjk tbody, #dkkukqvpjk tfoot, #dkkukqvpjk tr, #dkkukqvpjk td, #dkkukqvpjk th {
+#blsmcwxihh thead, #blsmcwxihh tbody, #blsmcwxihh tfoot, #blsmcwxihh tr, #blsmcwxihh td, #blsmcwxihh th {
   border-style: none;
 }
 
-#dkkukqvpjk p {
+#blsmcwxihh p {
   margin: 0;
   padding: 0;
 }
 
-#dkkukqvpjk .gt_table {
+#blsmcwxihh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2240,12 +2246,12 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#dkkukqvpjk .gt_caption {
+#blsmcwxihh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#dkkukqvpjk .gt_title {
+#blsmcwxihh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2257,7 +2263,7 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   border-bottom-width: 0;
 }
 
-#dkkukqvpjk .gt_subtitle {
+#blsmcwxihh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2269,7 +2275,7 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   border-top-width: 0;
 }
 
-#dkkukqvpjk .gt_heading {
+#blsmcwxihh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2281,13 +2287,13 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dkkukqvpjk .gt_bottom_border {
+#blsmcwxihh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dkkukqvpjk .gt_col_headings {
+#blsmcwxihh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2302,7 +2308,7 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dkkukqvpjk .gt_col_heading {
+#blsmcwxihh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2322,7 +2328,7 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   overflow-x: hidden;
 }
 
-#dkkukqvpjk .gt_column_spanner_outer {
+#blsmcwxihh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2334,15 +2340,15 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   padding-right: 4px;
 }
 
-#dkkukqvpjk .gt_column_spanner_outer:first-child {
+#blsmcwxihh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dkkukqvpjk .gt_column_spanner_outer:last-child {
+#blsmcwxihh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dkkukqvpjk .gt_column_spanner {
+#blsmcwxihh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2354,11 +2360,11 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   width: 100%;
 }
 
-#dkkukqvpjk .gt_spanner_row {
+#blsmcwxihh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#dkkukqvpjk .gt_group_heading {
+#blsmcwxihh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2384,7 +2390,7 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   text-align: left;
 }
 
-#dkkukqvpjk .gt_empty_group_heading {
+#blsmcwxihh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2399,15 +2405,15 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   vertical-align: middle;
 }
 
-#dkkukqvpjk .gt_from_md > :first-child {
+#blsmcwxihh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dkkukqvpjk .gt_from_md > :last-child {
+#blsmcwxihh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dkkukqvpjk .gt_row {
+#blsmcwxihh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2426,7 +2432,7 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   overflow-x: hidden;
 }
 
-#dkkukqvpjk .gt_stub {
+#blsmcwxihh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2439,7 +2445,7 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   padding-right: 5px;
 }
 
-#dkkukqvpjk .gt_stub_row_group {
+#blsmcwxihh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2453,15 +2459,15 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   vertical-align: top;
 }
 
-#dkkukqvpjk .gt_row_group_first td {
+#blsmcwxihh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dkkukqvpjk .gt_row_group_first th {
+#blsmcwxihh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#dkkukqvpjk .gt_summary_row {
+#blsmcwxihh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2471,16 +2477,16 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   padding-right: 5px;
 }
 
-#dkkukqvpjk .gt_first_summary_row {
+#blsmcwxihh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dkkukqvpjk .gt_first_summary_row.thick {
+#blsmcwxihh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dkkukqvpjk .gt_last_summary_row {
+#blsmcwxihh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2490,7 +2496,7 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#dkkukqvpjk .gt_grand_summary_row {
+#blsmcwxihh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2500,7 +2506,7 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   padding-right: 5px;
 }
 
-#dkkukqvpjk .gt_first_grand_summary_row {
+#blsmcwxihh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2510,7 +2516,7 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#dkkukqvpjk .gt_last_grand_summary_row_top {
+#blsmcwxihh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2520,11 +2526,11 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#dkkukqvpjk .gt_striped {
+#blsmcwxihh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dkkukqvpjk .gt_table_body {
+#blsmcwxihh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2533,7 +2539,7 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#dkkukqvpjk .gt_footnotes {
+#blsmcwxihh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2547,7 +2553,7 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dkkukqvpjk .gt_footnote {
+#blsmcwxihh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2556,7 +2562,7 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   padding-right: 5px;
 }
 
-#dkkukqvpjk .gt_sourcenotes {
+#blsmcwxihh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2570,7 +2576,7 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dkkukqvpjk .gt_sourcenote {
+#blsmcwxihh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2578,72 +2584,72 @@ m3   | svyglm | 3447.3 (&gt;.999) | 0.109 |     0.104</code></pre>
   padding-right: 5px;
 }
 
-#dkkukqvpjk .gt_left {
+#blsmcwxihh .gt_left {
   text-align: left;
 }
 
-#dkkukqvpjk .gt_center {
+#blsmcwxihh .gt_center {
   text-align: center;
 }
 
-#dkkukqvpjk .gt_right {
+#blsmcwxihh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dkkukqvpjk .gt_font_normal {
+#blsmcwxihh .gt_font_normal {
   font-weight: normal;
 }
 
-#dkkukqvpjk .gt_font_bold {
+#blsmcwxihh .gt_font_bold {
   font-weight: bold;
 }
 
-#dkkukqvpjk .gt_font_italic {
+#blsmcwxihh .gt_font_italic {
   font-style: italic;
 }
 
-#dkkukqvpjk .gt_super {
+#blsmcwxihh .gt_super {
   font-size: 65%;
 }
 
-#dkkukqvpjk .gt_footnote_marks {
+#blsmcwxihh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#dkkukqvpjk .gt_asterisk {
+#blsmcwxihh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dkkukqvpjk .gt_indent_1 {
+#blsmcwxihh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dkkukqvpjk .gt_indent_2 {
+#blsmcwxihh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dkkukqvpjk .gt_indent_3 {
+#blsmcwxihh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dkkukqvpjk .gt_indent_4 {
+#blsmcwxihh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dkkukqvpjk .gt_indent_5 {
+#blsmcwxihh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#dkkukqvpjk .katex-display {
+#blsmcwxihh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#dkkukqvpjk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#blsmcwxihh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2671,7 +2677,7 @@ LPM
 Logistic (OR)
 </div></th>
 <th colspan="3" id="level 1; estimate_3" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
-Logistic (AME)
+Logistic (AMP)
 </div></th>
 </tr>
 <tr class="odd gt_col_headings">
@@ -3074,8 +3080,8 @@ Logistic (AME)
 <p>When results are consistent across both models, it strengthens confidence in the findings. The LPM coefficients have the advantage of being directly interpretable as percentage point differences (from the .</p>
 <hr>
 </section>
-<section id="going-further-marginal-effects-and-interactions" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="going-further-marginal-effects-and-interactions"><span class="header-section-number">10.7</span> Going Further: Marginal Effects and Interactions</h2>
+<section id="going-further-marginal-effects-and-interactions" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="going-further-marginal-effects-and-interactions"><span class="header-section-number">11.7</span> Going Further: Marginal Effects and Interactions</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -3096,23 +3102,23 @@ Marginal predictions
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">wts =</span> <span class="fu">weights</span>(m3)</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="jqdbjzjyri" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jqdbjzjyri table {
+<div id="wtneckuoaf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wtneckuoaf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jqdbjzjyri thead, #jqdbjzjyri tbody, #jqdbjzjyri tfoot, #jqdbjzjyri tr, #jqdbjzjyri td, #jqdbjzjyri th {
+#wtneckuoaf thead, #wtneckuoaf tbody, #wtneckuoaf tfoot, #wtneckuoaf tr, #wtneckuoaf td, #wtneckuoaf th {
   border-style: none;
 }
 
-#jqdbjzjyri p {
+#wtneckuoaf p {
   margin: 0;
   padding: 0;
 }
 
-#jqdbjzjyri .gt_table {
+#wtneckuoaf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3138,12 +3144,12 @@ Marginal predictions
   border-left-color: #D3D3D3;
 }
 
-#jqdbjzjyri .gt_caption {
+#wtneckuoaf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jqdbjzjyri .gt_title {
+#wtneckuoaf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3155,7 +3161,7 @@ Marginal predictions
   border-bottom-width: 0;
 }
 
-#jqdbjzjyri .gt_subtitle {
+#wtneckuoaf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3167,7 +3173,7 @@ Marginal predictions
   border-top-width: 0;
 }
 
-#jqdbjzjyri .gt_heading {
+#wtneckuoaf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3179,13 +3185,13 @@ Marginal predictions
   border-right-color: #D3D3D3;
 }
 
-#jqdbjzjyri .gt_bottom_border {
+#wtneckuoaf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jqdbjzjyri .gt_col_headings {
+#wtneckuoaf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3200,7 +3206,7 @@ Marginal predictions
   border-right-color: #D3D3D3;
 }
 
-#jqdbjzjyri .gt_col_heading {
+#wtneckuoaf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3220,7 +3226,7 @@ Marginal predictions
   overflow-x: hidden;
 }
 
-#jqdbjzjyri .gt_column_spanner_outer {
+#wtneckuoaf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3232,15 +3238,15 @@ Marginal predictions
   padding-right: 4px;
 }
 
-#jqdbjzjyri .gt_column_spanner_outer:first-child {
+#wtneckuoaf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jqdbjzjyri .gt_column_spanner_outer:last-child {
+#wtneckuoaf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jqdbjzjyri .gt_column_spanner {
+#wtneckuoaf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3252,11 +3258,11 @@ Marginal predictions
   width: 100%;
 }
 
-#jqdbjzjyri .gt_spanner_row {
+#wtneckuoaf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jqdbjzjyri .gt_group_heading {
+#wtneckuoaf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3282,7 +3288,7 @@ Marginal predictions
   text-align: left;
 }
 
-#jqdbjzjyri .gt_empty_group_heading {
+#wtneckuoaf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3297,15 +3303,15 @@ Marginal predictions
   vertical-align: middle;
 }
 
-#jqdbjzjyri .gt_from_md > :first-child {
+#wtneckuoaf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jqdbjzjyri .gt_from_md > :last-child {
+#wtneckuoaf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jqdbjzjyri .gt_row {
+#wtneckuoaf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3324,7 +3330,7 @@ Marginal predictions
   overflow-x: hidden;
 }
 
-#jqdbjzjyri .gt_stub {
+#wtneckuoaf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3337,7 +3343,7 @@ Marginal predictions
   padding-right: 5px;
 }
 
-#jqdbjzjyri .gt_stub_row_group {
+#wtneckuoaf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3351,15 +3357,15 @@ Marginal predictions
   vertical-align: top;
 }
 
-#jqdbjzjyri .gt_row_group_first td {
+#wtneckuoaf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jqdbjzjyri .gt_row_group_first th {
+#wtneckuoaf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jqdbjzjyri .gt_summary_row {
+#wtneckuoaf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3369,16 +3375,16 @@ Marginal predictions
   padding-right: 5px;
 }
 
-#jqdbjzjyri .gt_first_summary_row {
+#wtneckuoaf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jqdbjzjyri .gt_first_summary_row.thick {
+#wtneckuoaf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jqdbjzjyri .gt_last_summary_row {
+#wtneckuoaf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3388,7 +3394,7 @@ Marginal predictions
   border-bottom-color: #D3D3D3;
 }
 
-#jqdbjzjyri .gt_grand_summary_row {
+#wtneckuoaf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3398,7 +3404,7 @@ Marginal predictions
   padding-right: 5px;
 }
 
-#jqdbjzjyri .gt_first_grand_summary_row {
+#wtneckuoaf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3408,7 +3414,7 @@ Marginal predictions
   border-top-color: #D3D3D3;
 }
 
-#jqdbjzjyri .gt_last_grand_summary_row_top {
+#wtneckuoaf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3418,11 +3424,11 @@ Marginal predictions
   border-bottom-color: #D3D3D3;
 }
 
-#jqdbjzjyri .gt_striped {
+#wtneckuoaf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jqdbjzjyri .gt_table_body {
+#wtneckuoaf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3431,7 +3437,7 @@ Marginal predictions
   border-bottom-color: #D3D3D3;
 }
 
-#jqdbjzjyri .gt_footnotes {
+#wtneckuoaf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3445,7 +3451,7 @@ Marginal predictions
   border-right-color: #D3D3D3;
 }
 
-#jqdbjzjyri .gt_footnote {
+#wtneckuoaf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3454,7 +3460,7 @@ Marginal predictions
   padding-right: 5px;
 }
 
-#jqdbjzjyri .gt_sourcenotes {
+#wtneckuoaf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3468,7 +3474,7 @@ Marginal predictions
   border-right-color: #D3D3D3;
 }
 
-#jqdbjzjyri .gt_sourcenote {
+#wtneckuoaf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3476,72 +3482,72 @@ Marginal predictions
   padding-right: 5px;
 }
 
-#jqdbjzjyri .gt_left {
+#wtneckuoaf .gt_left {
   text-align: left;
 }
 
-#jqdbjzjyri .gt_center {
+#wtneckuoaf .gt_center {
   text-align: center;
 }
 
-#jqdbjzjyri .gt_right {
+#wtneckuoaf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jqdbjzjyri .gt_font_normal {
+#wtneckuoaf .gt_font_normal {
   font-weight: normal;
 }
 
-#jqdbjzjyri .gt_font_bold {
+#wtneckuoaf .gt_font_bold {
   font-weight: bold;
 }
 
-#jqdbjzjyri .gt_font_italic {
+#wtneckuoaf .gt_font_italic {
   font-style: italic;
 }
 
-#jqdbjzjyri .gt_super {
+#wtneckuoaf .gt_super {
   font-size: 65%;
 }
 
-#jqdbjzjyri .gt_footnote_marks {
+#wtneckuoaf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jqdbjzjyri .gt_asterisk {
+#wtneckuoaf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jqdbjzjyri .gt_indent_1 {
+#wtneckuoaf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jqdbjzjyri .gt_indent_2 {
+#wtneckuoaf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jqdbjzjyri .gt_indent_3 {
+#wtneckuoaf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jqdbjzjyri .gt_indent_4 {
+#wtneckuoaf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jqdbjzjyri .gt_indent_5 {
+#wtneckuoaf .gt_indent_5 {
   text-indent: 25px;
 }
 
-#jqdbjzjyri .katex-display {
+#wtneckuoaf .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#jqdbjzjyri div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wtneckuoaf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3813,8 +3819,8 @@ Interactions
 </div>
 <hr>
 </section>
-<section id="exercise" class="level2" data-number="10.8">
-<h2 data-number="10.8" class="anchored" data-anchor-id="exercise"><span class="header-section-number">10.8</span> Exercise</h2>
+<section id="exercise" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="exercise"><span class="header-section-number">11.8</span> Exercise</h2>
 <ol type="1">
 <li>After discretizing age, and adding sector (rural, urban, estate) as a new independent variable among geographical predictors, re-estimate the LPM and logistic models. Compare the results and interpret.</li>
 <li>Children who go to school by bus are coded as 6 in the variable transport_medium. How does the probability of going to school by bus vary according to socioeconomic and geographical markers?</li>
@@ -4247,13 +4253,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./linearreg.html" class="pagination-link" aria-label="Linear Regression and Nested Models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear Regression and Nested Models</span></span>
+      <a href="./chisquare.html" class="pagination-link" aria-label="The Chi-Square Test">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">The Chi-Square Test</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./mca.html" class="pagination-link" aria-label="Geometric Data Analysis">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Geometric Data Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Geometric Data Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

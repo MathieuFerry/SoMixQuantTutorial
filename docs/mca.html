@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Geometric Data Analysis – SoMix Quant training</title>
+<title>12&nbsp; Geometric Data Analysis – SoMix Quant training</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -114,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced_intro.html"><strong>Advanced analyses</strong></a></li><li class="breadcrumb-item"><a href="./mca.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Geometric Data Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced_intro.html"><strong>Advanced analyses</strong></a></li><li class="breadcrumb-item"><a href="./mca.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Geometric Data Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -257,14 +257,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./chisquare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">The Chi-Square Test</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./logitreg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Logistic Regression and result scales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logistic Regression and result scales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mca.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Geometric Data Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Geometric Data Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,31 +285,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-logic-of-geometric-data-analysis" id="toc-the-logic-of-geometric-data-analysis" class="nav-link active" data-scroll-target="#the-logic-of-geometric-data-analysis"><span class="header-section-number">11.1</span> The Logic of Geometric Data Analysis</a></li>
-  <li><a href="#pca-distance-to-facilities" id="toc-pca-distance-to-facilities" class="nav-link" data-scroll-target="#pca-distance-to-facilities"><span class="header-section-number">11.2</span> PCA: Distance to Facilities</a>
+  <li><a href="#the-logic-of-geometric-data-analysis" id="toc-the-logic-of-geometric-data-analysis" class="nav-link active" data-scroll-target="#the-logic-of-geometric-data-analysis"><span class="header-section-number">12.1</span> The Logic of Geometric Data Analysis</a></li>
+  <li><a href="#pca-distance-to-facilities" id="toc-pca-distance-to-facilities" class="nav-link" data-scroll-target="#pca-distance-to-facilities"><span class="header-section-number">12.2</span> PCA: Distance to Facilities</a>
   <ul class="collapse">
-  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data"><span class="header-section-number">11.2.1</span> The data</a></li>
-  <li><a href="#supplementary-variables" id="toc-supplementary-variables" class="nav-link" data-scroll-target="#supplementary-variables"><span class="header-section-number">11.2.2</span> Supplementary variables</a></li>
-  <li><a href="#running-the-pca" id="toc-running-the-pca" class="nav-link" data-scroll-target="#running-the-pca"><span class="header-section-number">11.2.3</span> Running the PCA</a></li>
-  <li><a href="#scree-plot-how-many-dimensions" id="toc-scree-plot-how-many-dimensions" class="nav-link" data-scroll-target="#scree-plot-how-many-dimensions"><span class="header-section-number">11.2.4</span> Scree plot: how many dimensions?</a></li>
-  <li><a href="#exploring-results-with-explor" id="toc-exploring-results-with-explor" class="nav-link" data-scroll-target="#exploring-results-with-explor"><span class="header-section-number">11.2.5</span> Exploring results with <code>explor</code></a></li>
-  <li><a href="#interpreting-the-axes" id="toc-interpreting-the-axes" class="nav-link" data-scroll-target="#interpreting-the-axes"><span class="header-section-number">11.2.6</span> Interpreting the axes</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data"><span class="header-section-number">12.2.1</span> The data</a></li>
+  <li><a href="#supplementary-variables" id="toc-supplementary-variables" class="nav-link" data-scroll-target="#supplementary-variables"><span class="header-section-number">12.2.2</span> Supplementary variables</a></li>
+  <li><a href="#running-the-pca" id="toc-running-the-pca" class="nav-link" data-scroll-target="#running-the-pca"><span class="header-section-number">12.2.3</span> Running the PCA</a></li>
+  <li><a href="#scree-plot-how-many-dimensions" id="toc-scree-plot-how-many-dimensions" class="nav-link" data-scroll-target="#scree-plot-how-many-dimensions"><span class="header-section-number">12.2.4</span> Scree plot: how many dimensions?</a></li>
+  <li><a href="#exploring-results-with-explor" id="toc-exploring-results-with-explor" class="nav-link" data-scroll-target="#exploring-results-with-explor"><span class="header-section-number">12.2.5</span> Exploring results with <code>explor</code></a></li>
+  <li><a href="#interpreting-the-axes" id="toc-interpreting-the-axes" class="nav-link" data-scroll-target="#interpreting-the-axes"><span class="header-section-number">12.2.6</span> Interpreting the axes</a></li>
   </ul></li>
-  <li><a href="#mca-housing-conditions" id="toc-mca-housing-conditions" class="nav-link" data-scroll-target="#mca-housing-conditions"><span class="header-section-number">11.3</span> MCA: Housing Conditions</a>
+  <li><a href="#mca-housing-conditions" id="toc-mca-housing-conditions" class="nav-link" data-scroll-target="#mca-housing-conditions"><span class="header-section-number">12.3</span> MCA: Housing Conditions</a>
   <ul class="collapse">
-  <li><a href="#the-data-1" id="toc-the-data-1" class="nav-link" data-scroll-target="#the-data-1"><span class="header-section-number">11.3.1</span> The data</a></li>
-  <li><a href="#checking-for-rare-categories" id="toc-checking-for-rare-categories" class="nav-link" data-scroll-target="#checking-for-rare-categories"><span class="header-section-number">11.3.2</span> Checking for rare categories</a></li>
-  <li><a href="#supplementary-variables-1" id="toc-supplementary-variables-1" class="nav-link" data-scroll-target="#supplementary-variables-1"><span class="header-section-number">11.3.3</span> Supplementary variables</a></li>
-  <li><a href="#running-the-mca" id="toc-running-the-mca" class="nav-link" data-scroll-target="#running-the-mca"><span class="header-section-number">11.3.4</span> Running the MCA</a></li>
-  <li><a href="#exploring-results-with-explor-1" id="toc-exploring-results-with-explor-1" class="nav-link" data-scroll-target="#exploring-results-with-explor-1"><span class="header-section-number">11.3.5</span> Exploring results with <code>explor</code></a></li>
-  <li><a href="#reading-the-factor-map" id="toc-reading-the-factor-map" class="nav-link" data-scroll-target="#reading-the-factor-map"><span class="header-section-number">11.3.6</span> Reading the factor map</a></li>
-  <li><a href="#interpreting-the-dimensions" id="toc-interpreting-the-dimensions" class="nav-link" data-scroll-target="#interpreting-the-dimensions"><span class="header-section-number">11.3.7</span> Interpreting the dimensions</a></li>
+  <li><a href="#the-data-1" id="toc-the-data-1" class="nav-link" data-scroll-target="#the-data-1"><span class="header-section-number">12.3.1</span> The data</a></li>
+  <li><a href="#checking-for-rare-categories" id="toc-checking-for-rare-categories" class="nav-link" data-scroll-target="#checking-for-rare-categories"><span class="header-section-number">12.3.2</span> Checking for rare categories</a></li>
+  <li><a href="#supplementary-variables-1" id="toc-supplementary-variables-1" class="nav-link" data-scroll-target="#supplementary-variables-1"><span class="header-section-number">12.3.3</span> Supplementary variables</a></li>
+  <li><a href="#running-the-mca" id="toc-running-the-mca" class="nav-link" data-scroll-target="#running-the-mca"><span class="header-section-number">12.3.4</span> Running the MCA</a></li>
+  <li><a href="#exploring-results-with-explor-1" id="toc-exploring-results-with-explor-1" class="nav-link" data-scroll-target="#exploring-results-with-explor-1"><span class="header-section-number">12.3.5</span> Exploring results with <code>explor</code></a></li>
+  <li><a href="#reading-the-factor-map" id="toc-reading-the-factor-map" class="nav-link" data-scroll-target="#reading-the-factor-map"><span class="header-section-number">12.3.6</span> Reading the factor map</a></li>
+  <li><a href="#interpreting-the-dimensions" id="toc-interpreting-the-dimensions" class="nav-link" data-scroll-target="#interpreting-the-dimensions"><span class="header-section-number">12.3.7</span> Interpreting the dimensions</a></li>
   </ul></li>
-  <li><a href="#from-geometric-data-analysis-to-further-analyses" id="toc-from-geometric-data-analysis-to-further-analyses" class="nav-link" data-scroll-target="#from-geometric-data-analysis-to-further-analyses"><span class="header-section-number">11.4</span> From Geometric Data Analysis to further analyses</a>
+  <li><a href="#from-geometric-data-analysis-to-further-analyses" id="toc-from-geometric-data-analysis-to-further-analyses" class="nav-link" data-scroll-target="#from-geometric-data-analysis-to-further-analyses"><span class="header-section-number">12.4</span> From Geometric Data Analysis to further analyses</a>
   <ul class="collapse">
-  <li><a href="#mca-and-the-sociology-of-lifestyles-or-living-conditions" id="toc-mca-and-the-sociology-of-lifestyles-or-living-conditions" class="nav-link" data-scroll-target="#mca-and-the-sociology-of-lifestyles-or-living-conditions"><span class="header-section-number">11.4.1</span> MCA and the sociology of lifestyles or living conditions</a></li>
-  <li><a href="#a-possible-workflow-when-doing-gda" id="toc-a-possible-workflow-when-doing-gda" class="nav-link" data-scroll-target="#a-possible-workflow-when-doing-gda"><span class="header-section-number">11.4.2</span> A possible workflow when doing GDA</a></li>
-  <li><a href="#want-to-go-further" id="toc-want-to-go-further" class="nav-link" data-scroll-target="#want-to-go-further"><span class="header-section-number">11.4.3</span> Want to go further?</a></li>
+  <li><a href="#mca-and-the-sociology-of-lifestyles-or-living-conditions" id="toc-mca-and-the-sociology-of-lifestyles-or-living-conditions" class="nav-link" data-scroll-target="#mca-and-the-sociology-of-lifestyles-or-living-conditions"><span class="header-section-number">12.4.1</span> MCA and the sociology of lifestyles or living conditions</a></li>
+  <li><a href="#a-possible-workflow-when-doing-gda" id="toc-a-possible-workflow-when-doing-gda" class="nav-link" data-scroll-target="#a-possible-workflow-when-doing-gda"><span class="header-section-number">12.4.2</span> A possible workflow when doing GDA</a></li>
+  <li><a href="#want-to-go-further" id="toc-want-to-go-further" class="nav-link" data-scroll-target="#want-to-go-further"><span class="header-section-number">12.4.3</span> Want to go further?</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -311,9 +317,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced_intro.html"><strong>Advanced analyses</strong></a></li><li class="breadcrumb-item"><a href="./mca.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Geometric Data Analysis</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced_intro.html"><strong>Advanced analyses</strong></a></li><li class="breadcrumb-item"><a href="./mca.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Geometric Data Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-session4" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Geometric Data Analysis</span></span></h1>
+<h1 class="title"><span id="sec-session4" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Geometric Data Analysis</span></span></h1>
 </div>
 
 
@@ -358,8 +364,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>environment <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"environment.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
-<section id="the-logic-of-geometric-data-analysis" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="the-logic-of-geometric-data-analysis"><span class="header-section-number">11.1</span> The Logic of Geometric Data Analysis</h2>
+<section id="the-logic-of-geometric-data-analysis" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="the-logic-of-geometric-data-analysis"><span class="header-section-number">12.1</span> The Logic of Geometric Data Analysis</h2>
 <p>Imagine you have 16 variables measuring distances to different facilities (school, hospital, market, bus stop…) from the households surveyed in the HIES (see Section 7 - Access to Primary Facilities). You want to understand:</p>
 <ul>
 <li>Are these distances <strong>correlated</strong>? Do households far from one facility tend to be far from others?</li>
@@ -420,10 +426,10 @@ PCA vs.&nbsp;MCA
 <p>The key reading rule is the same for both: individuals that appear on the same side as a variable (or category) share that characteristic — they score high on that variable, or belong to that category. Individuals that appear on opposite sides have contrasting profiles. The further from the origin, the more extreme the profile.</p>
 <hr>
 </section>
-<section id="pca-distance-to-facilities" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="pca-distance-to-facilities"><span class="header-section-number">11.2</span> PCA: Distance to Facilities</h2>
-<section id="the-data" class="level3" data-number="11.2.1">
-<h3 data-number="11.2.1" class="anchored" data-anchor-id="the-data"><span class="header-section-number">11.2.1</span> The data</h3>
+<section id="pca-distance-to-facilities" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="pca-distance-to-facilities"><span class="header-section-number">12.2</span> PCA: Distance to Facilities</h2>
+<section id="the-data" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="the-data"><span class="header-section-number">12.2.1</span> The data</h3>
 <p>The <code>environment.rds</code> file contains 16 variables measuring the distance (in km) from each household to the nearest facility of each type:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select distance variables</span></span>
@@ -437,8 +443,8 @@ PCA vs.&nbsp;MCA
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="supplementary-variables" class="level3" data-number="11.2.2">
-<h3 data-number="11.2.2" class="anchored" data-anchor-id="supplementary-variables"><span class="header-section-number">11.2.2</span> Supplementary variables</h3>
+<section id="supplementary-variables" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="supplementary-variables"><span class="header-section-number">12.2.2</span> Supplementary variables</h3>
 <p>Before running the PCA, we set aside the <strong>socio-demographic and geographic variables</strong> to use as supplementary (illustrative) variables — they will be projected onto the factorial map after the determination of the axes, without influencing the construction of the axes:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>environment<span class="sc">$</span>sector_rec <span class="ot">&lt;-</span> environment<span class="sc">$</span>sector  <span class="sc">|&gt;</span></span>
@@ -492,8 +498,8 @@ Active vs.&nbsp;supplementary variables
 <li><p>In practice, we focus on the first two or three axes, which together summarise the main structure of the data.</p></li>
 </ul>
 </section>
-<section id="running-the-pca" class="level3" data-number="11.2.3">
-<h3 data-number="11.2.3" class="anchored" data-anchor-id="running-the-pca"><span class="header-section-number">11.2.3</span> Running the PCA</h3>
+<section id="running-the-pca" class="level3" data-number="12.2.3">
+<h3 data-number="12.2.3" class="anchored" data-anchor-id="running-the-pca"><span class="header-section-number">12.2.3</span> Running the PCA</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract weights as a separate vector (same row order as pca_data)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>weights_vec <span class="ot">&lt;-</span> environment <span class="sc">|&gt;</span></span>
@@ -524,8 +530,8 @@ Note
 </div>
 </div>
 </section>
-<section id="scree-plot-how-many-dimensions" class="level3" data-number="11.2.4">
-<h3 data-number="11.2.4" class="anchored" data-anchor-id="scree-plot-how-many-dimensions"><span class="header-section-number">11.2.4</span> Scree plot: how many dimensions?</h3>
+<section id="scree-plot-how-many-dimensions" class="level3" data-number="12.2.4">
+<h3 data-number="12.2.4" class="anchored" data-anchor-id="scree-plot-how-many-dimensions"><span class="header-section-number">12.2.4</span> Scree plot: how many dimensions?</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_screeplot</span>(pca_result, <span class="at">addlabels =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"PCA — Variance explained by each dimension"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -539,8 +545,8 @@ Note
 </div>
 <p>The scree plot shows the percentage of total variance captured by each dimension. We often focus on the first two or three dimensions, which together summarise the main structure of the data. Look for an “elbow” in the curve — the point after which additional dimensions add little information. Here, the first axis clearly predominates, but the second and third also seem to convey quite some information compared to the subsequent ones, let’s see if it adds anything interesting.</p>
 </section>
-<section id="exploring-results-with-explor" class="level3" data-number="11.2.5">
-<h3 data-number="11.2.5" class="anchored" data-anchor-id="exploring-results-with-explor"><span class="header-section-number">11.2.5</span> Exploring results with <code>explor</code></h3>
+<section id="exploring-results-with-explor" class="level3" data-number="12.2.5">
+<h3 data-number="12.2.5" class="anchored" data-anchor-id="exploring-results-with-explor"><span class="header-section-number">12.2.5</span> Exploring results with <code>explor</code></h3>
 <p>Rather than producing a series of static plots, we use <code>explor</code> to explore the PCA results interactively:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">explor</span>(pca_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -584,8 +590,8 @@ Note
 </figure>
 </div>
 </section>
-<section id="interpreting-the-axes" class="level3" data-number="11.2.6">
-<h3 data-number="11.2.6" class="anchored" data-anchor-id="interpreting-the-axes"><span class="header-section-number">11.2.6</span> Interpreting the axes</h3>
+<section id="interpreting-the-axes" class="level3" data-number="12.2.6">
+<h3 data-number="12.2.6" class="anchored" data-anchor-id="interpreting-the-axes"><span class="header-section-number">12.2.6</span> Interpreting the axes</h3>
 <p>To interpret what each dimension represents, examine which variables are at the <strong>positive and negative poles</strong> of each axis. In the variables map:</p>
 <ul>
 <li>Variables pointing in the <strong>same direction</strong> are positively correlated</li>
@@ -618,10 +624,10 @@ Contribution and cos²
 <p>The individual maps reveal a strongly <strong>asymmetric distribution</strong>: the vast majority of households cluster near the origin (moderate distances, average profiles), while a small number of outliers extend far along Axis 1 — these are households with exceptionally long distances to facilities, likely in very remote rural or estate areas. One should be careful in interpreting further the factorial maps and see whether those households contribute to structure the factorial planes to disproportionally (in that case, they can be put as supplementary “statistical individuals”).</p>
 </section>
 </section>
-<section id="mca-housing-conditions" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="mca-housing-conditions"><span class="header-section-number">11.3</span> MCA: Housing Conditions</h2>
-<section id="the-data-1" class="level3" data-number="11.3.1">
-<h3 data-number="11.3.1" class="anchored" data-anchor-id="the-data-1"><span class="header-section-number">11.3.1</span> The data</h3>
+<section id="mca-housing-conditions" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="mca-housing-conditions"><span class="header-section-number">12.3</span> MCA: Housing Conditions</h2>
+<section id="the-data-1" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="the-data-1"><span class="header-section-number">12.3.1</span> The data</h3>
 <p>We now turn to <strong>categorical variables</strong> describing housing conditions (Section 8).</p>
 <p>These include:</p>
 <ul>
@@ -903,8 +909,8 @@ Other      901592.6 15.8 15.8</code></pre>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="checking-for-rare-categories" class="level3" data-number="11.3.2">
-<h3 data-number="11.3.2" class="anchored" data-anchor-id="checking-for-rare-categories"><span class="header-section-number">11.3.2</span> Checking for rare categories</h3>
+<section id="checking-for-rare-categories" class="level3" data-number="12.3.2">
+<h3 data-number="12.3.2" class="anchored" data-anchor-id="checking-for-rare-categories"><span class="header-section-number">12.3.2</span> Checking for rare categories</h3>
 <p>There might still be modalities which account for less than 5 percent of the households:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>mca_data <span class="sc">|&gt;</span></span>
@@ -937,8 +943,8 @@ Why exclude rare categories from active variables?
 </div>
 </div>
 </section>
-<section id="supplementary-variables-1" class="level3" data-number="11.3.3">
-<h3 data-number="11.3.3" class="anchored" data-anchor-id="supplementary-variables-1"><span class="header-section-number">11.3.3</span> Supplementary variables</h3>
+<section id="supplementary-variables-1" class="level3" data-number="12.3.3">
+<h3 data-number="12.3.3" class="anchored" data-anchor-id="supplementary-variables-1"><span class="header-section-number">12.3.3</span> Supplementary variables</h3>
 <p>As in the PCA, we project socio-demographic and geographic variables as supplementary:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>mca_sup <span class="ot">&lt;-</span> environment <span class="sc">|&gt;</span></span>
@@ -964,8 +970,8 @@ Why exclude rare categories from active variables?
 </div>
 </div>
 </section>
-<section id="running-the-mca" class="level3" data-number="11.3.4">
-<h3 data-number="11.3.4" class="anchored" data-anchor-id="running-the-mca"><span class="header-section-number">11.3.4</span> Running the MCA</h3>
+<section id="running-the-mca" class="level3" data-number="12.3.4">
+<h3 data-number="12.3.4" class="anchored" data-anchor-id="running-the-mca"><span class="header-section-number">12.3.4</span> Running the MCA</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract weights as a separate vector (same row order as pca_data)</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>weights_vec <span class="ot">&lt;-</span> environment <span class="sc">|&gt;</span></span>
@@ -982,8 +988,8 @@ Why exclude rare categories from active variables?
 <span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="exploring-results-with-explor-1" class="level3" data-number="11.3.5">
-<h3 data-number="11.3.5" class="anchored" data-anchor-id="exploring-results-with-explor-1"><span class="header-section-number">11.3.5</span> Exploring results with <code>explor</code></h3>
+<section id="exploring-results-with-explor-1" class="level3" data-number="12.3.5">
+<h3 data-number="12.3.5" class="anchored" data-anchor-id="exploring-results-with-explor-1"><span class="header-section-number">12.3.5</span> Exploring results with <code>explor</code></h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">explor</span>(mca_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1001,8 +1007,8 @@ Why exclude rare categories from active variables?
 </div>
 <p>In MCA, the map shows categories rather than variable arrows. Each modality of each variable is a point. Two categories that are close together tend to <strong>co-occur in the same households</strong> — for instance, if “Takaran roof” and “Small (&lt;250)” are close, households with Takaran roofs tend to also have low surface. Categories close to the origin are either very frequent (around 50%) or weakly structured by these axes.</p>
 </section>
-<section id="reading-the-factor-map" class="level3" data-number="11.3.6">
-<h3 data-number="11.3.6" class="anchored" data-anchor-id="reading-the-factor-map"><span class="header-section-number">11.3.6</span> Reading the factor map</h3>
+<section id="reading-the-factor-map" class="level3" data-number="12.3.6">
+<h3 data-number="12.3.6" class="anchored" data-anchor-id="reading-the-factor-map"><span class="header-section-number">12.3.6</span> Reading the factor map</h3>
 <p>In the MCA category map:</p>
 <ul>
 <li><strong>Categories that appear close together</strong> tend to co-occur in the same households</li>
@@ -1011,8 +1017,8 @@ Why exclude rare categories from active variables?
 </ul>
 <p>The supplementary variable categories (province, max education, sector, wealth) appear in a different color. Their position on the map tells us how these characteristics relate to the main structure of housing conditions — without having influenced that structure.</p>
 </section>
-<section id="interpreting-the-dimensions" class="level3" data-number="11.3.7">
-<h3 data-number="11.3.7" class="anchored" data-anchor-id="interpreting-the-dimensions"><span class="header-section-number">11.3.7</span> Interpreting the dimensions</h3>
+<section id="interpreting-the-dimensions" class="level3" data-number="12.3.7">
+<h3 data-number="12.3.7" class="anchored" data-anchor-id="interpreting-the-dimensions"><span class="header-section-number">12.3.7</span> Interpreting the dimensions</h3>
 <p>Again, we usually concentrate on the modalities which contribute to structure each axis, the figures below help identifying which ones are most relevant:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contributions to dimension 1</span></span>
@@ -1076,16 +1082,16 @@ Exercise
 <hr>
 </section>
 </section>
-<section id="from-geometric-data-analysis-to-further-analyses" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="from-geometric-data-analysis-to-further-analyses"><span class="header-section-number">11.4</span> From Geometric Data Analysis to further analyses</h2>
-<section id="mca-and-the-sociology-of-lifestyles-or-living-conditions" class="level3" data-number="11.4.1">
-<h3 data-number="11.4.1" class="anchored" data-anchor-id="mca-and-the-sociology-of-lifestyles-or-living-conditions"><span class="header-section-number">11.4.1</span> MCA and the sociology of lifestyles or living conditions</h3>
+<section id="from-geometric-data-analysis-to-further-analyses" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="from-geometric-data-analysis-to-further-analyses"><span class="header-section-number">12.4</span> From Geometric Data Analysis to further analyses</h2>
+<section id="mca-and-the-sociology-of-lifestyles-or-living-conditions" class="level3" data-number="12.4.1">
+<h3 data-number="12.4.1" class="anchored" data-anchor-id="mca-and-the-sociology-of-lifestyles-or-living-conditions"><span class="header-section-number">12.4.1</span> MCA and the sociology of lifestyles or living conditions</h3>
 <p>MCA was popularized in sociology by Pierre Bourdieu, who used it to map out the “social space” in <em>La Distinction</em> (1979). The core idea is that individuals are not just characterized by a single variable (income, education…) but by a <strong>constellation of practices and conditions</strong> that form coherent profiles. MCA reveals these profiles geometrically, by identifying the main axes along which individuals and categories differ.</p>
 <p>In our case, housing conditions are a classic object of this type of analysis: the type of roof, walls, floor, and tenure are not independent choices but form coherent combinations that reflect households’ <strong>material position in the social structure</strong>. The projection of socio-demographic variables (wealth, education, province, sector) as supplementary illustrates a key principle of geometric data analysis: we let the <strong>material conditions define the space</strong>, and then ask where social groups fall within it — rather than building the space around the groups themselves.</p>
 <p>This is why the supplementary variables (Richest, Urban, Tertiary…) project so cleanly onto the negative pole of Axis 1: the housing quality gradient we identified is not constructed from wealth or education, yet it perfectly reproduces the social hierarchy. This coherence between the space of conditions and the space of social positions is precisely what Bourdieu called the <strong>homology</strong> between fields.</p>
 </section>
-<section id="a-possible-workflow-when-doing-gda" class="level3" data-number="11.4.2">
-<h3 data-number="11.4.2" class="anchored" data-anchor-id="a-possible-workflow-when-doing-gda"><span class="header-section-number">11.4.2</span> A possible workflow when doing GDA</h3>
+<section id="a-possible-workflow-when-doing-gda" class="level3" data-number="12.4.2">
+<h3 data-number="12.4.2" class="anchored" data-anchor-id="a-possible-workflow-when-doing-gda"><span class="header-section-number">12.4.2</span> A possible workflow when doing GDA</h3>
 <p>PCA and MCA are <strong>exploratory</strong> tools. Their goal is to reveal structure, more than to test hypotheses. A typical workflow is:</p>
 <p><strong>1. Run MCA to identify the main dimensions of variation</strong> The factorial axes summarise the main contrasts in the data. In our case for the MCA, Axis 1 captures a general housing quality gradient; Axis 2 a secondary contrast in housing type.</p>
 <p><strong>2. Interpret the axes substantively</strong> This requires reading the contribution plots, examining which categories define each pole, and formulating a sociological interpretation. This step is a craft — there is no algorithm for it.</p>
@@ -1094,8 +1100,8 @@ Exercise
 <p><strong>5. Use scores in regression</strong> Individual coordinates on Axis 1 (the housing quality score) can be extracted and used as a dependent or independent variable in a regression model — for example to study which household characteristics predict position on the housing quality gradient, or to use housing quality as a control variable in a model of health outcomes.</p>
 <p><em>Steps 4 and 5 are optional and depend on the research question — sometimes the factor map itself is the main result.</em></p>
 </section>
-<section id="want-to-go-further" class="level3" data-number="11.4.3">
-<h3 data-number="11.4.3" class="anchored" data-anchor-id="want-to-go-further"><span class="header-section-number">11.4.3</span> Want to go further?</h3>
+<section id="want-to-go-further" class="level3" data-number="12.4.3">
+<h3 data-number="12.4.3" class="anchored" data-anchor-id="want-to-go-further"><span class="header-section-number">12.4.3</span> Want to go further?</h3>
 <p>Practical online tutorials in R:</p>
 <ul>
 <li><p>For <a href="https://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/">PCA</a></p></li>
@@ -1546,7 +1552,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./logitreg.html" class="pagination-link" aria-label="Logistic Regression and result scales">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Logistic Regression and result scales</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logistic Regression and result scales</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

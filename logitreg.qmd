@@ -199,7 +199,7 @@ tbl_merge(
       ) |>
       modify_header(estimate ~ "**Marginal pred**")
   ),
-  tab_spanner = c("LPM", "Logistic (OR)", "Logistic (AME)")
+  tab_spanner = c("LPM", "Logistic (OR)", "Logistic (AMP)")
 )
 #we have removed the calculation of a marginal prediction for age as it is a continuous
 #variable. 

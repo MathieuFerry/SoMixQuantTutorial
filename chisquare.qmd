@@ -1,0 +1,250 @@
+# The Chi-Square Test {#sec-chisquare}
+
+In previous [sections](https://mathieuferry.github.io/SoMixQuantTutorial/statbis.html), we used cross-tabulations to describe the relationship between two categorical variables. But how do we know whether an observed association is **statistically significant** — i.e., unlikely to be due to chance alone? This is what the **chi-square test** (χ²) tells us.
+
+::: callout-note
+## An interactive introduction
+
+Before reading further, we recommend exploring this interactive tool which illustrates the logic of the chi-square test visually: <https://istats.shinyapps.io/ChiSquaredTest/>
+:::
+
+------------------------------------------------------------------------
+
+## How Does the Chi-Square Test Work?
+
+The chi-square test compares what we **observe** in the data to what we would **expect** if there were no association between the two variables (the null hypothesis of independence).
+
+For each cell of the cross-tabulation, the expected count is:
+
+$$E_{ij} = \frac{\text{Row total}_i \times \text{Column total}_j}{\text{Grand total}}$$
+
+The test statistic is then:
+
+$$\chi^2 = \sum_{i,j} \frac{(O_{ij} - E_{ij})^2}{E_{ij}}$$
+
+where $O_{ij}$ is the observed count and $E_{ij}$ the expected count in each cell. The larger the discrepancy between observed and expected, the larger the χ² statistic, and the less likely the association is due to chance.
+
+The p-value is derived from comparing this statistic to a chi-square distribution with $(r-1)(c-1)$ degrees of freedom (d.f.), where $r$ is the number of rows and $c$ the number of columns.
+
+::: callout-warning
+## The chi-square test is sensitive to sample size
+
+A very large sample will almost always produce a significant chi-square, even for trivially small associations. Conversely, a very small sample may fail to detect a real association. This is why the chi-square test should be calculated on *normalized* survey weights. It can be accompanied by a measure of **effect size** (such as Cramér's V) and a careful look at the **residuals** to understand *where* the association lies.
+:::
+
+------------------------------------------------------------------------
+
+## Setup
+
+We continue with the HIES data, using our binary variable `walk` (whether a child walks to school) and examining its association with household wealth, parental education, province, and sex.
+
+```{r}
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(questionr)
+library(kableExtra)
+library(survey)
+library(srvyr)
+library(gtsummary)
+
+setwd("/home/groups/3genquanti/SoMix/HIES for workshop")
+edu <- readRDS("edu.rds")
+
+edu_school <- edu |>
+  mutate(walk = if_else(transport_medium == 1, 1, 0)) |>
+  filter(!is.na(distance))
+```
+
+------------------------------------------------------------------------
+
+## Method 1: The Simple Approach
+
+This approach follows the logic introduced in the [cross-tabulation section](https://mathieuferry.github.io/SoMixQuantTutorial/statbis.html#a-practical-application-of-the-cross-tabulation) of the tutorial.
+
+### Step 1: Row percentages
+
+```{r}
+#| message: false
+#| warning: false
+
+edu_school |> 
+  freqtable(hhwealthcat, walk, weights = finalweight_25per) |>
+  rprop() |>
+  kbl(digits = 0) |> 
+  kable_classic(full_width = FALSE)
+```
+
+### Step 2: Normalize the weights before running the test
+
+The chi-square test is based on weighted counts. If we feed it the raw survey weights, the sample size becomes artificially inflated, which will produce a significant result almost by construction.
+
+The solution is to **normalize** the weights so that they sum to the actual sample size:
+
+```{r}
+#| message: false
+#| warning: false
+
+edu_school <- edu_school |>
+  mutate(weightnorm = finalweight_25per / sum(finalweight_25per) * n())
+
+# Check: normalized weights should sum to the sample size
+sum(edu_school$weightnorm)
+```
+
+### Step 3: Run the chi-square test
+
+```{r}
+#| message: false
+#| warning: false
+
+tabfreqwn <- edu_school |> 
+  freqtable(hhwealthcat, walk, weights = weightnorm)
+
+chi <- chisq.test(tabfreqwn)
+chi
+```
+
+### Step 4: Inspect observed, expected, and residuals
+
+Beyond the p-value, the chi-square test produces useful diagnostics that tell us *where* the association is strongest:
+
+```{r}
+# Observed counts (weighted)
+chi$observed
+
+# Expected counts under independence
+chi$expected
+
+# Pearson residuals: (observed - expected) / sqrt(expected)
+chi$residuals
+
+# Standardized residuals: values > |2| indicate cells that deviate significantly
+chi$stdres
+```
+
+::: callout-note
+## Reading the standardized residuals
+
+Standardized residuals greater than **+2** indicate cells where the observed count is significantly *higher* than expected; values below **-2** indicate cells where it is significantly *lower*. This tells us exactly which combinations of categories drive the overall association.
+
+For example, if `Richest × walk=0` has a standardized residual of +13.3, it means that children from the richest households are far more likely *not* to walk to school than we would expect under independence.
+:::
+
+------------------------------------------------------------------------
+
+## Method 2: Using the Survey Design
+
+The approach above uses normalized weights, which is a pragmatic solution. The more rigorous approach is to use `svychisq()` from the `survey` package, which correctly accounts for the complex sampling design. Here, we do not need to use normalized sampling weights, the function will do it for us.
+
+### Define the survey design
+
+```{r}
+#| message: false
+#| warning: false
+
+design <- edu_school |> 
+  as_survey_design(weights = finalweight_25per)
+```
+
+### Descriptive table with `tbl_svysummary`
+
+```{r}
+#| message: false
+#| warning: false
+
+design |> 
+  mutate(walk = factor(walk)) |>
+  tbl_svysummary(
+    include    = hhwealthcat,
+    by         = walk,
+    statistic  = all_categorical() ~ "{p}% ({n_unweighted} obs.)",
+    percent    = "row"
+  ) |> 
+  add_overall(last = TRUE) |> 
+  modify_header(
+    all_stat_cols() ~ "**{level}** ({n_unweighted} obs.)"
+  )
+```
+
+### Survey-corrected chi-square test
+
+```{r}
+#| message: false
+#| warning: false
+
+svychisq(~hhwealthcat + walk, 
+         design    = design, 
+         statistic = "Chisq")
+```
+
+::: callout-note
+## `chisq.test` vs `svychisq`
+
+`svychisq()` uses a **Rao-Scott correction** that adjusts for the survey design (weights, clustering, stratification).
+:::
+
+### Combine table and test in one step
+
+`gtsummary` allows us to add the p-value from `svychisq` directly to the summary table with `add_p()`:
+
+```{r}
+#| message: false
+#| warning: false
+
+design |> 
+  mutate(walk = factor(walk)) |>
+  tbl_svysummary(
+    include    = hhwealthcat,
+    by         = walk,
+    statistic  = all_categorical() ~ "{p}% ({n_unweighted} obs.)",
+    percent    = "row",
+    missing_stat = "{N_miss_unweighted} obs."
+  ) |> 
+  add_overall(last = TRUE) |> 
+  add_p() |>
+  modify_header(
+    all_stat_cols() ~ "**{level}** ({n_unweighted} obs.)"
+  )
+```
+
+------------------------------------------------------------------------
+
+## Testing Several Variables Simultaneously
+
+One of the great advantages of `tbl_svysummary` is that we can test the association of `walk` with **multiple variables at once**, each with its own chi-square test:
+
+```{r}
+#| message: false
+#| warning: false
+
+design |> 
+  mutate(walk = factor(walk)) |>
+  tbl_svysummary(
+    include    = c(hhwealthcat, edu_parent, province, sex),
+    by         = walk,
+    statistic  = all_categorical() ~ "{p}% ({n_unweighted} obs.)",
+    percent    = "row",
+    missing_stat = "{N_miss_unweighted} obs."
+  ) |> 
+  add_overall(last = TRUE) |> 
+  add_p() |>
+  modify_header(
+    all_stat_cols() ~ "**{level}** ({n_unweighted} obs.)"
+  )
+```
+
+This table gives us a clear overview of which variables are significantly associated with walking to school — and serves as a natural **bivariate screening** before running the multivariate logistic regression of Session 3.
+
+::: callout-caution
+## Exercise
+
+1.  Run the chi-square test for the association between `edu_parent` and `walk`. Examine the standardized residuals — which parental education categories show the strongest deviation from independence?
+
+2.  Is the association between `sex` and `walk` statistically significant?
+
+3.  Run `tbl_svysummary` with `add_p()` for the variables `hhwealthcat`, `edu_parent`, `province`, and `sex` on the likelihood of going to school by bus. Comment.
+
+4.  **Bonus**: Compute Cramér's V for the association between `hhwealthcat` and `walk` using the `rcompanion` package (`cramerV(tabfreqwn)`). How does the effect size compare to what the p-value alone suggested?
+:::

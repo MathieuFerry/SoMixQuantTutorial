@@ -32,6 +32,7 @@ book:
         - advanced_intro.qmd
         - datawrangling.qmd
         - linearreg.qmd
+        - chisquare.qmd
         - logitreg.qmd
         - mca.qmd
 
