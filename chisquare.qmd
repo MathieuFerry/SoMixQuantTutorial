@@ -39,6 +39,11 @@ A very large sample will almost always produce a significant chi-square, even fo
 We continue with the HIES data, using our binary variable `walk` (whether a child walks to school) and examining its association with household wealth, parental education, province, and sex.
 
 ```{r}
+#| include: false
+Sys.setlocale("LC_MESSAGES", "en_US.UTF-8")
+```
+
+```{r}
 #| message: false
 #| warning: false
 
