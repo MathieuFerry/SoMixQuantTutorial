@@ -388,7 +388,7 @@
     "href": "advanced_intro.html#overview-of-chapters",
     "title": "7  Advanced Statistics with R",
     "section": "",
-    "text": "Chapter\nTopic\n\n\n\n\nChapter 8\nData wrangling and visualization\n\n\nChapter 9\nLinear regression and nested models\n\n\nChapter 10\nLogistic regression: odds ratios and probability scale\n\n\nChapter 11\nGeometric Data Analysis",
+    "text": "Chapter\nTopic\n\n\n\n\nChapter 8\nData wrangling and visualization\n\n\nChapter 9\nLinear regression and nested models\n\n\nChapter 10\nThe Chi-Square Test\n\n\nChapter 11\nLogistic regression: odds ratios and probability scale\n\n\nChapter 12\nGeometric Data Analysis",
     "crumbs": [
       "**Advanced analyses**",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Statistics with R</span>"
