@@ -1,6 +1,6 @@
 # Preface {.unnumbered}
 
-This guide summarizes the quantitative training material proposed for the SoMix workshop in December 2025 in Colombo (Sri Lanka).
+This guide summarizes the quantitative training material proposed for the SoMix workshop in December 2025 and May 2026 in Colombo (Sri Lanka).
 
 The various tutorials you will find here aim to familiarize the participants with a selection of functions and tools considered most relevant to descriptively handle statistical data in the social sciences, and how to produce such statistical analyzes using the R language (and the tidyverse). 
 
